@@ -43,8 +43,8 @@ export function ContactSection() {
         <div className="text-center space-y-4">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Get In Touch</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Have a project in mind or want to collaborate? I'd love to hear from you. 
-            Let's build something amazing together.
+            Interested in collaborating or have an opportunity? I'd love to connect and discuss 
+            how we can work together on exciting projects.
           </p>
         </div>
 
@@ -60,7 +60,7 @@ export function ContactSection() {
                   </div>
                   <div>
                     <p className="font-medium">Location</p>
-                    <p className="text-muted-foreground">Delhi, India</p>
+                    <p className="text-muted-foreground">Bengaluru, Karnataka, India</p>
                   </div>
                 </div>
                 
@@ -71,10 +71,10 @@ export function ContactSection() {
                   <div>
                     <p className="font-medium">Email</p>
                     <a 
-                      href="mailto:hello@chaitanya-bajpai.xyz" 
+                      href="mailto:deekshithb.22CS038.nc@cambridge.edu.in" 
                       className="text-muted-foreground hover:text-accent transition-colors"
                     >
-                      hello@chaitanya-bajpai.xyz
+                      deekshithb.22CS038.nc@cambridge.edu.in
                     </a>
                   </div>
                 </div>
@@ -85,7 +85,7 @@ export function ContactSection() {
                   </div>
                   <div>
                     <p className="font-medium">Availability</p>
-                    <p className="text-muted-foreground">Open for new opportunities</p>
+                    <p className="text-muted-foreground">Available for internships and projects</p>
                   </div>
                 </div>
               </div>

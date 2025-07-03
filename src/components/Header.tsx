@@ -8,7 +8,7 @@ export function Header() {
         <div className="mr-4 hidden md:flex">
           <a className="mr-6 flex items-center space-x-2" href="/">
             <span className="hidden font-bold sm:inline-block">
-              Chaitanya Bajpai
+              Deekshith B Gowda
             </span>
           </a>
         </div>
@@ -21,10 +21,28 @@ export function Header() {
             Experience
           </a>
           <a 
+            href="#education" 
+            className="transition-colors hover:text-foreground/80 text-foreground/60"
+          >
+            Education
+          </a>
+          <a 
             href="#projects" 
             className="transition-colors hover:text-foreground/80 text-foreground/60"
           >
             Projects
+          </a>
+          <a 
+            href="#skills" 
+            className="transition-colors hover:text-foreground/80 text-foreground/60"
+          >
+            Skills
+          </a>
+          <a 
+            href="#certifications" 
+            className="transition-colors hover:text-foreground/80 text-foreground/60"
+          >
+            Certifications
           </a>
           <a 
             href="#contact" 
@@ -37,17 +55,17 @@ export function Header() {
         <div className="flex items-center space-x-2">
           <Button variant="ghost" size="icon" asChild>
             <a 
-              href="https://twitter.com" 
+              href="https://x.com/deekshith_b48" 
               target="_blank" 
               rel="noopener noreferrer"
-              aria-label="Twitter"
+              aria-label="X (Twitter)"
             >
               <Twitter className="h-4 w-4" />
             </a>
           </Button>
           <Button variant="ghost" size="icon" asChild>
             <a 
-              href="https://linkedin.com" 
+              href="https://www.linkedin.com/in/deekshithb48" 
               target="_blank" 
               rel="noopener noreferrer"
               aria-label="LinkedIn"
@@ -57,7 +75,7 @@ export function Header() {
           </Button>
           <Button variant="ghost" size="icon" asChild>
             <a 
-              href="https://github.com" 
+              href="https://github.com/deekshith-b48" 
               target="_blank" 
               rel="noopener noreferrer"
               aria-label="GitHub"

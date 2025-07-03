@@ -132,6 +132,45 @@
     box-shadow: 0 25px 50px -12px hsl(var(--accent) / 0.15);
   }
 
+  .education-card {
+    @apply rounded-xl p-6 border transition-all duration-300;
+    background: hsl(var(--card));
+    border-color: hsl(var(--border));
+    transition: var(--transition-smooth);
+  }
+
+  .education-card:hover {
+    border-color: hsl(var(--accent) / 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 20px 25px -5px hsl(var(--accent) / 0.1);
+  }
+
+  .skills-card {
+    @apply rounded-xl p-6 border transition-all duration-300;
+    background: hsl(var(--card));
+    border-color: hsl(var(--border));
+    transition: var(--transition-smooth);
+  }
+
+  .skills-card:hover {
+    border-color: hsl(var(--accent) / 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 20px 25px -5px hsl(var(--accent) / 0.1);
+  }
+
+  .certification-card {
+    @apply rounded-xl p-6 border transition-all duration-300;
+    background: hsl(var(--card));
+    border-color: hsl(var(--border));
+    transition: var(--transition-smooth);
+  }
+
+  .certification-card:hover {
+    border-color: hsl(var(--accent) / 0.3);
+    transform: translateY(-4px);
+    box-shadow: 0 25px 50px -12px hsl(var(--accent) / 0.15);
+  }
+
   .link-hover {
     @apply transition-colors duration-200;
   }

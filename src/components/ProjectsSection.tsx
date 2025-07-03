@@ -15,57 +15,18 @@ interface Project {
 
 const projects: Project[] = [
   {
-    title: "Streamly",
-    description: "Streamyard alternative with custom SFU server and FFMPEG stream mixing",
-    status: "Paused",
-    technologies: ["WebRTC", "Mediasoup", "FFMPEG", "Node.js", "React"],
-    links: [
-      { type: "github", url: "https://github.com/cb7chaitanya/streamly" }
-    ],
-    category: "personal"
-  },
-  {
-    title: "SnipSavvy",
-    description: "Code snippet management platform with multi-level sharing and organization capabilities",
-    status: "Active",
-    technologies: ["Next.js", "TypeScript", "Tailwind", "Node.js", "MongoDB"],
-    links: [
-      { type: "github", url: "https://github.com/SnipSavvy/SnipSavvy_Frontend" },
-      { type: "demo", url: "https://snipsavvy.dev", label: "Live Demo" }
-    ],
-    category: "personal"
-  },
-  {
-    title: "Stream-Vault",
-    description: "Decentralized video platform on WeaveVM with on-chain storage and streaming capabilities",
+    title: "TaskFlow",
+    description: "Comprehensive task management web application built with MERN stack. Features JWT authentication, secure session management, and supports 1000+ concurrent users.",
     status: "Completed",
-    technologies: ["WeaveVM", "Arweave", "React", "TypeScript", "Web3"],
-    links: [
-      { type: "github", url: "https://github.com/cb7chaitanya/stream-vault" },
-      { type: "demo", url: "https://stream-vault.vercel.app" }
-    ],
+    technologies: ["MongoDB", "Express.js", "React", "Node.js", "JWT", "Postman"],
     category: "personal"
   },
   {
-    title: "DeFi Analytics Dashboard",
-    description: "Real-time analytics dashboard for DeFi protocols with portfolio tracking",
-    status: "Active",
-    technologies: ["React", "TypeScript", "D3.js", "Web3.js", "The Graph"],
-    category: "client"
-  },
-  {
-    title: "NFT Marketplace",
-    description: "Full-featured NFT marketplace with lazy minting and royalty distribution",
+    title: "Weather Intelligence Dashboard",
+    description: "Dynamic weather application with OpenWeatherMap API integration, geolocation services, and 7-day forecast functionality with responsive mobile-first design.",
     status: "Completed",
-    technologies: ["Solidity", "React", "IPFS", "MetaMask", "OpenSea API"],
-    category: "client"
-  },
-  {
-    title: "Cross-Chain Bridge",
-    description: "Secure cross-chain asset bridge supporting multiple blockchain networks",
-    status: "Active",
-    technologies: ["Solidity", "Rust", "Ethereum", "Polygon", "LayerZero"],
-    category: "client"
+    technologies: ["React", "TailwindCSS", "OpenWeatherMap API", "Geolocation"],
+    category: "personal"
   }
 ];
 

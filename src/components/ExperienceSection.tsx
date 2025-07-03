@@ -15,53 +15,16 @@ interface ExperienceItem {
 
 const experiences: ExperienceItem[] = [
   {
-    title: "Full-Stack Blockchain Engineer",
-    company: "Wildcard",
-    period: "2024 - Present",
-    status: "Current",
-    description: "Building smart wallet infrastructure and blockchain applications",
-    technologies: ["Rust", "Solana", "EVM", "Next.js"],
-    icon: "💳"
-  },
-  {
-    title: "Full-Stack Engineer",
-    company: "Swifey AI",
-    period: "2024",
+    title: "Web Development Intern",
+    company: "Internshala",
+    period: "Dec 2023 - Mar 2024",
     status: "Past",
-    description: "Full-stack development across web, mobile, and blockchain",
-    technologies: ["FastAPI", "Node.js", "React", "TypeScript", "Flutter", "Solana", "Rust"],
+    description: "Developed 5+ responsive websites using modern web technologies, resulting in 20% increase in mobile user engagement. Built RESTful APIs and enhanced cross-device compatibility.",
+    technologies: ["HTML5", "CSS3", "JavaScript", "Node.js", "Express.js", "Git"],
     links: [
-      { label: "Contracts", url: "https://github.com/cb7chaitanya/swifey-contracts" },
-      { label: "App Store", url: "https://apps.apple.com/us/app/swifey-dating/id6737560814" },
-      { label: "Twitter", url: "https://x.com/SwifeyAI" }
+      { label: "Certificate", url: "https://trainings.internshala.com/s/v/3229789/ea9497ac" }
     ],
-    icon: "💕"
-  },
-  {
-    title: "Founding Engineer",
-    company: "Veritas AO",
-    period: "2024",
-    status: "Past",
-    description: "Building fair launch platform on Arweave's AO protocol",
-    technologies: ["AO", "TypeScript", "React", "Node.js"],
-    links: [
-      { label: "Website", url: "https://veritas-ao.dev/" },
-      { label: "Twitter", url: "https://x.com/Veritas_ao" }
-    ],
-    icon: "⚖️"
-  },
-  {
-    title: "Full-Stack Engineering Intern",
-    company: "Grafieks",
-    period: "2023",
-    status: "Past",
-    description: "Full-stack development internship",
-    technologies: ["Go", "Node.js", "React", "TypeScript"],
-    links: [
-      { label: "Website", url: "https://grafieks.com/" },
-      { label: "LinkedIn", url: "https://www.linkedin.com/company/grafieks" }
-    ],
-    icon: "📊"
+    icon: "💻"
   }
 ];
 
