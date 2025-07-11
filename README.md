@@ -1,4 +1,4 @@
-# Chaitanya Bajpai - Portfolio Website
+# Portfolio Website
 
 A pixel-perfect replica of the portfolio website with modern enhancements including responsive design, interactive animations, and performance optimizations.
 
