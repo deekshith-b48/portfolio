@@ -15,12 +15,22 @@ interface ExperienceItem {
 
 const experiences: ExperienceItem[] = [
   {
+    title: "Trainee - Core Member",
+    company: "Samsung Innovation Lab",
+    period: "Feb 2024 - Present",
+    status: "Current",
+    description: "A global initiative by Samsung focused on skill development in AI, IoT, and Deep Learning. Worked on two major projects: Tumor Detection using Deep Learning (achieving 92% accuracy with 15% reduction in false positives) and AI-Based Employee Safety Monitoring System (90% accuracy in detecting unsafe actions with 40% faster emergency response).",
+    technologies: ["TensorFlow", "Keras", "Python", "Flask", "Raspberry Pi", "React.js", "Node.js", "MQTT", "Deep Learning", "IoT"],
+    links: [],
+    icon: "🏢"
+  },
+  {
     title: "Web Development Intern",
     company: "Internshala",
     period: "Dec 2023 - Mar 2024",
     status: "Past",
-    description: "Developed 5+ responsive websites using modern web technologies, resulting in 20% increase in mobile user engagement. Built RESTful APIs and enhanced cross-device compatibility.",
-    technologies: ["HTML5", "CSS3", "JavaScript", "Node.js", "Express.js", "Git"],
+    description: "Developed dynamic web applications using modern web technologies, improving mobile user engagement by 20% and increasing mobile traffic by 25%. Built and integrated RESTful APIs, improving backend efficiency by 15%. Optimized website performance, reducing load times by 15% and increasing user satisfaction.",
+    technologies: ["HTML5", "CSS3", "JavaScript", "Node.js", "Express.js", "RESTful APIs", "Responsive Design"],
     links: [
       { label: "Certificate", url: "https://trainings.internshala.com/s/v/3229789/ea9497ac" }
     ],
