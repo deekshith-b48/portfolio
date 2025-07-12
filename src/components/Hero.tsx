@@ -11,6 +11,7 @@ export function Hero() {
               src={profileImage} 
               alt="Deekshith B Gowda"
               className="object-cover"
+              key="profile-image-v2"
             />
             <AvatarFallback className="text-2xl font-semibold">DG</AvatarFallback>
           </Avatar>
