@@ -16,55 +16,62 @@ interface Project {
 
 const projects: Project[] = [
   {
-    title: "TaskFlow",
-    description: "Comprehensive task management web application built with MERN stack. Features JWT authentication, secure session management, and supports 1000+ concurrent users.",
+    title: "Decentralized NFT Marketplace Platform",
+    description: "A blockchain-based NFT marketplace built on Ethereum with smart contracts for minting, buying, and selling digital assets. Features wallet integration and decentralized storage.",
     status: "Completed",
-    technologies: ["MongoDB", "Express.js", "React", "Node.js", "JWT", "Postman"],
+    technologies: ["Solidity", "React", "Web3.js", "Ethereum", "IPFS", "MetaMask"],
     links: [
-      { type: "github", url: "https://github.com/deekshithbgowda/taskflow", label: "Source Code" }
+      { type: "github", url: "https://github.com/deekshith-b48/Decentralized-NFT-Marketplace-Platform-", label: "Source Code" }
     ],
     category: "personal"
   },
   {
-    title: "Weather Intelligence Dashboard",
-    description: "Dynamic weather application with OpenWeatherMap API integration, geolocation services, and 7-day forecast functionality with responsive mobile-first design.",
+    title: "Sentiment Analysis",
+    description: "Machine learning application for analyzing sentiment in text data using natural language processing techniques. Supports real-time sentiment classification.",
     status: "Completed",
-    technologies: ["React", "TailwindCSS", "OpenWeatherMap API", "Geolocation"],
+    technologies: ["Python", "NLTK", "scikit-learn", "Flask", "Pandas", "NumPy"],
     links: [
-      { type: "github", url: "https://github.com/deekshithbgowda/weather-dashboard", label: "Source Code" },
-      { type: "demo", url: "https://weather-intelligence-app.vercel.app", label: "Live Demo" }
+      { type: "github", url: "https://github.com/deekshith-b48/sentiment-analysis", label: "Source Code" }
     ],
     category: "personal"
   },
   {
-    title: "Portfolio Website",
-    description: "Modern personal portfolio built with React, TypeScript, and Tailwind CSS. Features dark theme, responsive design, and smooth animations with optimized performance.",
+    title: "ZeroHack",
+    description: "Cybersecurity toolkit and penetration testing framework with automated vulnerability scanning and security assessment capabilities.",
     status: "Active",
-    technologies: ["React", "TypeScript", "Tailwind CSS", "Vite", "Lucide Icons"],
+    technologies: ["Python", "Kali Linux", "Nmap", "Metasploit", "Burp Suite", "Shell Scripting"],
     links: [
-      { type: "github", url: "https://github.com/deekshithbgowda/portfolio-v2", label: "Source Code" },
-      { type: "website", url: "https://deekshithbgowda.dev", label: "Live Site" }
+      { type: "github", url: "https://github.com/deekshith-b48/ZeroHack", label: "Source Code" }
     ],
     category: "personal"
   },
   {
-    title: "E-Commerce API",
-    description: "RESTful API for e-commerce platform with user authentication, product management, order processing, and payment integration. Built with Node.js and MongoDB.",
-    status: "Completed",
-    technologies: ["Node.js", "Express.js", "MongoDB", "Mongoose", "JWT", "Stripe API"],
-    links: [
-      { type: "github", url: "https://github.com/deekshithbgowda/ecommerce-api", label: "Source Code" }
-    ],
-    category: "personal"
-  },
-  {
-    title: "Real-Time Chat Application",
-    description: "Full-stack chat application with Socket.io for real-time messaging, user authentication, group chats, and file sharing capabilities.",
+    title: "Real-time Product Operating System",
+    description: "Enterprise-grade operating system for product management with real-time data processing, inventory tracking, and automated workflow management.",
     status: "Active",
-    technologies: ["React", "Node.js", "Socket.io", "MongoDB", "Express.js", "Material-UI"],
+    technologies: ["C++", "Linux", "PostgreSQL", "Redis", "Docker", "Kubernetes"],
     links: [
-      { type: "github", url: "https://github.com/deekshithbgowda/realtime-chat", label: "Source Code" },
-      { type: "demo", url: "https://chat-app-realtime.herokuapp.com", label: "Live Demo" }
+      { type: "github", url: "https://github.com/deekshith-b48/Real-time-Product-operating-system", label: "Source Code" }
+    ],
+    category: "personal"
+  },
+  {
+    title: "Helmet Detection",
+    description: "Computer vision application using deep learning to detect helmet usage in construction sites and industrial environments for safety compliance monitoring.",
+    status: "Completed",
+    technologies: ["Python", "OpenCV", "TensorFlow", "YOLO", "Keras", "NumPy"],
+    links: [
+      { type: "github", url: "https://github.com/deekshith-b48/Helmet-Detection", label: "Source Code" }
+    ],
+    category: "personal"
+  },
+  {
+    title: "SocialSpark",
+    description: "Social media platform with real-time messaging, content sharing, and community features. Built with modern web technologies and scalable architecture.",
+    status: "Active",
+    technologies: ["React", "Node.js", "MongoDB", "Socket.io", "Express.js", "JWT"],
+    links: [
+      { type: "github", url: "https://github.com/deekshith-b48/SocialSpark", label: "Source Code" }
     ],
     category: "personal"
   }
