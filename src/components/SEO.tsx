@@ -8,10 +8,10 @@ interface SEOProps {
 }
 
 export function SEO({
-  title = "Chaitanya Bajpai - Full Stack Blockchain Developer",
-  description = "21-year-old Full Stack Blockchain Developer from Delhi crafting cutting-edge dApps and DeFi solutions. From secure smart contracts to intuitive Web3 interfaces.",
+  title = "Deekshith B Gowda - Portfolio Website",
+  description = "20-year-old Full Stack Blockchain Developer from Karnataka crafting cutting-edge dApps and DeFi solutions. From secure smart contracts to intuitive Web3 interfaces.",
   image = "/og-image.jpg",
-  url = "https://chaitanya-bajpai.xyz/",
+  url = "deekshith-b-gowda-portfolio.vercel.app",
 }: SEOProps) {
   useEffect(() => {
     // Update document title
