@@ -1,5 +1,5 @@
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import profileImage from "@/assets/profile.jpg";
+// import profileImage from "@/assets/profile.jpg";
 
 export function Hero() {
   return (
@@ -8,10 +8,10 @@ export function Hero() {
         <div className="relative">
           <Avatar className="w-32 h-32 md:w-40 md:h-40 ring-4 ring-accent/20 animate-float">
             <AvatarImage 
-              src={profileImage} 
+              src="/lovable-uploads/2ff8e71d-bc1f-475a-b7d6-ee036deb909e.png" 
               alt="Deekshith B Gowda"
               className="object-cover"
-              key="profile-image-v2"
+              key="profile-image-v3"
             />
             <AvatarFallback className="text-2xl font-semibold">DG</AvatarFallback>
           </Avatar>
