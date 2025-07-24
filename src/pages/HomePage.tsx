@@ -117,35 +117,35 @@ export function HomePage() {
         </section>
 
         {/* Current Experience */}
-        <section className="space-y-6">
-          <div className="flex items-center justify-between">
-            <h2 className="text-2xl font-bold flex items-center gap-2">
-              <Building2 className="w-6 h-6 text-accent" />
+        <section className="space-y-4 md:space-y-6">
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+            <h2 className="text-xl md:text-2xl font-bold flex items-center gap-2">
+              <Building2 className="w-5 h-5 md:w-6 md:h-6 text-accent" />
               Current Role
             </h2>
             <Link to="/experience">
-              <Button variant="ghost" size="sm" className="text-accent hover:text-accent/80">
-                View All <ArrowRight className="w-4 h-4 ml-1" />
+              <Button variant="ghost" size="sm" className="text-accent hover:text-accent/80 text-xs md:text-sm w-fit">
+                View All <ArrowRight className="w-3 h-3 md:w-4 md:h-4 ml-1" />
               </Button>
             </Link>
           </div>
-          
+
           <Card className="border-border/50 bg-card/50">
-            <CardContent className="p-6">
+            <CardContent className="p-4 md:p-6">
               <div className="space-y-4">
-                <div className="flex items-start justify-between">
-                  <div>
-                    <h3 className="text-xl font-semibold">{recentExperience.title}</h3>
-                    <p className="text-accent font-medium">{recentExperience.company}</p>
-                    <p className="text-sm text-muted-foreground">{recentExperience.period}</p>
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                  <div className="space-y-1">
+                    <h3 className="text-lg md:text-xl font-semibold">{recentExperience.title}</h3>
+                    <p className="text-accent font-medium text-sm md:text-base">{recentExperience.company}</p>
+                    <p className="text-xs md:text-sm text-muted-foreground">{recentExperience.period}</p>
                   </div>
-                  <Badge variant="outline" className="bg-green-500/10 text-green-400 border-green-500/30">
+                  <Badge variant="outline" className="bg-green-500/10 text-green-400 border-green-500/30 text-xs w-fit">
                     Current
                   </Badge>
                 </div>
-                <Badge variant="outline" className="bg-amber-500/10 text-amber-600 border-amber-500/30 w-fit">
+                <Badge variant="outline" className="bg-amber-500/10 text-amber-600 border-amber-500/30 w-fit text-xs">
                   <Sparkles className="w-3 h-3 mr-1" />
-                  {recentExperience.note}
+                  <span className="break-words">{recentExperience.note}</span>
                 </Badge>
               </div>
             </CardContent>
@@ -153,22 +153,22 @@ export function HomePage() {
         </section>
 
         {/* Top Skills */}
-        <section className="space-y-6">
-          <div className="flex items-center justify-between">
-            <h2 className="text-2xl font-bold flex items-center gap-2">
-              <Code2 className="w-6 h-6 text-accent" />
+        <section className="space-y-4 md:space-y-6">
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+            <h2 className="text-xl md:text-2xl font-bold flex items-center gap-2">
+              <Code2 className="w-5 h-5 md:w-6 md:h-6 text-accent" />
               Top Skills
             </h2>
             <Link to="/skills">
-              <Button variant="ghost" size="sm" className="text-accent hover:text-accent/80">
-                View All <ArrowRight className="w-4 h-4 ml-1" />
+              <Button variant="ghost" size="sm" className="text-accent hover:text-accent/80 text-xs md:text-sm w-fit">
+                View All <ArrowRight className="w-3 h-3 md:w-4 md:h-4 ml-1" />
               </Button>
             </Link>
           </div>
-          
-          <div className="flex flex-wrap gap-3">
+
+          <div className="flex flex-wrap gap-2 md:gap-3">
             {topSkills.map((skill) => (
-              <TechTag key={skill} className="hover:bg-accent/20 hover:text-accent transition-all duration-300 hover:scale-105">
+              <TechTag key={skill} className="hover:bg-accent/20 hover:text-accent transition-all duration-300 hover:scale-105 text-xs md:text-sm">
                 {skill}
               </TechTag>
             ))}
@@ -176,28 +176,28 @@ export function HomePage() {
         </section>
 
         {/* Featured Projects */}
-        <section className="space-y-6">
-          <div className="flex items-center justify-between">
-            <h2 className="text-2xl font-bold flex items-center gap-2">
-              <Star className="w-6 h-6 text-accent" />
+        <section className="space-y-4 md:space-y-6">
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+            <h2 className="text-xl md:text-2xl font-bold flex items-center gap-2">
+              <Star className="w-5 h-5 md:w-6 md:h-6 text-accent" />
               Featured Projects
             </h2>
             <Link to="/projects">
-              <Button variant="ghost" size="sm" className="text-accent hover:text-accent/80">
-                View All <ArrowRight className="w-4 h-4 ml-1" />
+              <Button variant="ghost" size="sm" className="text-accent hover:text-accent/80 text-xs md:text-sm w-fit">
+                View All <ArrowRight className="w-3 h-3 md:w-4 md:h-4 ml-1" />
               </Button>
             </Link>
           </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <div className="grid gap-4 md:gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {featuredProjects.map((project) => (
               <Card key={project.name} className="border-border/50 bg-card/50 hover:border-accent/30 transition-all duration-300 hover:shadow-lg hover:shadow-accent/10">
-                <CardContent className="p-6 space-y-4">
+                <CardContent className="p-4 md:p-6 space-y-3 md:space-y-4">
                   <div>
-                    <h3 className="font-semibold">{project.name}</h3>
-                    <p className="text-sm text-muted-foreground">{project.description}</p>
+                    <h3 className="font-semibold text-sm md:text-base">{project.name}</h3>
+                    <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">{project.description}</p>
                   </div>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-1.5 md:gap-2">
                     {project.tech.map((tech) => (
                       <TechTag key={tech} variant="secondary" className="text-xs">
                         {tech}
@@ -211,24 +211,24 @@ export function HomePage() {
         </section>
 
         {/* Recent Achievements */}
-        <section className="space-y-6">
-          <div className="flex items-center justify-between">
-            <h2 className="text-2xl font-bold flex items-center gap-2">
-              <Trophy className="w-6 h-6 text-accent" />
+        <section className="space-y-4 md:space-y-6">
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+            <h2 className="text-xl md:text-2xl font-bold flex items-center gap-2">
+              <Trophy className="w-5 h-5 md:w-6 md:h-6 text-accent" />
               Recent Achievements
             </h2>
             <Link to="/achievements">
-              <Button variant="ghost" size="sm" className="text-accent hover:text-accent/80">
-                View All <ArrowRight className="w-4 h-4 ml-1" />
+              <Button variant="ghost" size="sm" className="text-accent hover:text-accent/80 text-xs md:text-sm w-fit">
+                View All <ArrowRight className="w-3 h-3 md:w-4 md:h-4 ml-1" />
               </Button>
             </Link>
           </div>
-          
-          <div className="space-y-3">
+
+          <div className="space-y-2 md:space-y-3">
             {featuredAchievements.map((achievement, index) => (
-              <div key={index} className="flex items-center gap-3 p-4 rounded-lg border border-border/50 bg-card/50">
-                <Trophy className="w-5 h-5 text-accent flex-shrink-0" />
-                <span className="text-sm">{achievement}</span>
+              <div key={index} className="flex items-start gap-3 p-3 md:p-4 rounded-lg border border-border/50 bg-card/50">
+                <Trophy className="w-4 h-4 md:w-5 md:h-5 text-accent flex-shrink-0 mt-0.5" />
+                <span className="text-xs md:text-sm leading-relaxed">{achievement}</span>
               </div>
             ))}
           </div>
