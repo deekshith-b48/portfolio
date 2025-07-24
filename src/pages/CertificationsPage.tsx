@@ -103,6 +103,36 @@ const certifications: Certification[] = [
     description: "Ongoing participation in Samsung's global innovation program focusing on cutting-edge AI and IoT technologies.",
     category: "ai",
     featured: true
+  },
+  {
+    title: "Python (Basic)",
+    issuer: "HackerRank",
+    issuedDate: "Jul 2024",
+    credentialId: "A1B2C3D4E5F6",
+    url: "https://www.hackerrank.com/certificates/python-basic",
+    skills: ["Python", "Programming", "Data Structures"],
+    description: "Basic Python programming certification covering fundamental concepts and programming skills.",
+    category: "development"
+  },
+  {
+    title: "JavaScript (Basic)",
+    issuer: "HackerRank",
+    issuedDate: "Jun 2024",
+    credentialId: "G7H8I9J0K1L2",
+    url: "https://www.hackerrank.com/certificates/javascript-basic",
+    skills: ["JavaScript", "Web Development", "Programming"],
+    description: "Basic JavaScript certification demonstrating fundamental JavaScript programming skills.",
+    category: "development"
+  },
+  {
+    title: "Problem Solving (Basic)",
+    issuer: "HackerRank",
+    issuedDate: "May 2024",
+    credentialId: "M3N4O5P6Q7R8",
+    url: "https://www.hackerrank.com/certificates/problem-solving-basic",
+    skills: ["Problem Solving", "Algorithms", "Data Structures"],
+    description: "Problem solving certification covering algorithmic thinking and data structure concepts.",
+    category: "development"
   }
 ];
 
