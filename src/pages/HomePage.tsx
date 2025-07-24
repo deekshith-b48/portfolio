@@ -24,6 +24,7 @@ import {
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { TechTag } from "@/components/TechTag";
+import { ResumeDownload } from "@/components/ResumeDownload";
 
 export function HomePage() {
   const [currentTime, setCurrentTime] = useState(new Date());
