@@ -127,8 +127,8 @@ export function Sidebar({ isDarkMode, toggleTheme }: SidebarProps) {
         </nav>
 
         {/* Social Links */}
-        <div className="pt-6 border-t border-border/20">
-          <div className="flex items-center justify-center gap-3">
+        <div className="pt-4 border-t border-border/20 space-y-3">
+          <div className="flex items-center justify-center gap-2">
             {socialLinks.map((social) => {
               const Icon = social.icon;
               return (
@@ -137,7 +137,7 @@ export function Sidebar({ isDarkMode, toggleTheme }: SidebarProps) {
                   variant="ghost"
                   size="sm"
                   asChild
-                  className="group hover:bg-accent/10 hover:scale-110 transition-all duration-300"
+                  className="hover:bg-accent/10 h-8 w-8"
                 >
                   <a
                     href={social.href}
@@ -145,17 +145,17 @@ export function Sidebar({ isDarkMode, toggleTheme }: SidebarProps) {
                     rel="noopener noreferrer"
                     aria-label={social.label}
                   >
-                    <Icon className="w-4 h-4 group-hover:text-accent transition-colors duration-300" />
+                    <Icon className="w-4 h-4 hover:text-accent transition-colors" />
                   </a>
                 </Button>
               );
             })}
           </div>
-          
+
           {/* Footer */}
-          <div className="mt-4 text-center">
+          <div className="text-center">
             <p className="text-xs text-muted-foreground">
-              © 2025 Portfolio v2.0
+              © 2025 Portfolio
             </p>
           </div>
         </div>
