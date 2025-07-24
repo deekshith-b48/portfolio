@@ -48,7 +48,7 @@ export function Sidebar({ isDarkMode, toggleTheme }: SidebarProps) {
   const location = useLocation();
 
   return (
-    <aside className={`fixed left-0 top-0 h-screen w-64 border-r transition-all duration-300 z-50 ${
+    <aside className={`fixed left-0 top-0 h-screen w-64 border-r transition-all duration-300 z-50 lg:block hidden ${
       isDarkMode
         ? 'bg-background/95 backdrop-blur-xl border-border/40'
         : 'bg-white/95 backdrop-blur-xl border-gray-200/40'
