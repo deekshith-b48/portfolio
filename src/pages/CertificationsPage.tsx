@@ -27,7 +27,7 @@ const certifications: Certification[] = [
     issuer: "HackerRank",
     issuedDate: "Jul 2025",
     credentialId: "6321D67094DA",
-    url: "#",
+    url: "https://www.hackerrank.com/certificates/6321d67094da",
     skills: ["React.js", "JavaScript", "Frontend Development"],
     description: "Recognizes successful completion of the HackerRank Frontend Developer (React) certification assessment. The test evaluated practical knowledge and coding skills essential for building dynamic, component-based user interfaces using React.",
     highlights: [
