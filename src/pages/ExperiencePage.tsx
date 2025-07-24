@@ -1,7 +1,10 @@
-import { ExternalLink, Calendar, MapPin, Building2, ChevronDown, ChevronUp, Sparkles, TrendingUp, Users, Target } from "lucide-react";
+import { ExternalLink, Calendar, MapPin, Building2, Sparkles, TrendingUp, Users, Target, ChevronRight } from "lucide-react";
 import { TechTag } from "@/components/TechTag";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
+import { ExperienceDetailModal } from "@/components/ExperienceDetailModal";
+import { ResumeDownload } from "@/components/ResumeDownload";
 import { useState } from "react";
 
 interface ExperienceItem {
@@ -132,275 +135,185 @@ const experiences: ExperienceItem[] = [
 ];
 
 export function ExperiencePage() {
-  const [expandedExperiences, setExpandedExperiences] = useState<Set<number>>(new Set());
+  const [selectedExperience, setSelectedExperience] = useState<ExperienceItem | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const toggleExperience = (index: number) => {
-    const newExpanded = new Set(expandedExperiences);
-    if (newExpanded.has(index)) {
-      newExpanded.delete(index);
-    } else {
-      newExpanded.add(index);
-    }
-    setExpandedExperiences(newExpanded);
+  const handleExperienceClick = (experience: ExperienceItem) => {
+    setSelectedExperience(experience);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedExperience(null);
+  };
+
+  const getTopTechnologies = (experience: ExperienceItem, count: number = 4) => {
+    return experience.technologies.slice(0, count);
   };
 
   return (
-    <div className="min-h-screen p-8">
-      <div className="max-w-6xl mx-auto space-y-16">
+    <div className="min-h-screen">
+      <div className="max-w-7xl mx-auto p-3 md:p-6 lg:p-8 space-y-6 md:space-y-12">
+        
+        {/* Resume Download Section */}
+        <ResumeDownload />
+        
         {/* Header */}
-        <div className="text-center space-y-6 animate-fade-in">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 text-accent text-sm font-medium mb-4">
-            <Building2 className="w-4 h-4" />
+        <div className="text-center space-y-4 md:space-y-6">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-accent/10 border border-accent/20 text-accent text-xs md:text-sm font-medium">
+            <Building2 className="w-3 h-3 md:w-4 md:h-4" />
             Professional Journey
           </div>
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tight bg-gradient-to-r from-foreground to-accent bg-clip-text text-transparent">
+          <h1 className="text-2xl md:text-4xl lg:text-6xl font-bold tracking-tight bg-gradient-to-r from-foreground to-accent bg-clip-text text-transparent">
             Experience
           </h1>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            My professional journey in technology, from innovative AI projects to full-stack development, 
-            showcasing continuous growth and impactful contributions.
+          <p className="text-sm md:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            My professional journey in technology, from innovative AI projects to full-stack development.
           </p>
         </div>
 
-        {/* Timeline */}
-        <div className="relative">
-          {/* Timeline line */}
-          <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-accent via-accent/50 to-transparent hidden md:block" />
-
-          <div className="space-y-12">
-            {experiences.map((experience, index) => {
-              const isExpanded = expandedExperiences.has(index);
-              
-              return (
-                <div
-                  key={index}
-                  className="relative animate-slide-up"
-                  style={{ animationDelay: `${index * 0.2}s` }}
-                >
-                  {/* Timeline dot */}
-                  <div className="absolute left-6 top-8 w-4 h-4 bg-accent rounded-full border-4 border-background hidden md:block animate-pulse-soft" />
+        {/* Mobile-Optimized Experience Cards */}
+        <div className="space-y-4 md:space-y-6">
+          {experiences.map((experience, index) => (
+            <Card
+              key={experience.company + experience.title}
+              className="group cursor-pointer border-border/50 bg-card/50 hover:border-accent/30 hover:shadow-lg hover:shadow-accent/5 transition-all duration-300 hover:scale-[1.01]"
+              onClick={() => handleExperienceClick(experience)}
+            >
+              <CardContent className="p-4 md:p-6 space-y-4">
+                
+                {/* Header */}
+                <div className="flex items-start gap-3">
+                  {experience.icon && (
+                    <div className="text-xl md:text-2xl flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                      {experience.icon}
+                    </div>
+                  )}
                   
-                  <div className="md:ml-20">
-                    <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-card/50 to-card border border-border/50 backdrop-blur-sm transition-all duration-700 hover:border-accent/30 hover:shadow-2xl hover:shadow-accent/10">
-                      {/* Gradient overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                      
-                      <div className="relative p-8 space-y-6">
-                        {/* Header - Always Visible */}
-                        <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4">
-                          <div className="flex items-start gap-4 flex-1">
-                            <div className="text-3xl flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                              {experience.icon}
-                            </div>
-                            
-                            <div className="space-y-3 flex-1">
-                              <div className="flex flex-wrap items-center gap-3">
-                                <h3 className="text-xl md:text-2xl font-bold group-hover:text-accent transition-colors duration-300">
-                                  {experience.title}
-                                </h3>
-                                <Badge 
-                                  variant="outline" 
-                                  className={`${experience.status === "Current" 
-                                    ? "bg-green-500/20 text-green-400 border-green-500/30" 
-                                    : "bg-blue-500/20 text-blue-400 border-blue-500/30"
-                                  } text-xs font-medium`}
-                                >
-                                  {experience.status}
-                                </Badge>
-                              </div>
-                              
-                              <div className="flex flex-wrap items-center gap-4 text-muted-foreground">
-                                <div className="flex items-center gap-2">
-                                  <Building2 className="w-4 h-4" />
-                                  <span className="font-semibold text-accent">{experience.company}</span>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                  <Calendar className="w-4 h-4" />
-                                  <span>{experience.period}</span>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                  <MapPin className="w-4 h-4" />
-                                  <span>{experience.location}</span>
-                                </div>
-                              </div>
-                              
-                              <div className="flex items-center gap-3">
-                                <Badge variant="secondary" className="w-fit text-xs">
-                                  {experience.type}
-                                </Badge>
-                                {experience.note && (
-                                  <Badge variant="outline" className="bg-amber-500/10 text-amber-600 border-amber-500/30 text-xs">
-                                    <Sparkles className="w-3 h-3 mr-1" />
-                                    {experience.note}
-                                  </Badge>
-                                )}
-                              </div>
-                            </div>
-                          </div>
+                  <div className="flex-1 min-w-0 space-y-2">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <h3 className="text-base md:text-xl font-bold group-hover:text-accent transition-colors duration-300">
+                        {experience.title}
+                      </h3>
+                      <Badge 
+                        variant="outline" 
+                        className={`${experience.status === "Current" 
+                          ? "bg-green-500/20 text-green-400 border-green-500/30" 
+                          : "bg-blue-500/20 text-blue-400 border-blue-500/30"
+                        } text-xs`}
+                      >
+                        {experience.status}
+                      </Badge>
+                    </div>
+                    
+                    <div className="space-y-1">
+                      <div className="flex items-center gap-2 text-accent font-medium text-sm md:text-base">
+                        <Building2 className="w-4 h-4" />
+                        {experience.company}
+                      </div>
+                      <div className="flex flex-wrap items-center gap-3 text-xs md:text-sm text-muted-foreground">
+                        <div className="flex items-center gap-1">
+                          <Calendar className="w-3 h-3" />
+                          {experience.period}
                         </div>
-
-                        {/* Basic Description - Always Visible */}
-                        <p className="text-muted-foreground leading-relaxed group-hover:text-foreground/80 transition-colors duration-300">
-                          {experience.description}
-                        </p>
-
-                        {/* Key Technologies Preview */}
-                        <div className="flex flex-wrap gap-2">
-                          {experience.technologies.slice(0, 6).map((tech) => (
-                            <TechTag 
-                              key={tech} 
-                              variant="secondary" 
-                              className="hover:bg-accent/20 hover:text-accent transition-all duration-300 hover:scale-105"
-                            >
-                              {tech}
-                            </TechTag>
-                          ))}
-                          {experience.technologies.length > 6 && !isExpanded && (
-                            <span className="text-sm text-muted-foreground px-2 py-1">
-                              +{experience.technologies.length - 6} more
-                            </span>
-                          )}
+                        <div className="flex items-center gap-1">
+                          <MapPin className="w-3 h-3" />
+                          {experience.location}
                         </div>
-
-                        {/* Expanded Details */}
-                        {isExpanded && (
-                          <div className="space-y-6 animate-fade-in border-t border-border/50 pt-6">
-                            {/* Detailed Description */}
-                            <div className="space-y-3">
-                              <h4 className="font-semibold text-accent flex items-center gap-2">
-                                <Sparkles className="w-4 h-4" />
-                                Detailed Overview
-                              </h4>
-                              <p className="text-muted-foreground leading-relaxed">
-                                {experience.detailedDescription}
-                              </p>
-                            </div>
-
-                            {/* All Technologies */}
-                            {experience.technologies.length > 6 && (
-                              <div className="space-y-3">
-                                <h4 className="font-semibold text-sm text-accent">All Technologies Used</h4>
-                                <div className="flex flex-wrap gap-2">
-                                  {experience.technologies.map((tech) => (
-                                    <TechTag 
-                                      key={tech} 
-                                      variant="secondary" 
-                                      className="hover:bg-accent/20 hover:text-accent transition-all duration-300 hover:scale-105"
-                                    >
-                                      {tech}
-                                    </TechTag>
-                                  ))}
-                                </div>
-                              </div>
-                            )}
-
-                            {/* Achievements */}
-                            <div className="space-y-3">
-                              <h4 className="font-semibold text-accent flex items-center gap-2">
-                                <TrendingUp className="w-4 h-4" />
-                                Key Achievements
-                              </h4>
-                              <div className="grid md:grid-cols-2 gap-3">
-                                {experience.achievements.map((achievement, achIndex) => (
-                                  <div 
-                                    key={achIndex} 
-                                    className="flex items-start gap-3 text-sm text-muted-foreground p-3 rounded-lg bg-background/50 border border-border/50"
-                                  >
-                                    <Sparkles className="w-4 h-4 mt-0.5 text-accent/60 flex-shrink-0" />
-                                    <span>{achievement}</span>
-                                  </div>
-                                ))}
-                              </div>
-                            </div>
-
-                            {/* Skills Developed */}
-                            <div className="space-y-3">
-                              <h4 className="font-semibold text-accent flex items-center gap-2">
-                                <Users className="w-4 h-4" />
-                                Skills Developed
-                              </h4>
-                              <div className="grid md:grid-cols-2 gap-2">
-                                {experience.skills.map((skill, skillIndex) => (
-                                  <div key={skillIndex} className="flex items-center gap-2 text-sm text-muted-foreground">
-                                    <div className="w-2 h-2 bg-accent rounded-full" />
-                                    <span>{skill}</span>
-                                  </div>
-                                ))}
-                              </div>
-                            </div>
-
-                            {/* Impact */}
-                            <div className="space-y-3">
-                              <h4 className="font-semibold text-accent flex items-center gap-2">
-                                <Target className="w-4 h-4" />
-                                Impact & Results
-                              </h4>
-                              <div className="grid md:grid-cols-2 gap-3">
-                                {experience.impact.map((impact, impactIndex) => (
-                                  <div 
-                                    key={impactIndex} 
-                                    className="flex items-start gap-3 text-sm text-muted-foreground p-3 rounded-lg bg-accent/5 border border-accent/20"
-                                  >
-                                    <TrendingUp className="w-4 h-4 mt-0.5 text-accent flex-shrink-0" />
-                                    <span>{impact}</span>
-                                  </div>
-                                ))}
-                              </div>
-                            </div>
-
-                            {/* Links */}
-                            {experience.links && experience.links.length > 0 && (
-                              <div className="flex flex-wrap gap-3">
-                                {experience.links.map((link) => (
-                                  <Button
-                                    key={link.label}
-                                    variant="outline"
-                                    size="sm"
-                                    asChild
-                                    className="group/btn hover:bg-accent hover:text-background hover:border-accent transition-all duration-300 hover:scale-105"
-                                  >
-                                    <a
-                                      href={link.url}
-                                      target="_blank"
-                                      rel="noopener noreferrer"
-                                      className="inline-flex items-center gap-2"
-                                    >
-                                      {link.label}
-                                      <ExternalLink className="h-4 w-4 group-hover/btn:scale-110 transition-transform duration-300" />
-                                    </a>
-                                  </Button>
-                                ))}
-                              </div>
-                            )}
-                          </div>
-                        )}
-
-                        {/* Know More Button */}
-                        <div className="pt-4 border-t border-border/50">
-                          <Button
-                            variant="ghost"
-                            onClick={() => toggleExperience(index)}
-                            className="w-full group/btn hover:bg-accent/10 hover:text-accent transition-all duration-300"
-                          >
-                            <span className="mr-2">
-                              {isExpanded ? "Show Less" : "Know More"}
-                            </span>
-                            {isExpanded ? (
-                              <ChevronUp className="w-4 h-4 group-hover/btn:scale-110 transition-transform duration-300" />
-                            ) : (
-                              <ChevronDown className="w-4 h-4 group-hover/btn:scale-110 transition-transform duration-300" />
-                            )}
-                          </Button>
-                        </div>
+                        <Badge variant="secondary" className="text-xs">
+                          {experience.type}
+                        </Badge>
                       </div>
                     </div>
+
+                    {experience.note && (
+                      <Badge variant="outline" className="bg-amber-500/10 text-amber-600 border-amber-500/30 text-xs">
+                        <Sparkles className="w-3 h-3 mr-1" />
+                        {experience.note}
+                      </Badge>
+                    )}
+                  </div>
+
+                  <ChevronRight className="w-5 h-5 text-muted-foreground group-hover:text-accent group-hover:translate-x-1 transition-all duration-300 flex-shrink-0" />
+                </div>
+
+                {/* Description */}
+                <p className="text-sm md:text-base text-muted-foreground leading-relaxed group-hover:text-foreground/80 transition-colors duration-300 line-clamp-2">
+                  {experience.description}
+                </p>
+
+                {/* Key Technologies Preview */}
+                <div className="space-y-2">
+                  <h4 className="text-xs font-semibold text-accent">Key Technologies</h4>
+                  <div className="flex flex-wrap gap-1.5">
+                    {getTopTechnologies(experience).map((tech) => (
+                      <TechTag key={tech} variant="secondary" className="text-xs hover:bg-accent/20 hover:text-accent transition-all duration-300">
+                        {tech}
+                      </TechTag>
+                    ))}
+                    {experience.technologies.length > 4 && (
+                      <span className="text-xs text-muted-foreground px-2 py-1">
+                        +{experience.technologies.length - 4} more
+                      </span>
+                    )}
                   </div>
                 </div>
-              );
-            })}
-          </div>
+
+                {/* Quick Stats */}
+                <div className="flex items-center justify-between pt-2 border-t border-border/50 text-xs text-muted-foreground">
+                  <div className="flex items-center gap-4">
+                    <span className="flex items-center gap-1">
+                      <TrendingUp className="w-3 h-3" />
+                      {experience.achievements.length} achievements
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <Target className="w-3 h-3" />
+                      {experience.impact.length} impacts
+                    </span>
+                  </div>
+                  <span className="text-accent group-hover:underline">
+                    View Details
+                  </span>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+
+        {/* Summary Stats */}
+        <div className="grid grid-cols-3 gap-3 md:gap-6">
+          <Card className="border-border/50 bg-card/50 hover:border-accent/30 transition-all duration-300 hover:scale-105">
+            <CardContent className="p-4 md:p-6 text-center">
+              <div className="text-xl md:text-3xl font-bold text-accent mb-1 md:mb-2">{experiences.length}</div>
+              <div className="text-xs md:text-sm text-muted-foreground">Positions</div>
+            </CardContent>
+          </Card>
+          
+          <Card className="border-border/50 bg-card/50 hover:border-accent/30 transition-all duration-300 hover:scale-105">
+            <CardContent className="p-4 md:p-6 text-center">
+              <div className="text-xl md:text-3xl font-bold text-accent mb-1 md:mb-2">2+</div>
+              <div className="text-xs md:text-sm text-muted-foreground">Years</div>
+            </CardContent>
+          </Card>
+          
+          <Card className="border-border/50 bg-card/50 hover:border-accent/30 transition-all duration-300 hover:scale-105">
+            <CardContent className="p-4 md:p-6 text-center">
+              <div className="text-xl md:text-3xl font-bold text-accent mb-1 md:mb-2">
+                {experiences.filter(exp => exp.status === "Current").length}
+              </div>
+              <div className="text-xs md:text-sm text-muted-foreground">Current</div>
+            </CardContent>
+          </Card>
         </div>
       </div>
+
+      {/* Experience Detail Modal */}
+      <ExperienceDetailModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        experience={selectedExperience}
+      />
     </div>
   );
 }
