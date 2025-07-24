@@ -34,8 +34,11 @@ export function ProjectsSection() {
 
       setGithubRepos(filteredRepos);
 
-      // Check if we're using fallback data and show a subtle notice
-      if (githubService.isUsingFallbackData()) {
+      // Check if we're using fallback data
+      const isUsingFallback = githubService.isUsingFallbackData();
+      setUsingFallbackData(isUsingFallback);
+
+      if (isUsingFallback) {
         console.info('Using cached/fallback project data due to GitHub API limits');
       }
     } catch (err) {
