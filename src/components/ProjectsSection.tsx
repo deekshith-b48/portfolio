@@ -20,6 +20,8 @@ export function ProjectsSection() {
   const fetchGithubRepos = async () => {
     setLoading(true);
     setError(null);
+    setUsingFallbackData(false);
+
     try {
       const repos = await githubService.getEnhancedRepositories(25);
 
@@ -48,11 +50,16 @@ export function ProjectsSection() {
       setUsingFallbackData(isUsingFallback);
 
       if (isUsingFallback) {
-        console.info('Using cached/fallback project data due to GitHub API limits');
+        console.info('Using cached/fallback project data due to GitHub API connectivity issues');
+      } else {
+        console.info('Successfully loaded projects from GitHub API');
       }
     } catch (err) {
       console.error("Error fetching GitHub repos:", err);
-      // Don't show error to user, fallback data should handle this
+      // Ensure we're using fallback data and set the flag
+      setUsingFallbackData(true);
+
+      // Don't show error to user since fallback data provides good UX
       setError(null);
     } finally {
       setLoading(false);
