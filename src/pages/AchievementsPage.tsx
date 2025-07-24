@@ -53,6 +53,7 @@ const achievements: Achievement[] = [
       "Secured position at leading productivity platform company",
       "Demonstrated full-stack development capabilities",
       "Created innovative solution for team collaboration",
+      "Pioneered political transparency through technology",
       "Launched professional career in tech industry"
     ],
     icon: "🏆",
