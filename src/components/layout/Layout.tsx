@@ -35,15 +35,15 @@ export function Layout({ children }: LayoutProps) {
 
   return (
     <div className={`min-h-screen transition-colors duration-300 ${
-      isDarkMode 
-        ? 'bg-background text-foreground' 
+      isDarkMode
+        ? 'bg-background text-foreground'
         : 'bg-gray-50 text-gray-900'
     }`}>
       <ScrollProgress />
       <Sidebar isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
-      
+
       {/* Main Content */}
-      <main className="ml-80 min-h-screen">
+      <main className="lg:ml-64 min-h-screen">
         <div className="relative">
           {children}
         </div>
