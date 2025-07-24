@@ -23,6 +23,43 @@ interface ExperienceItem {
 
 const experiences: ExperienceItem[] = [
   {
+    title: "Full Stack Developer",
+    company: "Kroolo",
+    period: "Jan 2025 - Present",
+    status: "Current",
+    location: "Remote",
+    type: "Full-time",
+    description: "Building innovative productivity and collaboration solutions at Kroolo, focusing on PoliGap - a decentralized political transparency platform.",
+    detailedDescription: "Currently developing PoliGap, a groundbreaking Web3 platform that bridges the gap between politicians and citizens through blockchain technology. Leading full-stack development with modern technologies, implementing smart contracts, and creating intuitive user experiences for political transparency and accountability.",
+    achievements: [
+      "Developed PoliGap - Winner of First Ever Hackathon with decentralized political platform",
+      "Implemented blockchain-based transparency mechanisms for political accountability",
+      "Built real-time voting and feedback systems using Web3 technologies",
+      "Created responsive frontend with React and modern design patterns",
+      "Integrated smart contracts for secure and transparent governance features",
+      "Optimized application performance for scalable user adoption"
+    ],
+    impact: [
+      "Pioneered political transparency through blockchain technology",
+      "Created platform for direct citizen-politician communication",
+      "Implemented secure voting mechanisms with 100% transparency",
+      "Contributed to democratic innovation and governance solutions"
+    ],
+    skills: [
+      "Full-Stack Web Development",
+      "Blockchain Integration",
+      "Smart Contract Development",
+      "Web3 Architecture Design",
+      "Political Technology Innovation",
+      "User Experience Design"
+    ],
+    technologies: ["React", "Next.js", "Node.js", "Express.js", "Solidity", "Web3.js", "Ethereum", "MongoDB", "TailwindCSS", "TypeScript"],
+    links: [
+      { label: "PoliGap Project", url: "https://github.com/deekshith-b48/PoliGap" }
+    ],
+    icon: "🚀"
+  },
+  {
     title: "Trainee - Core Member",
     company: "Samsung Innovation Lab",
     period: "Feb 2024 - Present",
