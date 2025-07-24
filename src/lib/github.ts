@@ -275,12 +275,19 @@ class GitHubService {
   }
 
   async getRepositories(sort: 'updated' | 'created' | 'pushed' = 'updated'): Promise<GitHubRepo[]> {
+    // If we're already using fallback or have network issues, return fallback immediately
+    if (this.isUsingFallback || this.networkError) {
+      console.info('Using fallback repository data due to previous API issues');
+      return FALLBACK_REPOS.map(repo => {
+        const { languages, ...repoData } = repo;
+        return repoData;
+      });
+    }
+
     try {
       const url = `${GITHUB_API_BASE}/users/${GITHUB_USERNAME}/repos?sort=${sort}&per_page=100&type=owner`;
       const repos = await this.fetchWithCache<GitHubRepo[]>(url, `github-repos-${sort}`, 300000);
-      
-      this.isUsingFallback = false;
-      
+
       // Filter and prioritize repositories
       const filteredRepos = repos
         .filter(repo => !repo.archived && !repo.disabled && repo.visibility === 'public')
