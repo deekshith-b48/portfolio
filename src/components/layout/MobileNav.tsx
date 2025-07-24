@@ -67,24 +67,24 @@ export function MobileNav({ isDarkMode, toggleTheme }: MobileNavProps) {
             </div>
           </Link>
           
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1">
             <Button
               variant="ghost"
               size="sm"
               onClick={toggleTheme}
-              className="hover:bg-accent/10 h-8 w-8"
+              className="hover:bg-accent/10 h-7 w-7"
             >
               {isDarkMode ? (
-                <Sun className="w-4 h-4" />
+                <Sun className="w-3.5 h-3.5" />
               ) : (
-                <Moon className="w-4 h-4" />
+                <Moon className="w-3.5 h-3.5" />
               )}
             </Button>
-            
+
             <Sheet open={open} onOpenChange={setOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="sm" className="h-8 w-8">
-                  <Menu className="w-4 h-4" />
+                <Button variant="ghost" size="sm" className="h-7 w-7">
+                  <Menu className="w-3.5 h-3.5" />
                 </Button>
               </SheetTrigger>
               <SheetContent side="right" className="w-64 p-0">
