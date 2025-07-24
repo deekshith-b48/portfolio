@@ -52,9 +52,9 @@ export function MobileNav({ isDarkMode, toggleTheme }: MobileNavProps) {
       <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-xl border-b border-border/40 px-3 py-2.5">
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center space-x-3">
-            <Avatar className="w-8 h-8">
-              <AvatarImage 
-                src="/lovable-uploads/2ff8e71d-bc1f-475a-b7d6-ee036deb909e.png" 
+            <Avatar className="w-7 h-7">
+              <AvatarImage
+                src="/lovable-uploads/2ff8e71d-bc1f-475a-b7d6-ee036deb909e.png"
                 alt="Deekshith B Gowda"
                 className="object-cover"
               />
@@ -62,8 +62,8 @@ export function MobileNav({ isDarkMode, toggleTheme }: MobileNavProps) {
                 DG
               </AvatarFallback>
             </Avatar>
-            <div>
-              <h2 className="text-sm font-bold">Deekshith B Gowda</h2>
+            <div className="min-w-0">
+              <h2 className="text-xs font-bold truncate">Deekshith B Gowda</h2>
             </div>
           </Link>
           
