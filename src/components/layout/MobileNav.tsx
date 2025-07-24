@@ -88,6 +88,7 @@ export function MobileNav({ isDarkMode, toggleTheme }: MobileNavProps) {
                 </Button>
               </SheetTrigger>
               <SheetContent side="right" className="w-64 p-0">
+                <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
                 <div className="flex flex-col h-full">
                   {/* Profile Section */}
                   <div className="p-4 border-b border-border/20">
