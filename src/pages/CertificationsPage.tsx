@@ -45,7 +45,7 @@ const certifications: Certification[] = [
     issuer: "HackerRank", 
     issuedDate: "Jul 2025",
     credentialId: "77D3AC0C7864",
-    url: "#",
+    url: "https://www.hackerrank.com/certificates/77d3ac0c7864",
     skills: ["SQL", "Software Engineering"],
     description: "Certification demonstrating proficiency in software engineering fundamentals including SQL database management and software development principles.",
     category: "development"
