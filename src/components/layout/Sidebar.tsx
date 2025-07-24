@@ -97,34 +97,29 @@ export function Sidebar({ isDarkMode, toggleTheme }: SidebarProps) {
         </div>
 
         {/* Navigation */}
-        <nav className="flex-1 py-6 space-y-2">
+        <nav className="flex-1 py-4 space-y-1">
           {navigationItems.map((item) => {
             const Icon = item.icon;
             const isActive = location.pathname === item.path;
-            
+
             return (
               <Link
                 key={item.path}
                 to={item.path}
-                className={`group flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 hover:scale-105 ${
-                  isActive 
-                    ? 'bg-accent text-accent-foreground shadow-lg shadow-accent/25' 
+                className={`group flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 ${
+                  isActive
+                    ? 'bg-accent text-accent-foreground'
                     : 'hover:bg-accent/10 text-muted-foreground hover:text-accent'
                 }`}
               >
-                <Icon className={`w-5 h-5 transition-transform duration-300 group-hover:scale-110 ${
+                <Icon className={`w-4 h-4 ${
                   isActive ? 'text-accent-foreground' : 'group-hover:text-accent'
                 }`} />
-                <div className="flex-1">
-                  <div className={`font-medium ${isActive ? 'text-accent-foreground' : 'group-hover:text-accent'}`}>
-                    {item.label}
-                  </div>
-                  <div className="text-xs opacity-70">
-                    {item.description}
-                  </div>
-                </div>
+                <span className={`text-sm font-medium ${isActive ? 'text-accent-foreground' : 'group-hover:text-accent'}`}>
+                  {item.label}
+                </span>
                 {isActive && (
-                  <Sparkles className="w-4 h-4 text-accent-foreground animate-pulse" />
+                  <div className="w-1.5 h-1.5 bg-accent-foreground rounded-full ml-auto" />
                 )}
               </Link>
             );
