@@ -54,13 +54,25 @@ export function ProjectsSection() {
       } else {
         console.info('Successfully loaded projects from GitHub API');
       }
+
+      // Always clear error if we successfully get data (even if it's fallback)
+      setError(null);
     } catch (err) {
       console.error("Error fetching GitHub repos:", err);
-      // Ensure we're using fallback data and set the flag
-      setUsingFallbackData(true);
 
-      // Don't show error to user since fallback data provides good UX
-      setError(null);
+      // Check if github service has fallback data to display
+      const isUsingFallback = githubService.isUsingFallbackData();
+
+      if (isUsingFallback) {
+        // If we have fallback data, don't show error to user
+        setUsingFallbackData(true);
+        setError(null);
+        console.info('Displaying fallback project data due to API connectivity issues');
+      } else {
+        // Only show error if we truly can't get any data
+        setError('Unable to load projects. Please try again later.');
+        setUsingFallbackData(false);
+      }
     } finally {
       setLoading(false);
     }
