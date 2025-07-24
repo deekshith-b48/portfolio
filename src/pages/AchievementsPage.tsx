@@ -54,36 +54,7 @@ const achievements: Achievement[] = [
     icon: "🏆",
     featured: true
   },
-  {
-    id: "poligap-winner",
-    title: "Winner – First Ever Hackathon",
-    organization: "Hackathon Competition",
-    type: "hackathon",
-    date: "Jan 2025",
-    status: "Winner",
-    description: "Developed PoliGap, a decentralized political transparency platform using blockchain.",
-    detailedDescription: "Won the first-place prize by developing PoliGap, an innovative Web3 platform that bridges the communication gap between politicians and citizens. The platform leverages blockchain technology to ensure transparency, accountability, and direct democratic participation.",
-    technologies: ["React", "Node.js", "Solidity", "Web3.js", "Ethereum", "MongoDB", "TailwindCSS"],
-    links: [
-      { label: "Live Demo", url: "https://poligap.vercel.app" },
-      { label: "GitHub", url: "https://github.com/deekshith-b48/PoliGap" }
-    ],
-    highlights: [
-      "🥇 First place winner among 50+ teams",
-      "🔗 Implemented blockchain-based transparency mechanisms",
-      "🗳️ Created secure voting and feedback systems",
-      "👥 Built real-time citizen-politician communication features",
-      "🏆 Recognized for innovation in political technology"
-    ],
-    impact: [
-      "Pioneered political transparency through technology",
-      "Created platform for direct democratic participation",
-      "Demonstrated practical blockchain implementation",
-      "Inspired political technology innovation"
-    ],
-    icon: "🥇",
-    featured: true
-  },
+
   {
     id: "sih-2024",
     title: "Smart India Hackathon 2024 Finalist",
@@ -139,7 +110,7 @@ const achievements: Achievement[] = [
       "Helped maintainers resolve technical debt",
       "Contributed to global developer community"
     ],
-    icon: "👩‍💻"
+    icon: "👩‍����"
   },
   {
     id: "competitive-programming",
