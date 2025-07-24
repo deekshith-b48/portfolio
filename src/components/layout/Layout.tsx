@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Sidebar } from "./Sidebar";
+import { MobileNav } from "./MobileNav";
 import { ScrollProgress } from "@/components/ScrollProgress";
 
 interface LayoutProps {
