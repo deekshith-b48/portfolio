@@ -236,31 +236,31 @@ export function HomePage() {
 
         {/* Connect with Me */}
         <section className="space-y-6">
-          <h2 className="text-2xl font-bold flex items-center gap-2">
-            <Mail className="w-6 h-6 text-accent" />
+          <h2 className="text-xl md:text-2xl font-bold flex items-center gap-2">
+            <Mail className="w-5 h-5 md:w-6 md:h-6 text-accent" />
             Connect with Me
           </h2>
-          
+
           <Card className="border-border/50 bg-card/50">
-            <CardContent className="p-6 space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
+            <CardContent className="p-4 md:p-6 space-y-6">
+              <div className="grid gap-6 md:grid-cols-2">
                 {/* Contact Info */}
                 <div className="space-y-4">
-                  <h3 className="font-semibold">Get in Touch</h3>
+                  <h3 className="font-semibold text-sm md:text-base">Get in Touch</h3>
                   <div className="space-y-3">
-                    <a 
+                    <a
                       href="mailto:deekshithbgowda48@gmail.com"
-                      className="flex items-center gap-3 text-muted-foreground hover:text-accent transition-colors p-2 rounded-lg hover:bg-accent/10"
+                      className="flex items-center gap-3 text-muted-foreground hover:text-accent transition-colors p-2 rounded-lg hover:bg-accent/10 text-sm md:text-base"
                     >
-                      <Mail className="w-5 h-5" />
-                      <span>deekshithbgowda48@gmail.com</span>
+                      <Mail className="w-4 h-4 md:w-5 md:h-5 flex-shrink-0" />
+                      <span className="break-all">deekshithbgowda48@gmail.com</span>
                     </a>
-                    <div className="flex items-center gap-3 text-muted-foreground p-2">
-                      <MapPin className="w-5 h-5" />
+                    <div className="flex items-center gap-3 text-muted-foreground p-2 text-sm md:text-base">
+                      <MapPin className="w-4 h-4 md:w-5 md:h-5 flex-shrink-0" />
                       <span>Karnataka, India</span>
                     </div>
-                    <div className="flex items-center gap-3 text-muted-foreground p-2">
-                      <Calendar className="w-5 h-5" />
+                    <div className="flex items-center gap-3 text-muted-foreground p-2 text-sm md:text-base">
+                      <Calendar className="w-4 h-4 md:w-5 md:h-5 flex-shrink-0" />
                       <span>Available for new opportunities</span>
                     </div>
                   </div>
@@ -268,57 +268,57 @@ export function HomePage() {
 
                 {/* Social Links */}
                 <div className="space-y-4">
-                  <h3 className="font-semibold">Social Media</h3>
+                  <h3 className="font-semibold text-sm md:text-base">Social Media</h3>
                   <div className="space-y-3">
-                    <a 
+                    <a
                       href="https://github.com/deekshith-b48"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-3 text-muted-foreground hover:text-accent transition-colors p-2 rounded-lg hover:bg-accent/10"
+                      className="flex items-center gap-3 text-muted-foreground hover:text-accent transition-colors p-2 rounded-lg hover:bg-accent/10 text-sm md:text-base"
                     >
-                      <Github className="w-5 h-5" />
+                      <Github className="w-4 h-4 md:w-5 md:h-5 flex-shrink-0" />
                       <span>GitHub Profile</span>
-                      <ExternalLink className="w-4 h-4 ml-auto" />
+                      <ExternalLink className="w-3 h-3 md:w-4 md:h-4 ml-auto flex-shrink-0" />
                     </a>
-                    <a 
+                    <a
                       href="https://linkedin.com/in/deekshithb48"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-3 text-muted-foreground hover:text-accent transition-colors p-2 rounded-lg hover:bg-accent/10"
+                      className="flex items-center gap-3 text-muted-foreground hover:text-accent transition-colors p-2 rounded-lg hover:bg-accent/10 text-sm md:text-base"
                     >
-                      <Linkedin className="w-5 h-5" />
+                      <Linkedin className="w-4 h-4 md:w-5 md:h-5 flex-shrink-0" />
                       <span>LinkedIn Profile</span>
-                      <ExternalLink className="w-4 h-4 ml-auto" />
+                      <ExternalLink className="w-3 h-3 md:w-4 md:h-4 ml-auto flex-shrink-0" />
                     </a>
-                    <a 
+                    <a
                       href="https://x.com/deekshith_b48"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-3 text-muted-foreground hover:text-accent transition-colors p-2 rounded-lg hover:bg-accent/10"
+                      className="flex items-center gap-3 text-muted-foreground hover:text-accent transition-colors p-2 rounded-lg hover:bg-accent/10 text-sm md:text-base"
                     >
-                      <Twitter className="w-5 h-5" />
+                      <Twitter className="w-4 h-4 md:w-5 md:h-5 flex-shrink-0" />
                       <span>Twitter Profile</span>
-                      <ExternalLink className="w-4 h-4 ml-auto" />
+                      <ExternalLink className="w-3 h-3 md:w-4 md:h-4 ml-auto flex-shrink-0" />
                     </a>
                   </div>
                 </div>
               </div>
 
               {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 pt-4 border-t border-border/50">
-                <Button 
+              <div className="flex flex-col sm:flex-row gap-3 md:gap-4 pt-4 border-t border-border/50">
+                <Button
                   asChild
-                  className="flex-1 bg-accent hover:bg-accent/90 text-accent-foreground"
+                  className="flex-1 bg-accent hover:bg-accent/90 text-accent-foreground text-sm md:text-base"
                 >
                   <Link to="/contact">
                     <Mail className="w-4 h-4 mr-2" />
                     Get in Touch
                   </Link>
                 </Button>
-                <Button 
-                  variant="outline" 
+                <Button
+                  variant="outline"
                   asChild
-                  className="flex-1 border-accent/30 hover:border-accent/50 hover:bg-accent/10"
+                  className="flex-1 border-accent/30 hover:border-accent/50 hover:bg-accent/10 text-sm md:text-base"
                 >
                   <a
                     href="/resume.pdf"
