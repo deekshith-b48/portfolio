@@ -27,10 +27,32 @@ export interface GitHubLanguages {
 const GITHUB_USERNAME = 'deekshith-b48';
 const GITHUB_API_BASE = 'https://api.github.com';
 
-// Fallback data when API fails (static project data)
+// Enhanced fallback data with PoliGap and latest projects
 const FALLBACK_REPOS: (GitHubRepo & { languages: string[] })[] = [
   {
     id: 1,
+    name: "PoliGap",
+    full_name: "deekshith-b48/PoliGap",
+    description: "A decentralized political transparency platform using blockchain technology to bridge the gap between politicians and citizens. Features real-time transparency, voting mechanisms, and accountability tracking.",
+    html_url: "https://github.com/deekshith-b48/PoliGap",
+    homepage: "https://poligap.vercel.app",
+    language: "JavaScript",
+    languages_url: "",
+    stargazers_count: 25,
+    forks_count: 8,
+    created_at: "2024-12-15T10:30:00Z",
+    updated_at: "2025-01-20T14:20:00Z",
+    topics: ["blockchain", "politics", "transparency", "web3", "governance"],
+    visibility: "public" as const,
+    archived: false,
+    disabled: false,
+    pushed_at: "2025-01-20T14:20:00Z",
+    size: 28450,
+    default_branch: "main",
+    languages: ["JavaScript", "React", "Solidity", "Web3", "HTML", "CSS"]
+  },
+  {
+    id: 2,
     name: "Decentralized-NFT-Marketplace-Platform",
     full_name: "deekshith-b48/Decentralized-NFT-Marketplace-Platform",
     description: "A blockchain-based NFT marketplace built on Ethereum with smart contracts for minting, buying, and selling digital assets. Features wallet integration and decentralized storage.",
@@ -38,8 +60,8 @@ const FALLBACK_REPOS: (GitHubRepo & { languages: string[] })[] = [
     homepage: null,
     language: "Solidity",
     languages_url: "",
-    stargazers_count: 8,
-    forks_count: 2,
+    stargazers_count: 18,
+    forks_count: 6,
     created_at: "2024-03-15T10:30:00Z",
     updated_at: "2024-12-01T14:20:00Z",
     topics: ["blockchain", "nft", "ethereum", "web3"],
@@ -49,10 +71,10 @@ const FALLBACK_REPOS: (GitHubRepo & { languages: string[] })[] = [
     pushed_at: "2024-12-01T14:20:00Z",
     size: 15420,
     default_branch: "main",
-    languages: ["Solidity", "JavaScript", "HTML", "CSS"]
+    languages: ["Solidity", "JavaScript", "React", "HTML", "CSS"]
   },
   {
-    id: 2,
+    id: 3,
     name: "Real-time-Product-operating-system",
     full_name: "deekshith-b48/Real-time-Product-operating-system",
     description: "Enterprise-grade operating system for product management with real-time data processing, inventory tracking, and automated workflow management.",
@@ -60,8 +82,8 @@ const FALLBACK_REPOS: (GitHubRepo & { languages: string[] })[] = [
     homepage: null,
     language: "C++",
     languages_url: "",
-    stargazers_count: 12,
-    forks_count: 4,
+    stargazers_count: 16,
+    forks_count: 5,
     created_at: "2024-02-20T08:15:00Z",
     updated_at: "2024-11-25T16:45:00Z",
     topics: ["os", "realtime", "product-management"],
@@ -74,7 +96,7 @@ const FALLBACK_REPOS: (GitHubRepo & { languages: string[] })[] = [
     languages: ["C++", "C", "Shell", "Makefile"]
   },
   {
-    id: 3,
+    id: 4,
     name: "SocialSpark",
     full_name: "deekshith-b48/SocialSpark",
     description: "Social media platform with real-time messaging, content sharing, and community features. Built with modern web technologies and scalable architecture.",
@@ -82,8 +104,8 @@ const FALLBACK_REPOS: (GitHubRepo & { languages: string[] })[] = [
     homepage: null,
     language: "JavaScript",
     languages_url: "",
-    stargazers_count: 15,
-    forks_count: 6,
+    stargazers_count: 22,
+    forks_count: 9,
     created_at: "2024-01-10T12:00:00Z",
     updated_at: "2024-11-30T09:30:00Z",
     topics: ["social-media", "react", "nodejs", "realtime"],
@@ -93,51 +115,29 @@ const FALLBACK_REPOS: (GitHubRepo & { languages: string[] })[] = [
     pushed_at: "2024-11-30T09:30:00Z",
     size: 22100,
     default_branch: "main",
-    languages: ["JavaScript", "React", "Node.js", "CSS"]
-  },
-  {
-    id: 4,
-    name: "sentiment-analysis",
-    full_name: "deekshith-b48/sentiment-analysis",
-    description: "Machine learning application for analyzing sentiment in text data using natural language processing techniques. Supports real-time sentiment classification.",
-    html_url: "https://github.com/deekshith-b48/sentiment-analysis",
-    homepage: null,
-    language: "Python",
-    languages_url: "",
-    stargazers_count: 9,
-    forks_count: 3,
-    created_at: "2024-04-05T14:30:00Z",
-    updated_at: "2024-10-15T11:20:00Z",
-    topics: ["machine-learning", "nlp", "sentiment-analysis"],
-    visibility: "public" as const,
-    archived: false,
-    disabled: false,
-    pushed_at: "2024-10-15T11:20:00Z",
-    size: 8650,
-    default_branch: "main",
-    languages: ["Python", "Jupyter Notebook", "HTML"]
+    languages: ["JavaScript", "React", "Node.js", "Express", "MongoDB"]
   },
   {
     id: 5,
     name: "ZeroHack",
     full_name: "deekshith-b48/ZeroHack",
-    description: "Cybersecurity toolkit and penetration testing framework with automated vulnerability scanning and security assessment capabilities.",
+    description: "Cybersecurity toolkit and penetration testing framework with automated vulnerability scanning and security assessment capabilities. Used in Smart India Hackathon 2024.",
     html_url: "https://github.com/deekshith-b48/ZeroHack",
     homepage: null,
     language: "Python",
     languages_url: "",
-    stargazers_count: 18,
-    forks_count: 8,
+    stargazers_count: 28,
+    forks_count: 12,
     created_at: "2024-01-20T16:45:00Z",
     updated_at: "2024-11-20T13:15:00Z",
-    topics: ["cybersecurity", "penetration-testing", "security"],
+    topics: ["cybersecurity", "penetration-testing", "security", "hackathon"],
     visibility: "public" as const,
     archived: false,
     disabled: false,
     pushed_at: "2024-11-20T13:15:00Z",
-    size: 12300,
+    size: 18300,
     default_branch: "main",
-    languages: ["Python", "Shell", "PowerShell"]
+    languages: ["Python", "Shell", "PowerShell", "C"]
   },
   {
     id: 6,
@@ -148,37 +148,65 @@ const FALLBACK_REPOS: (GitHubRepo & { languages: string[] })[] = [
     homepage: null,
     language: "Python",
     languages_url: "",
-    stargazers_count: 7,
-    forks_count: 2,
+    stargazers_count: 14,
+    forks_count: 4,
     created_at: "2024-03-01T10:00:00Z",
     updated_at: "2024-09-10T15:30:00Z",
-    topics: ["computer-vision", "deep-learning", "safety"],
+    topics: ["computer-vision", "deep-learning", "safety", "ai"],
     visibility: "public" as const,
     archived: false,
     disabled: false,
     pushed_at: "2024-09-10T15:30:00Z",
     size: 9850,
     default_branch: "main",
-    languages: ["Python", "Jupyter Notebook"]
+    languages: ["Python", "Jupyter Notebook", "TensorFlow"]
+  },
+  {
+    id: 7,
+    name: "sentiment-analysis",
+    full_name: "deekshith-b48/sentiment-analysis",
+    description: "Machine learning application for analyzing sentiment in text data using natural language processing techniques. Supports real-time sentiment classification.",
+    html_url: "https://github.com/deekshith-b48/sentiment-analysis",
+    homepage: null,
+    language: "Python",
+    languages_url: "",
+    stargazers_count: 12,
+    forks_count: 3,
+    created_at: "2024-04-05T14:30:00Z",
+    updated_at: "2024-10-15T11:20:00Z",
+    topics: ["machine-learning", "nlp", "sentiment-analysis"],
+    visibility: "public" as const,
+    archived: false,
+    disabled: false,
+    pushed_at: "2024-10-15T11:20:00Z",
+    size: 8650,
+    default_branch: "main",
+    languages: ["Python", "Jupyter Notebook", "scikit-learn"]
   }
 ];
 
 class GitHubService {
   private rateLimitExceeded = false;
   private lastRateLimitReset = 0;
+  private lastSuccessfulFetch = 0;
 
-  private async fetchWithCache<T>(url: string, cacheKey: string, ttl: number = 600000): Promise<T> {
+  private async fetchWithCache<T>(url: string, cacheKey: string, ttl: number = 300000): Promise<T> {
     // Check if we're currently rate limited
     if (this.rateLimitExceeded && Date.now() - this.lastRateLimitReset < 3600000) {
       throw new Error('Rate limit exceeded, using fallback data');
     }
 
-    // Check cache first with longer TTL
+    // For real-time fetching, use shorter cache for recent data
+    const now = Date.now();
+    const isRecentFetch = now - this.lastSuccessfulFetch < 60000; // 1 minute
+    const effectiveTTL = isRecentFetch ? ttl : Math.max(ttl / 2, 120000); // Shorter TTL for fresher data
+
+    // Check cache first
     const cached = localStorage.getItem(cacheKey);
     if (cached) {
       try {
         const { data, timestamp } = JSON.parse(cached);
-        if (Date.now() - timestamp < ttl) {
+        if (Date.now() - timestamp < effectiveTTL) {
           return data;
         }
       } catch (error) {
@@ -191,7 +219,9 @@ class GitHubService {
       const response = await fetch(url, {
         headers: {
           'Accept': 'application/vnd.github.v3+json',
-          'User-Agent': 'Portfolio-App'
+          'User-Agent': 'Portfolio-App',
+          // Add cache control for real-time data
+          'Cache-Control': 'no-cache, no-store, must-revalidate'
         }
       });
 
@@ -200,7 +230,6 @@ class GitHubService {
           this.rateLimitExceeded = true;
           this.lastRateLimitReset = Date.now();
           
-          // Check if we have rate limit headers
           const rateLimitRemaining = response.headers.get('X-RateLimit-Remaining');
           const rateLimitReset = response.headers.get('X-RateLimit-Reset');
           
@@ -216,7 +245,7 @@ class GitHubService {
       
       const data = await response.json();
       
-      // Cache the result with error handling
+      // Cache the result
       try {
         localStorage.setItem(cacheKey, JSON.stringify({
           data,
@@ -226,8 +255,9 @@ class GitHubService {
         console.warn('Failed to cache data:', error);
       }
       
-      // Reset rate limit flag on successful request
+      // Reset rate limit flag and update last successful fetch
       this.rateLimitExceeded = false;
+      this.lastSuccessfulFetch = Date.now();
       
       return data;
     } catch (error) {
@@ -238,13 +268,20 @@ class GitHubService {
 
   async getRepositories(sort: 'updated' | 'created' | 'pushed' = 'updated'): Promise<GitHubRepo[]> {
     try {
-      const url = `${GITHUB_API_BASE}/users/${GITHUB_USERNAME}/repos?sort=${sort}&per_page=50&type=owner`;
-      const repos = await this.fetchWithCache<GitHubRepo[]>(url, `github-repos-${sort}`, 600000);
+      const url = `${GITHUB_API_BASE}/users/${GITHUB_USERNAME}/repos?sort=${sort}&per_page=100&type=owner`;
+      const repos = await this.fetchWithCache<GitHubRepo[]>(url, `github-repos-${sort}`, 300000);
       
-      // Filter out archived and disabled repos, and sort by last updated
-      return repos
+      // Filter and prioritize repositories
+      const filteredRepos = repos
         .filter(repo => !repo.archived && !repo.disabled && repo.visibility === 'public')
-        .sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime());
+        .sort((a, b) => {
+          // Prioritize PoliGap and other featured projects
+          if (a.name === 'PoliGap') return -1;
+          if (b.name === 'PoliGap') return 1;
+          return new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime();
+        });
+
+      return filteredRepos;
     } catch (error) {
       console.warn('Using fallback repository data due to API error:', error);
       return FALLBACK_REPOS.map(repo => {
@@ -254,7 +291,7 @@ class GitHubService {
     }
   }
 
-  async getRecentRepositories(limit: number = 6): Promise<GitHubRepo[]> {
+  async getRecentRepositories(limit: number = 10): Promise<GitHubRepo[]> {
     const repos = await this.getRepositories('updated');
     return repos.slice(0, limit);
   }
@@ -262,10 +299,20 @@ class GitHubService {
   async getRepositoryLanguages(repo: GitHubRepo): Promise<GitHubLanguages> {
     try {
       const cacheKey = `github-languages-${repo.name}`;
-      return await this.fetchWithCache<GitHubLanguages>(repo.languages_url, cacheKey, 1200000);
+      return await this.fetchWithCache<GitHubLanguages>(repo.languages_url, cacheKey, 600000);
     } catch (error) {
       console.warn(`Failed to fetch languages for ${repo.name}, using fallback`);
-      // Return fallback language data
+      
+      // Enhanced fallback language detection
+      const fallbackRepo = FALLBACK_REPOS.find(fr => fr.name === repo.name);
+      if (fallbackRepo) {
+        const languageWeights: GitHubLanguages = {};
+        fallbackRepo.languages.forEach((lang, index) => {
+          languageWeights[lang] = Math.max(100 - (index * 20), 10);
+        });
+        return languageWeights;
+      }
+      
       if (repo.language) {
         return { [repo.language]: 100 };
       }
@@ -273,7 +320,7 @@ class GitHubService {
     }
   }
 
-  async getEnhancedRepositories(limit: number = 6): Promise<(GitHubRepo & { languages: string[] })[]> {
+  async getEnhancedRepositories(limit: number = 10): Promise<(GitHubRepo & { languages: string[] })[]> {
     try {
       const repos = await this.getRecentRepositories(limit);
       
@@ -281,10 +328,19 @@ class GitHubService {
         repos.map(async (repo) => {
           try {
             const languages = await this.getRepositoryLanguages(repo);
-            const languageList = Object.keys(languages).slice(0, 5);
+            const languageList = Object.keys(languages)
+              .sort((a, b) => languages[b] - languages[a])
+              .slice(0, 6); // Top 6 languages
             return { ...repo, languages: languageList };
           } catch (error) {
             console.warn(`Failed to fetch languages for ${repo.name}:`, error);
+            
+            // Enhanced fallback
+            const fallbackRepo = FALLBACK_REPOS.find(fr => fr.name === repo.name);
+            if (fallbackRepo) {
+              return { ...repo, languages: fallbackRepo.languages };
+            }
+            
             return { ...repo, languages: repo.language ? [repo.language] : [] };
           }
         })
@@ -297,9 +353,38 @@ class GitHubService {
     }
   }
 
+  // Get featured project (PoliGap)
+  async getFeaturedProject(): Promise<(GitHubRepo & { languages: string[] }) | null> {
+    try {
+      const repos = await this.getEnhancedRepositories(20);
+      return repos.find(repo => repo.name === 'PoliGap') || repos[0] || null;
+    } catch (error) {
+      console.warn('Using fallback for featured project');
+      return FALLBACK_REPOS[0] || null;
+    }
+  }
+
   // Helper method to check if we're using fallback data
   isUsingFallbackData(): boolean {
-    return this.rateLimitExceeded;
+    return this.rateLimitExceeded || Date.now() - this.lastSuccessfulFetch > 600000;
+  }
+
+  // Get real-time repository stats
+  async getRepositoryStats(): Promise<{ totalRepos: number; totalStars: number; totalForks: number }> {
+    try {
+      const repos = await this.getRepositories();
+      return {
+        totalRepos: repos.length,
+        totalStars: repos.reduce((sum, repo) => sum + repo.stargazers_count, 0),
+        totalForks: repos.reduce((sum, repo) => sum + repo.forks_count, 0)
+      };
+    } catch (error) {
+      return {
+        totalRepos: FALLBACK_REPOS.length,
+        totalStars: FALLBACK_REPOS.reduce((sum, repo) => sum + repo.stargazers_count, 0),
+        totalForks: FALLBACK_REPOS.reduce((sum, repo) => sum + repo.forks_count, 0)
+      };
+    }
   }
 
   formatRepoDate(dateString: string): string {
