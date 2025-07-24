@@ -11,6 +11,7 @@ export function ProjectsSection() {
   const [error, setError] = useState<string | null>(null);
   const [expandedRepo, setExpandedRepo] = useState<number | null>(null);
   const [showAllRepos, setShowAllRepos] = useState(false);
+  const [usingFallbackData, setUsingFallbackData] = useState(false);
 
   useEffect(() => {
     fetchGithubRepos();
