@@ -101,6 +101,7 @@ const certifications: Certification[] = [
     title: "Samsung Innovation Lab Completion",
     issuer: "Samsung",
     issuedDate: "Ongoing",
+    url: "https://samsung.com/innovation-campus/certificates",
     skills: ["AI", "IoT", "Innovation", "Deep Learning"],
     description: "Ongoing participation in Samsung's global innovation program focusing on cutting-edge AI and IoT technologies.",
     category: "ai",
