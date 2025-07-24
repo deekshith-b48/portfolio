@@ -87,9 +87,15 @@ export function ProjectsSection() {
             Featured Projects
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            A curated collection of my fullstack projects, automatically sourced from GitHub. 
+            A curated collection of my fullstack projects, automatically sourced from GitHub.
             Each project represents real-world problem-solving with modern technologies.
           </p>
+          {usingFallbackData && (
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-600 text-xs">
+              <Clock className="w-3 h-3" />
+              Showing cached projects
+            </div>
+          )}
         </div>
 
         {/* Loading State */}
