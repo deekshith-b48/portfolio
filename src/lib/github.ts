@@ -191,6 +191,11 @@ class GitHubService {
   private lastSuccessfulFetch = 0;
 
   private async fetchWithCache<T>(url: string, cacheKey: string, ttl: number = 300000): Promise<T> {
+    // If we've detected network issues or rate limiting, mark as using fallback immediately
+    if (this.networkError) {
+      throw new Error('Network issues detected, using fallback data');
+    }
+
     // Check cache first
     const cached = localStorage.getItem(cacheKey);
     if (cached) {
@@ -221,17 +226,24 @@ class GitHubService {
 
       if (!response.ok) {
         if (response.status === 403) {
-          console.warn('GitHub API rate limit exceeded');
+          console.warn('GitHub API rate limit exceeded, switching to fallback data');
+          this.networkError = true;
+          this.isUsingFallback = true;
           throw new Error('GitHub API rate limit exceeded');
         }
         if (response.status === 404) {
+          console.warn('GitHub API resource not found, switching to fallback data');
+          this.networkError = true;
+          this.isUsingFallback = true;
           throw new Error(`GitHub API error: 404 - Resource not found`);
         }
+        this.networkError = true;
+        this.isUsingFallback = true;
         throw new Error(`GitHub API error: ${response.status} ${response.statusText}`);
       }
-      
+
       const data = await response.json();
-      
+
       // Cache the result
       try {
         localStorage.setItem(cacheKey, JSON.stringify({
@@ -241,19 +253,22 @@ class GitHubService {
       } catch (error) {
         console.warn('Failed to cache data:', error);
       }
-      
+
       // Reset error flags on successful request
       this.networkError = false;
+      this.isUsingFallback = false;
       this.lastSuccessfulFetch = Date.now();
-      
+
       return data;
     } catch (error) {
       if (error.name === 'AbortError') {
-        console.error('GitHub API request timed out');
+        console.error('GitHub API request timed out, switching to fallback data');
         this.networkError = true;
+        this.isUsingFallback = true;
       } else {
-        console.error('GitHub API fetch error:', error);
+        console.error('GitHub API fetch error, switching to fallback data:', error);
         this.networkError = true;
+        this.isUsingFallback = true;
       }
       throw error;
     }
