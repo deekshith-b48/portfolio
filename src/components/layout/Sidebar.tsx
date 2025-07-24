@@ -46,86 +46,54 @@ const socialLinks = [
 
 export function Sidebar({ isDarkMode, toggleTheme }: SidebarProps) {
   const location = useLocation();
-  const [currentTime, setCurrentTime] = useState(new Date());
-
-  useEffect(() => {
-    const timer = setInterval(() => setCurrentTime(new Date()), 1000);
-    return () => clearInterval(timer);
-  }, []);
-
-  const timeString = currentTime.toLocaleTimeString('en-US', {
-    timeZone: 'Asia/Kolkata',
-    hour12: false,
-    hour: '2-digit',
-    minute: '2-digit'
-  });
 
   return (
-    <aside className={`fixed left-0 top-0 h-screen w-80 border-r transition-all duration-300 z-50 ${
-      isDarkMode 
-        ? 'bg-background/95 backdrop-blur-xl border-border/40' 
+    <aside className={`fixed left-0 top-0 h-screen w-64 border-r transition-all duration-300 z-50 ${
+      isDarkMode
+        ? 'bg-background/95 backdrop-blur-xl border-border/40'
         : 'bg-white/95 backdrop-blur-xl border-gray-200/40'
     }`}>
-      <div className="flex flex-col h-full p-6">
+      <div className="flex flex-col h-full p-4">
         {/* Profile Section */}
-        <div className="space-y-6 pb-6 border-b border-border/20">
+        <div className="space-y-4 pb-4 border-b border-border/20">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <div className="relative group">
-                <Avatar className="w-16 h-16 ring-2 ring-accent/20 transition-all duration-300 group-hover:ring-accent/40 group-hover:scale-105">
-                  <AvatarImage 
-                    src="/lovable-uploads/2ff8e71d-bc1f-475a-b7d6-ee036deb909e.png" 
-                    alt="Deekshith B Gowda"
-                    className="object-cover"
-                  />
-                  <AvatarFallback className="text-lg font-semibold bg-gradient-to-br from-accent to-primary text-background">
-                    DG
-                  </AvatarFallback>
-                </Avatar>
-                <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-background rounded-full border-2 border-accent flex items-center justify-center">
-                  <div className="w-2 h-2 bg-accent rounded-full animate-pulse" />
-                </div>
-              </div>
+            <Link to="/" className="flex items-center space-x-3 group">
+              <Avatar className="w-10 h-10 ring-2 ring-accent/20">
+                <AvatarImage
+                  src="/lovable-uploads/2ff8e71d-bc1f-475a-b7d6-ee036deb909e.png"
+                  alt="Deekshith B Gowda"
+                  className="object-cover"
+                />
+                <AvatarFallback className="text-sm font-semibold bg-gradient-to-br from-accent to-primary text-background">
+                  DG
+                </AvatarFallback>
+              </Avatar>
               <div>
-                <h2 className="text-lg font-bold bg-gradient-to-r from-foreground to-accent bg-clip-text text-transparent">
-                  Deekshith B Gowda
-                </h2>
-                <p className="text-sm text-muted-foreground">Full Stack Developer</p>
+                <h2 className="text-sm font-bold">Deekshith B Gowda</h2>
+                <p className="text-xs text-muted-foreground">Full Stack Developer</p>
               </div>
-            </div>
-            
+            </Link>
+
             {/* Theme Toggle */}
             <Button
               variant="ghost"
               size="sm"
               onClick={toggleTheme}
-              className="group hover:bg-accent/10"
+              className="hover:bg-accent/10 h-8 w-8"
             >
               {isDarkMode ? (
-                <Sun className="w-4 h-4 group-hover:rotate-180 transition-transform duration-300" />
+                <Sun className="w-4 h-4" />
               ) : (
-                <Moon className="w-4 h-4 group-hover:rotate-180 transition-transform duration-300" />
+                <Moon className="w-4 h-4" />
               )}
             </Button>
           </div>
-          
-          {/* Status Badge */}
-          <div className="flex items-center justify-between">
-            <Badge variant="outline" className="bg-accent/10 border-accent/20 text-accent">
-              <div className="w-2 h-2 bg-accent rounded-full mr-2 animate-pulse" />
-              Available for work
-            </Badge>
-            <div className="flex items-center gap-1 text-xs text-muted-foreground">
-              <MapPin className="w-3 h-3" />
-              <span>India</span>
-            </div>
-          </div>
-          
-          {/* Time */}
-          <div className="flex items-center gap-2 text-xs text-muted-foreground">
-            <Calendar className="w-3 h-3" />
-            <span>Local time: {timeString}</span>
-          </div>
+
+          {/* Status */}
+          <Badge variant="outline" className="bg-accent/10 border-accent/20 text-accent text-xs w-fit">
+            <div className="w-1.5 h-1.5 bg-accent rounded-full mr-1.5" />
+            Available
+          </Badge>
         </div>
 
         {/* Navigation */}
