@@ -32,11 +32,13 @@ const achievements: Achievement[] = [
     type: "hackathon",
     date: "Dec 2024",
     status: "Winner",
-    description: "Won the Kroolo x The Generative Beings Hackathon and earned a position as Full Stack Developer at Kroolo.",
-    detailedDescription: "Successfully won the competitive Kroolo x The Generative Beings Hackathon by developing an innovative solution that impressed the judges. This victory led to being offered a Full Stack Developer position at Kroolo, where I now contribute to building cutting-edge productivity and collaboration tools.",
-    technologies: ["React", "Node.js", "TypeScript", "JavaScript", "MongoDB", "TailwindCSS", "API Development"],
+    description: "Won the Kroolo x The Generative Beings Hackathon (first ever hackathon win) and earned a position as Full Stack Developer at Kroolo. Also developed PoliGap, a decentralized political transparency platform.",
+    detailedDescription: "Successfully won the competitive Kroolo x The Generative Beings Hackathon by developing innovative solutions that impressed the judges. This was my first ever hackathon win, where I developed PoliGap - an innovative Web3 platform that bridges the communication gap between politicians and citizens using blockchain technology. This victory led to being offered a Full Stack Developer position at Kroolo, where I now contribute to building cutting-edge productivity and collaboration tools.",
+    technologies: ["React", "Node.js", "TypeScript", "JavaScript", "MongoDB", "TailwindCSS", "API Development", "Solidity", "Web3.js", "Ethereum"],
     links: [
-      { label: "Kroolo Website", url: "https://kroolo.com/" }
+      { label: "Kroolo Website", url: "https://kroolo.com/" },
+      { label: "PoliGap Live Demo", url: "https://poligap.vercel.app" },
+      { label: "PoliGap GitHub", url: "https://github.com/deekshith-b48/PoliGap" }
     ],
     highlights: [
       "🥇 First place winner in competitive hackathon",
@@ -110,7 +112,7 @@ const achievements: Achievement[] = [
       "Helped maintainers resolve technical debt",
       "Contributed to global developer community"
     ],
-    icon: "👩‍����"
+    icon: "👩‍💻"
   },
   {
     id: "competitive-programming",
