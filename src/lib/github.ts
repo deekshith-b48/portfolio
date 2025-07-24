@@ -27,7 +27,7 @@ export interface GitHubLanguages {
 const GITHUB_USERNAME = 'deekshith-b48';
 const GITHUB_API_BASE = 'https://api.github.com';
 
-// Enhanced fallback data with PoliGap and latest projects
+// Enhanced fallback data with complete language information
 const FALLBACK_REPOS: (GitHubRepo & { languages: string[] })[] = [
   {
     id: 1,
@@ -37,7 +37,7 @@ const FALLBACK_REPOS: (GitHubRepo & { languages: string[] })[] = [
     html_url: "https://github.com/deekshith-b48/PoliGap",
     homepage: "https://poligap.vercel.app",
     language: "JavaScript",
-    languages_url: "",
+    languages_url: "https://api.github.com/repos/deekshith-b48/PoliGap/languages",
     stargazers_count: 25,
     forks_count: 8,
     created_at: "2024-12-15T10:30:00Z",
@@ -59,7 +59,7 @@ const FALLBACK_REPOS: (GitHubRepo & { languages: string[] })[] = [
     html_url: "https://github.com/deekshith-b48/Decentralized-NFT-Marketplace-Platform-",
     homepage: null,
     language: "Solidity",
-    languages_url: "",
+    languages_url: "https://api.github.com/repos/deekshith-b48/Decentralized-NFT-Marketplace-Platform/languages",
     stargazers_count: 18,
     forks_count: 6,
     created_at: "2024-03-15T10:30:00Z",
@@ -81,7 +81,7 @@ const FALLBACK_REPOS: (GitHubRepo & { languages: string[] })[] = [
     html_url: "https://github.com/deekshith-b48/Real-time-Product-operating-system",
     homepage: null,
     language: "C++",
-    languages_url: "",
+    languages_url: "https://api.github.com/repos/deekshith-b48/Real-time-Product-operating-system/languages",
     stargazers_count: 16,
     forks_count: 5,
     created_at: "2024-02-20T08:15:00Z",
@@ -103,7 +103,7 @@ const FALLBACK_REPOS: (GitHubRepo & { languages: string[] })[] = [
     html_url: "https://github.com/deekshith-b48/SocialSpark",
     homepage: null,
     language: "JavaScript",
-    languages_url: "",
+    languages_url: "https://api.github.com/repos/deekshith-b48/SocialSpark/languages",
     stargazers_count: 22,
     forks_count: 9,
     created_at: "2024-01-10T12:00:00Z",
@@ -125,7 +125,7 @@ const FALLBACK_REPOS: (GitHubRepo & { languages: string[] })[] = [
     html_url: "https://github.com/deekshith-b48/ZeroHack",
     homepage: null,
     language: "Python",
-    languages_url: "",
+    languages_url: "https://api.github.com/repos/deekshith-b48/ZeroHack/languages",
     stargazers_count: 28,
     forks_count: 12,
     created_at: "2024-01-20T16:45:00Z",
@@ -147,7 +147,7 @@ const FALLBACK_REPOS: (GitHubRepo & { languages: string[] })[] = [
     html_url: "https://github.com/deekshith-b48/Helmet-Detection",
     homepage: null,
     language: "Python",
-    languages_url: "",
+    languages_url: "https://api.github.com/repos/deekshith-b48/Helmet-Detection/languages",
     stargazers_count: 14,
     forks_count: 4,
     created_at: "2024-03-01T10:00:00Z",
@@ -169,7 +169,7 @@ const FALLBACK_REPOS: (GitHubRepo & { languages: string[] })[] = [
     html_url: "https://github.com/deekshith-b48/sentiment-analysis",
     homepage: null,
     language: "Python",
-    languages_url: "",
+    languages_url: "https://api.github.com/repos/deekshith-b48/sentiment-analysis/languages",
     stargazers_count: 12,
     forks_count: 3,
     created_at: "2024-04-05T14:30:00Z",
@@ -186,27 +186,17 @@ const FALLBACK_REPOS: (GitHubRepo & { languages: string[] })[] = [
 ];
 
 class GitHubService {
-  private rateLimitExceeded = false;
-  private lastRateLimitReset = 0;
+  private isUsingFallback = false;
+  private networkError = false;
   private lastSuccessfulFetch = 0;
 
   private async fetchWithCache<T>(url: string, cacheKey: string, ttl: number = 300000): Promise<T> {
-    // Check if we're currently rate limited
-    if (this.rateLimitExceeded && Date.now() - this.lastRateLimitReset < 3600000) {
-      throw new Error('Rate limit exceeded, using fallback data');
-    }
-
-    // For real-time fetching, use shorter cache for recent data
-    const now = Date.now();
-    const isRecentFetch = now - this.lastSuccessfulFetch < 60000; // 1 minute
-    const effectiveTTL = isRecentFetch ? ttl : Math.max(ttl / 2, 120000); // Shorter TTL for fresher data
-
     // Check cache first
     const cached = localStorage.getItem(cacheKey);
     if (cached) {
       try {
         const { data, timestamp } = JSON.parse(cached);
-        if (Date.now() - timestamp < effectiveTTL) {
+        if (Date.now() - timestamp < ttl) {
           return data;
         }
       } catch (error) {
@@ -216,29 +206,26 @@ class GitHubService {
     }
 
     try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+
       const response = await fetch(url, {
         headers: {
           'Accept': 'application/vnd.github.v3+json',
-          'User-Agent': 'Portfolio-App',
-          // Add cache control for real-time data
-          'Cache-Control': 'no-cache, no-store, must-revalidate'
-        }
+          'User-Agent': 'Portfolio-App'
+        },
+        signal: controller.signal
       });
+
+      clearTimeout(timeoutId);
 
       if (!response.ok) {
         if (response.status === 403) {
-          this.rateLimitExceeded = true;
-          this.lastRateLimitReset = Date.now();
-          
-          const rateLimitRemaining = response.headers.get('X-RateLimit-Remaining');
-          const rateLimitReset = response.headers.get('X-RateLimit-Reset');
-          
-          console.warn('GitHub API rate limit exceeded:', {
-            remaining: rateLimitRemaining,
-            reset: rateLimitReset ? new Date(parseInt(rateLimitReset) * 1000) : 'Unknown'
-          });
-          
+          console.warn('GitHub API rate limit exceeded');
           throw new Error('GitHub API rate limit exceeded');
+        }
+        if (response.status === 404) {
+          throw new Error(`GitHub API error: 404 - Resource not found`);
         }
         throw new Error(`GitHub API error: ${response.status} ${response.statusText}`);
       }
@@ -255,13 +242,19 @@ class GitHubService {
         console.warn('Failed to cache data:', error);
       }
       
-      // Reset rate limit flag and update last successful fetch
-      this.rateLimitExceeded = false;
+      // Reset error flags on successful request
+      this.networkError = false;
       this.lastSuccessfulFetch = Date.now();
       
       return data;
     } catch (error) {
-      console.error('GitHub API fetch error:', error);
+      if (error.name === 'AbortError') {
+        console.error('GitHub API request timed out');
+        this.networkError = true;
+      } else {
+        console.error('GitHub API fetch error:', error);
+        this.networkError = true;
+      }
       throw error;
     }
   }
@@ -270,6 +263,8 @@ class GitHubService {
     try {
       const url = `${GITHUB_API_BASE}/users/${GITHUB_USERNAME}/repos?sort=${sort}&per_page=100&type=owner`;
       const repos = await this.fetchWithCache<GitHubRepo[]>(url, `github-repos-${sort}`, 300000);
+      
+      this.isUsingFallback = false;
       
       // Filter and prioritize repositories
       const filteredRepos = repos
@@ -284,6 +279,7 @@ class GitHubService {
       return filteredRepos;
     } catch (error) {
       console.warn('Using fallback repository data due to API error:', error);
+      this.isUsingFallback = true;
       return FALLBACK_REPOS.map(repo => {
         const { languages, ...repoData } = repo;
         return repoData;
@@ -297,18 +293,35 @@ class GitHubService {
   }
 
   async getRepositoryLanguages(repo: GitHubRepo): Promise<GitHubLanguages> {
+    // If we're using fallback data, return pre-defined languages
+    if (this.isUsingFallback || this.networkError) {
+      const fallbackRepo = FALLBACK_REPOS.find(fr => fr.name === repo.name);
+      if (fallbackRepo) {
+        const languageWeights: GitHubLanguages = {};
+        fallbackRepo.languages.forEach((lang, index) => {
+          languageWeights[lang] = Math.max(100 - (index * 15), 10);
+        });
+        return languageWeights;
+      }
+      
+      if (repo.language) {
+        return { [repo.language]: 100 };
+      }
+      return {};
+    }
+
     try {
       const cacheKey = `github-languages-${repo.name}`;
       return await this.fetchWithCache<GitHubLanguages>(repo.languages_url, cacheKey, 600000);
     } catch (error) {
       console.warn(`Failed to fetch languages for ${repo.name}, using fallback`);
       
-      // Enhanced fallback language detection
+      // Try to find fallback data
       const fallbackRepo = FALLBACK_REPOS.find(fr => fr.name === repo.name);
       if (fallbackRepo) {
         const languageWeights: GitHubLanguages = {};
         fallbackRepo.languages.forEach((lang, index) => {
-          languageWeights[lang] = Math.max(100 - (index * 20), 10);
+          languageWeights[lang] = Math.max(100 - (index * 15), 10);
         });
         return languageWeights;
       }
@@ -324,18 +337,23 @@ class GitHubService {
     try {
       const repos = await this.getRecentRepositories(limit);
       
-      const enhancedRepos = await Promise.all(
+      // If using fallback, return complete fallback data immediately
+      if (this.isUsingFallback) {
+        return FALLBACK_REPOS.slice(0, limit);
+      }
+      
+      const enhancedRepos = await Promise.allSettled(
         repos.map(async (repo) => {
           try {
             const languages = await this.getRepositoryLanguages(repo);
             const languageList = Object.keys(languages)
               .sort((a, b) => languages[b] - languages[a])
-              .slice(0, 6); // Top 6 languages
+              .slice(0, 6);
             return { ...repo, languages: languageList };
           } catch (error) {
             console.warn(`Failed to fetch languages for ${repo.name}:`, error);
             
-            // Enhanced fallback
+            // Try to find fallback data
             const fallbackRepo = FALLBACK_REPOS.find(fr => fr.name === repo.name);
             if (fallbackRepo) {
               return { ...repo, languages: fallbackRepo.languages };
@@ -346,9 +364,17 @@ class GitHubService {
         })
       );
 
-      return enhancedRepos;
+      // Extract successful results
+      const successfulResults = enhancedRepos
+        .filter((result): result is PromiseFulfilledResult<GitHubRepo & { languages: string[] }> => 
+          result.status === 'fulfilled'
+        )
+        .map(result => result.value);
+
+      return successfulResults;
     } catch (error) {
       console.warn('Using fallback enhanced repository data:', error);
+      this.isUsingFallback = true;
       return FALLBACK_REPOS.slice(0, limit);
     }
   }
@@ -366,7 +392,7 @@ class GitHubService {
 
   // Helper method to check if we're using fallback data
   isUsingFallbackData(): boolean {
-    return this.rateLimitExceeded || Date.now() - this.lastSuccessfulFetch > 600000;
+    return this.isUsingFallback || this.networkError;
   }
 
   // Get real-time repository stats
@@ -407,6 +433,19 @@ class GitHubService {
     const daysSinceUpdate = (now.getTime() - lastUpdate.getTime()) / (1000 * 60 * 60 * 24);
     
     return daysSinceUpdate <= 90 ? 'Active' : 'Inactive';
+  }
+
+  // Method to retry API connection
+  async retryConnection(): Promise<boolean> {
+    try {
+      this.networkError = false;
+      this.isUsingFallback = false;
+      await this.getRepositories();
+      return true;
+    } catch (error) {
+      console.warn('Retry connection failed:', error);
+      return false;
+    }
   }
 }
 
