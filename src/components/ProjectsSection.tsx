@@ -21,15 +21,24 @@ export function ProjectsSection() {
     setLoading(true);
     setError(null);
     try {
-      const repos = await githubService.getEnhancedRepositories(20);
+      const repos = await githubService.getEnhancedRepositories(25);
 
-      // Filter for major fullstack projects based on languages and size
+      // Enhanced filtering for major fullstack projects with priority for featured projects
       const filteredRepos = repos.filter(repo => {
         const hasFullStackLanguages = repo.languages.some(lang =>
-          ['JavaScript', 'TypeScript', 'React', 'Node', 'Python', 'HTML', 'CSS', 'Solidity', 'C++'].includes(lang)
+          ['JavaScript', 'TypeScript', 'React', 'Node', 'Python', 'HTML', 'CSS', 'Solidity', 'C++', 'Web3'].includes(lang)
         );
         const isSignificantSize = repo.size > 100;
-        return hasFullStackLanguages || isSignificantSize;
+        const isFeaturedProject = ['PoliGap', 'SocialSpark', 'ZeroHack', 'Decentralized-NFT-Marketplace-Platform'].includes(repo.name);
+
+        return hasFullStackLanguages || isSignificantSize || isFeaturedProject;
+      }).sort((a, b) => {
+        // Prioritize PoliGap and other featured projects
+        if (a.name === 'PoliGap') return -1;
+        if (b.name === 'PoliGap') return 1;
+        if (a.name === 'SocialSpark') return -1;
+        if (b.name === 'SocialSpark') return 1;
+        return new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime();
       });
 
       setGithubRepos(filteredRepos);
