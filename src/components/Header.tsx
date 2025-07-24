@@ -38,6 +38,7 @@ export function Header() {
     { href: "#education", label: "Education" },
     { href: "#projects", label: "Projects" },
     { href: "#skills", label: "Skills" },
+    { href: "#achievements", label: "Achievements" },
     { href: "#certifications", label: "Certifications" },
     { href: "#contact", label: "Contact" }
   ];
