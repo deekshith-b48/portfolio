@@ -6,48 +6,15 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
 import { HomePage } from "@/pages/HomePage";
 import { ExperiencePage } from "@/pages/ExperiencePage";
-import { EducationSection } from "@/components/EducationSection";
-import { ProjectsSection } from "@/components/ProjectsSection";
+import { EducationPage } from "@/pages/EducationPage";
+import { ProjectsPage } from "@/pages/ProjectsPage";
 import { SkillsPage } from "@/pages/SkillsPage";
 import { AchievementsPage } from "@/pages/AchievementsPage";
-import { CertificationsSection } from "@/components/CertificationsSection";
-import { ContactSection } from "@/components/ContactSection";
+import { CertificationsPage } from "@/pages/CertificationsPage";
+import { ContactPage } from "@/pages/ContactPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
-
-// Wrapper components for sections that need page styling
-const EducationPage = () => (
-  <div className="min-h-screen p-8">
-    <div className="max-w-6xl mx-auto">
-      <EducationSection />
-    </div>
-  </div>
-);
-
-const ProjectsPage = () => (
-  <div className="min-h-screen p-8">
-    <div className="max-w-6xl mx-auto">
-      <ProjectsSection />
-    </div>
-  </div>
-);
-
-const CertificationsPage = () => (
-  <div className="min-h-screen p-8">
-    <div className="max-w-6xl mx-auto">
-      <CertificationsSection />
-    </div>
-  </div>
-);
-
-const ContactPage = () => (
-  <div className="min-h-screen p-8">
-    <div className="max-w-6xl mx-auto">
-      <ContactSection />
-    </div>
-  </div>
-);
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
