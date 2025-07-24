@@ -270,6 +270,25 @@
   .text-balance {
     text-wrap: balance;
   }
+
+  /* Extra small screen utilities */
+  @media (max-width: 480px) {
+    .xs\:text-xs {
+      font-size: 0.75rem;
+    }
+
+    .xs\:p-2 {
+      padding: 0.5rem;
+    }
+
+    .xs\:gap-2 {
+      gap: 0.5rem;
+    }
+
+    .xs\:inline {
+      display: inline;
+    }
+  }
   
   .animate-float {
     animation: float 6s ease-in-out infinite;
