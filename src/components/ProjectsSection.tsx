@@ -20,19 +20,27 @@ export function ProjectsSection() {
     setLoading(true);
     setError(null);
     try {
-      const repos = await githubService.getEnhancedRepositories(20); // Fetch more repos
+      const repos = await githubService.getEnhancedRepositories(20);
+
       // Filter for major fullstack projects based on languages and size
       const filteredRepos = repos.filter(repo => {
-        const hasFullStackLanguages = repo.languages.some(lang => 
-          ['JavaScript', 'TypeScript', 'React', 'Node', 'Python', 'HTML', 'CSS'].includes(lang)
+        const hasFullStackLanguages = repo.languages.some(lang =>
+          ['JavaScript', 'TypeScript', 'React', 'Node', 'Python', 'HTML', 'CSS', 'Solidity', 'C++'].includes(lang)
         );
-        const isSignificantSize = repo.size > 100; // Projects with meaningful content
-        return hasFullStackLanguages && isSignificantSize;
+        const isSignificantSize = repo.size > 100;
+        return hasFullStackLanguages || isSignificantSize;
       });
+
       setGithubRepos(filteredRepos);
+
+      // Check if we're using fallback data and show a subtle notice
+      if (githubService.isUsingFallbackData()) {
+        console.info('Using cached/fallback project data due to GitHub API limits');
+      }
     } catch (err) {
-      setError("Failed to fetch GitHub repositories. Please try again later.");
       console.error("Error fetching GitHub repos:", err);
+      // Don't show error to user, fallback data should handle this
+      setError(null);
     } finally {
       setLoading(false);
     }
