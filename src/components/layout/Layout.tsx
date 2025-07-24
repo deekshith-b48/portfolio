@@ -45,7 +45,7 @@ export function Layout({ children }: LayoutProps) {
       <MobileNav isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
 
       {/* Main Content */}
-      <main className="lg:ml-64 min-h-screen pt-16 lg:pt-0">
+      <main className="lg:ml-64 min-h-screen pt-14 lg:pt-0">
         <div className="relative">
           {children}
         </div>
