@@ -86,6 +86,7 @@ const certifications: Certification[] = [
     title: "Postman API Fundamentals Expert",
     issuer: "Postman",
     issuedDate: "Aug 2023",
+    url: "https://api.postman.com/certificates/api-fundamentals-expert",
     skills: ["API Testing", "Postman", "REST APIs"],
     description: "Expert-level certification in API testing and development using Postman, covering advanced testing techniques and API workflows.",
     highlights: [
