@@ -41,11 +41,13 @@ const achievements: Achievement[] = [
       { label: "PoliGap GitHub", url: "https://github.com/deekshith-b48/PoliGap" }
     ],
     highlights: [
-      "🥇 First place winner in competitive hackathon",
+      "🥇 First place winner in competitive hackathon (first ever hackathon win)",
       "💼 Earned full-time position at Kroolo as a result",
-      "🚀 Developed innovative productivity solution",
+      "🚀 Developed innovative productivity solution and PoliGap platform",
       "👥 Impressed panel of industry expert judges",
-      "⚡ Built scalable full-stack application in limited time"
+      "⚡ Built scalable full-stack applications in limited time",
+      "🔗 Implemented blockchain-based transparency mechanisms",
+      "🗳️ Created secure voting and feedback systems"
     ],
     impact: [
       "Secured position at leading productivity platform company",
