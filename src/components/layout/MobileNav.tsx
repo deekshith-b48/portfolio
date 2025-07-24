@@ -49,7 +49,7 @@ export function MobileNav({ isDarkMode, toggleTheme }: MobileNavProps) {
   return (
     <div className="lg:hidden">
       {/* Mobile Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-xl border-b border-border/40 px-4 py-3">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-xl border-b border-border/40 px-3 py-2.5">
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center space-x-3">
             <Avatar className="w-8 h-8">
