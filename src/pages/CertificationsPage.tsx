@@ -71,6 +71,7 @@ const certifications: Certification[] = [
     title: "UI/UX Design with Figma",
     issuer: "Design Institute",
     issuedDate: "Jun 2024",
+    url: "https://design-institute.com/certificates/uiux-figma",
     skills: ["Figma", "UI/UX Design", "Prototyping"],
     description: "User interface and user experience design certification focusing on modern design principles and Figma tool proficiency.",
     highlights: [
