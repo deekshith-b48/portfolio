@@ -14,7 +14,7 @@ export function Header() {
       setIsScrolled(window.scrollY > 50);
       
       // Update active section based on scroll position
-      const sections = ['experience', 'education', 'projects', 'skills', 'certifications', 'contact'];
+      const sections = ['experience', 'education', 'projects', 'skills', 'achievements', 'certifications', 'contact'];
       const currentSection = sections.find(section => {
         const element = document.getElementById(section);
         if (element) {
