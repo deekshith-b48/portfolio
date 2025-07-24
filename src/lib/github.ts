@@ -356,14 +356,20 @@ class GitHubService {
   }
 
   async getEnhancedRepositories(limit: number = 10): Promise<(GitHubRepo & { languages: string[] })[]> {
+    // If we're already using fallback or have network issues, return fallback immediately
+    if (this.isUsingFallback || this.networkError) {
+      console.info('Using fallback enhanced repository data due to previous API issues');
+      return FALLBACK_REPOS.slice(0, limit);
+    }
+
     try {
       const repos = await this.getRecentRepositories(limit);
-      
-      // If using fallback, return complete fallback data immediately
-      if (this.isUsingFallback) {
+
+      // If using fallback after getRecentRepositories call, return complete fallback data immediately
+      if (this.isUsingFallback || this.networkError) {
         return FALLBACK_REPOS.slice(0, limit);
       }
-      
+
       const enhancedRepos = await Promise.allSettled(
         repos.map(async (repo) => {
           try {
@@ -374,13 +380,13 @@ class GitHubService {
             return { ...repo, languages: languageList };
           } catch (error) {
             console.warn(`Failed to fetch languages for ${repo.name}:`, error);
-            
+
             // Try to find fallback data
             const fallbackRepo = FALLBACK_REPOS.find(fr => fr.name === repo.name);
             if (fallbackRepo) {
               return { ...repo, languages: fallbackRepo.languages };
             }
-            
+
             return { ...repo, languages: repo.language ? [repo.language] : [] };
           }
         })
@@ -388,7 +394,7 @@ class GitHubService {
 
       // Extract successful results
       const successfulResults = enhancedRepos
-        .filter((result): result is PromiseFulfilledResult<GitHubRepo & { languages: string[] }> => 
+        .filter((result): result is PromiseFulfilledResult<GitHubRepo & { languages: string[] }> =>
           result.status === 'fulfilled'
         )
         .map(result => result.value);
