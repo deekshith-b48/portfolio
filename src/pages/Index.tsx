@@ -8,6 +8,7 @@ import { CertificationsSection } from "@/components/CertificationsSection";
 import { ContactSection } from "@/components/ContactSection";
 import { Footer } from "@/components/Footer";
 import { ScrollToTop } from "@/components/ScrollToTop";
+import { ScrollProgress } from "@/components/ScrollProgress";
 import { SEO } from "@/components/SEO";
 
 const Index = () => {
