@@ -38,6 +38,39 @@
     --ring: 142 76% 36%;
 
     --radius: 1rem;
+  }
+
+  .light {
+    /* Light theme colors */
+    --background: 0 0% 100%;
+    --foreground: 222 84% 4%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 84% 4%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 84% 4%;
+
+    --primary: 221 83% 53%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 20% 95%;
+    --secondary-foreground: 222 84% 4%;
+
+    --muted: 210 20% 95%;
+    --muted-foreground: 215 20% 40%;
+
+    --accent: 142 76% 36%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 142 76% 36%;
+
+    --radius: 1rem;
 
     /* Enhanced portfolio specific colors */
     --tech-tag: 217 32% 12%;
