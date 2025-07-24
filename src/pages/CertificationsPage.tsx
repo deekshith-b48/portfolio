@@ -105,34 +105,84 @@ const certifications: Certification[] = [
     featured: true
   },
   {
-    title: "Python (Basic)",
-    issuer: "HackerRank",
-    issuedDate: "Jul 2024",
-    credentialId: "A1B2C3D4E5F6",
-    url: "https://www.hackerrank.com/certificates/python-basic",
-    skills: ["Python", "Programming", "Data Structures"],
-    description: "Basic Python programming certification covering fundamental concepts and programming skills.",
-    category: "development"
+    title: "From Relational Model (SQL) to MongoDB's Document Model",
+    issuer: "MongoDB",
+    issuedDate: "Apr 2025",
+    skills: ["MongoDB", "NoSQL", "Database Design", "Document Model"],
+    description: "MongoDB certification covering the transition from relational databases to document-based data models.",
+    highlights: [
+      "Understanding document-based data modeling",
+      "Migration strategies from SQL to MongoDB",
+      "Schema design principles for NoSQL",
+      "Performance optimization techniques"
+    ],
+    category: "database",
+    featured: true
   },
   {
-    title: "JavaScript (Basic)",
-    issuer: "HackerRank",
-    issuedDate: "Jun 2024",
-    credentialId: "G7H8I9J0K1L2",
-    url: "https://www.hackerrank.com/certificates/javascript-basic",
-    skills: ["JavaScript", "Web Development", "Programming"],
-    description: "Basic JavaScript certification demonstrating fundamental JavaScript programming skills.",
-    category: "development"
+    title: "MongoDB Schema Design Patterns and Antipatterns",
+    issuer: "MongoDB",
+    issuedDate: "Apr 2025",
+    skills: ["MongoDB", "Schema Design", "Database Architecture", "Performance"],
+    description: "Advanced MongoDB certification focusing on schema design patterns and best practices to avoid common antipatterns.",
+    highlights: [
+      "Advanced schema design patterns",
+      "Identifying and avoiding antipatterns",
+      "Performance optimization strategies",
+      "Scalability considerations"
+    ],
+    category: "database",
+    featured: true
   },
   {
-    title: "Problem Solving (Basic)",
-    issuer: "HackerRank",
-    issuedDate: "May 2024",
-    credentialId: "M3N4O5P6Q7R8",
-    url: "https://www.hackerrank.com/certificates/problem-solving-basic",
-    skills: ["Problem Solving", "Algorithms", "Data Structures"],
-    description: "Problem solving certification covering algorithmic thinking and data structure concepts.",
-    category: "development"
+    title: "NMIT HACKS 2025",
+    issuer: "NMIT Hacks",
+    issuedDate: "Apr 2025",
+    credentialId: "fabe55ca-c7fd-4dca-b0e5-d0f2d7ce3263",
+    skills: ["Hackathon", "Innovation", "Team Collaboration", "Problem Solving"],
+    description: "Participation certificate for NMIT HACKS 2025 hackathon competition.",
+    category: "achievement"
+  },
+  {
+    title: "Google AI Essentials",
+    issuer: "Google",
+    issuedDate: "Feb 2025",
+    credentialId: "EQA4TXL52166",
+    skills: ["Artificial Intelligence (AI)", "Responsible AI", "Prompt Engineering", "Machine Learning", "Generative AI Tools"],
+    description: "Validates expertise in generative AI, productivity enhancement, prompt engineering, responsible AI use, and emerging trends. Gain hands-on experience, ethical AI insights, and a Google-recognized certification for career growth.",
+    highlights: [
+      "Generative AI fundamentals and applications",
+      "Responsible AI principles and ethics",
+      "Advanced prompt engineering techniques",
+      "Machine learning concepts and tools",
+      "Productivity enhancement with AI"
+    ],
+    category: "ai",
+    featured: true
+  },
+  {
+    title: "Google AI Essentials | Honor Badge",
+    issuer: "Coursera",
+    issuedDate: "Feb 2025",
+    skills: ["AI", "Machine Learning", "Coursera", "Google Certification"],
+    description: "Honor badge recognizing exceptional performance in the Google AI Essentials course on Coursera.",
+    category: "ai"
+  },
+  {
+    title: "Smart India Hackothon 2024 - FINALIST",
+    issuer: "Smart India Hackathon",
+    issuedDate: "Dec 2024",
+    skills: ["Team Leadership", "Team Management", "Teamwork", "Cybersecurity Tools", "Cyber Security Risk", "Fuzzing"],
+    description: "SIH 2024 🏆 | Participation Certificate 🎓 - Worked on a Cybersecurity project using the Software Fuzzing method, enhancing problem-solving skills and teamwork capabilities.",
+    highlights: [
+      "National-level hackathon finalist",
+      "Cybersecurity project development",
+      "Software fuzzing implementation",
+      "Team leadership and collaboration",
+      "Advanced problem-solving methodologies"
+    ],
+    category: "achievement",
+    featured: true
   }
 ];
 
