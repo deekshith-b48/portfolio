@@ -1,204 +1,293 @@
-# Portfolio Website
+# 🚀 Deekshith B - Full Stack Developer Portfolio
 
-A pixel-perfect replica of the portfolio website with modern enhancements including responsive design, interactive animations, and performance optimizations.
+A modern, responsive portfolio website showcasing my journey as a Full Stack Developer with expertise in AI/ML, Web3, and innovative technology solutions. Built with React, TypeScript, and Tailwind CSS for optimal performance and user experience.
 
-## 🚀 Features
+## 🌟 Live Demo
 
-### 🎨 Design & UI/UX
-- **Pixel-perfect replica** of the original design
-- **Dark theme** with elegant color scheme
-- **Responsive layout** optimized for all devices
-- **Modern typography** using Inter font family
-- **Smooth animations** and hover effects
-- **Accessibility compliant** (WCAG 2.1 standards)
+**🔗 Portfolio**: [https://github.com/deekshith-b48/portfolio](https://github.com/deekshith-b48/portfolio)
 
-### ⚡ Performance
-- **Optimized loading** with lazy-loaded images
-- **Smooth scrolling** and navigation
-- **Performance monitoring** with Web Vitals tracking
-- **SEO optimized** with meta tags and Open Graph
-- **Cross-browser compatibility** tested
+## 👨‍💻 About Me
 
-### 🛠 Technical Stack
-- **React 18** with TypeScript
-- **Tailwind CSS** for styling
-- **Vite** for build tooling
-- **Radix UI** components
-- **Lucide React** icons
-- **React Router** for navigation
+I'm Deekshith B, a passionate Full Stack Developer currently working at **Kroolo** on revolutionary Web3 projects like **PoliGap** - a blockchain-based political transparency platform. I'm also a Core Member at **Samsung Innovation Lab**, focusing on AI/ML solutions for healthcare and safety monitoring.
 
-### 📱 Interactive Elements
-- **Scroll-triggered animations** using Intersection Observer
-- **Hover effects** on cards and buttons
-- **Form validation** with toast notifications
-- **Smooth scroll-to-top** functionality
-- **Tab navigation** for project filtering
+### 🎯 Current Focus
+- **Web3 Development** - Building decentralized applications for political transparency
+- **AI/ML Projects** - Medical diagnostics and safety monitoring systems  
+- **Full Stack Development** - Modern web applications with React, Node.js, and cloud technologies
 
-## 🏗 Project Structure
+## ✨ Portfolio Features
+
+### 🎨 Modern Design & UX
+- **Responsive Design** - Optimized for all devices (mobile-first approach)
+- **Dark Theme** - Professional dark theme with accent colors
+- **Smooth Animations** - Scroll-triggered animations and hover effects
+- **Interactive Components** - Expandable experience cards, skill modals, project showcases
+- **SEO Optimized** - Meta tags, Open Graph, and structured data
+
+### 🚀 Technical Excellence  
+- **React 18** with TypeScript for type safety
+- **Tailwind CSS** for modern styling and responsive design
+- **Vite** for lightning-fast development and builds
+- **shadcn/ui** for consistent, accessible UI components
+- **Lucide React** for beautiful, scalable icons
+- **Performance Optimized** - Lazy loading, code splitting, and Web Vitals monitoring
+
+### 📱 Key Sections
+- **Hero** - Professional introduction with animated elements
+- **Experience** - Interactive timeline with detailed company information
+- **Skills** - Comprehensive technical skills with proficiency levels
+- **Projects** - Showcase of personal and professional projects
+- **Education** - Academic background and achievements
+- **Certifications** - Professional certifications and courses
+- **Achievements** - Awards, hackathon wins, and recognition
+- **Contact** - Multiple ways to connect and collaborate
+
+## 🛠️ Technical Stack
+
+### Frontend
+- **Framework**: React 18 with TypeScript
+- **Styling**: Tailwind CSS with custom design system
+- **UI Components**: shadcn/ui (Radix UI + Tailwind)
+- **Icons**: Lucide React
+- **Animations**: CSS animations with Intersection Observer
+- **State Management**: React Hooks
+- **Routing**: React Router DOM
+
+### Development Tools
+- **Build Tool**: Vite
+- **Package Manager**: Bun
+- **Linting**: ESLint with TypeScript rules
+- **Type Checking**: TypeScript 5.6+
+- **CSS**: PostCSS with Tailwind CSS
+
+### Performance & SEO
+- **Analytics**: Google Analytics ready integration
+- **SEO**: Meta tags, Open Graph, structured data
+- **Performance**: Web Vitals monitoring, lazy loading
+- **Accessibility**: WCAG 2.1 compliant
+
+## 🏗️ Project Structure
 
 ```
-src/
-├── components/
-│   ├── ui/                 # Reusable UI components
-│   ├── Header.tsx          # Navigation header
-│   ├── Hero.tsx            # Hero section with profile
-│   ├── ExperienceSection.tsx # Work experience timeline
-│   ├── ProjectsSection.tsx # Projects showcase
-│   ├── ContactSection.tsx  # Contact form
-│   ├── Footer.tsx          # Site footer
-│   ├── ScrollToTop.tsx     # Scroll to top button
-│   ├── SEO.tsx             # SEO meta tags
-│   ├── TechTag.tsx         # Technology tag component
-│   └── AnimatedSection.tsx # Animation wrapper
-├── hooks/
-│   ├── useIntersectionObserver.ts # Scroll animations
-│   └── use-toast.ts        # Toast notifications
-├── lib/
-│   ├── utils.ts            # Utility functions
-│   ├── analytics.ts        # Analytics tracking
-│   └── performance.ts      # Performance monitoring
-├── assets/
-│   └── profile.jpg         # Profile image
-└── pages/
-    ├── Index.tsx           # Main page
-    └── NotFound.tsx        # 404 page
+portfolio/
+├── public/
+│   ├── favicon.ico
+│   ├── robots.txt
+│   └── lovable-uploads/
+├── src/
+│   ├── components/
+│   │   ├── ui/                    # shadcn/ui components
+│   │   ├── layout/                # Layout components
+│   │   ├── AchievementsSection.tsx
+│   │   ├── CertificationsSection.tsx
+│   │   ├── ContactSection.tsx
+│   │   ├── EducationSection.tsx
+│   │   ├── ExperienceSection.tsx
+│   │   ├── Header.tsx
+│   │   ├── Hero.tsx
+│   │   ├── ProjectsSection.tsx
+│   │   ├── SkillsSection.tsx
+│   │   └── Footer.tsx
+│   ├── hooks/
+│   │   ├── useIntersectionObserver.ts
+│   │   ├── useScrollAnimation.ts
+│   │   └── use-mobile.tsx
+│   ├── lib/
+│   │   ├── analytics.ts
+│   │   ├── github.ts
+│   │   ├── performance.ts
+│   │   └── utils.ts
+│   ├── pages/
+│   │   ├── HomePage.tsx
+│   │   ├── ContactPage.tsx
+│   │   └── [other-pages].tsx
+│   └── assets/
+├── components.json              # shadcn/ui configuration
+├── tailwind.config.ts          # Tailwind CSS configuration
+├── tsconfig.json              # TypeScript configuration
+└── vite.config.ts            # Vite configuration
 ```
-
-## 🎯 Key Sections
-
-### Hero Section
-- Animated profile picture with floating effect
-- Professional introduction
-- Status indicator (online/available)
-
-### Experience Timeline
-- Work history with company details
-- Technology tags for each role
-- External links to projects and companies
-- Status badges (Current/Past)
-
-### Projects Showcase
-- Tabbed interface (Personal Projects / Client Work)
-- Project cards with hover animations
-- Technology stack indicators
-- GitHub and demo links
-- Status indicators (Active/Paused/Completed)
-
-### Contact Section
-- Contact form with validation
-- Contact information display
-- Social media links
-- Professional availability status
 
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Node.js 18+ and npm
-- Git for version control
+- **Node.js** 18+ 
+- **Bun** (recommended) or npm/yarn
+- **Git**
 
 ### Installation
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
-   cd portfolio-website
+   git clone https://github.com/deekshith-b48/portfolio.git
+   cd portfolio
    ```
 
 2. **Install dependencies**
    ```bash
+   bun install
+   # or
    npm install
    ```
 
 3. **Start development server**
    ```bash
+   bun run dev
+   # or
    npm run dev
    ```
 
 4. **Build for production**
    ```bash
+   bun run build
+   # or
    npm run build
    ```
 
 5. **Preview production build**
    ```bash
+   bun run preview
+   # or
    npm run preview
    ```
 
-## 🎨 Customization
+## 🎯 Professional Experience
 
-### Design System
-The entire design system is defined in `src/index.css` and `tailwind.config.ts`:
+### 🚀 Current Roles
 
-- **Colors**: HSL-based color tokens for consistent theming
-- **Typography**: Inter font with various weights
-- **Animations**: Custom keyframes and transitions
-- **Components**: Reusable component styles
+**Full Stack Developer @ Kroolo** *(July 2025 - Present)*
+- Developing **PoliGap** - Winner of First Ever Hackathon
+- Web3 & blockchain integration for political transparency
+- Technologies: React, Next.js, Solidity, Web3.js, Ethereum
 
-### Content Updates
-1. **Personal Information**: Update `src/components/Hero.tsx`
-2. **Experience**: Modify the experiences array in `src/components/ExperienceSection.tsx`
-3. **Projects**: Update the projects array in `src/components/ProjectsSection.tsx`
-4. **Contact**: Customize contact details in `src/components/ContactSection.tsx`
+**Trainee - Core Member @ Samsung Innovation Lab** *(Feb 2024 - Present)*
+- AI/ML projects: Tumor Detection (92% accuracy), Safety Monitoring (90% accuracy)
+- IoT system integration and real-time data processing
+- Technologies: TensorFlow, Keras, Python, Raspberry Pi
 
-### SEO & Meta Tags
-Update SEO information in `src/components/SEO.tsx` and `index.html`
+### 📈 Key Achievements
+- 🏆 **Hackathon Winner** - PoliGap decentralized political platform
+- 🎯 **92% Accuracy** - Deep Learning tumor detection system
+- 📱 **25% Mobile Traffic Increase** - Performance optimization projects
+- 🔒 **90% Safety Detection** - AI-based employee monitoring system
 
-## 📊 Performance Features
+## 🛡️ Skills & Technologies
 
-- **Lazy loading** for images and components
-- **Intersection Observer** for scroll animations
-- **Web Vitals monitoring** (LCP, FID, CLS)
-- **Analytics tracking** ready for Google Analytics/Mixpanel
-- **Optimized bundle size** with tree shaking
+### Programming Languages
+- **JavaScript/TypeScript** - Advanced
+- **Python** - Advanced  
+- **Solidity** - Intermediate
+- **Java** - Intermediate
 
-## 🌐 Browser Support
+### Frontend Development
+- **React.js** - Expert
+- **Next.js** - Advanced
+- **Tailwind CSS** - Expert
+- **HTML5/CSS3** - Expert
 
-- Chrome 88+
-- Firefox 85+
-- Safari 14+
-- Edge 88+
+### Backend Development
+- **Node.js** - Advanced
+- **Express.js** - Advanced
+- **MongoDB** - Intermediate
+- **RESTful APIs** - Advanced
 
-## 📝 Development Notes
+### AI/ML & Data Science
+- **TensorFlow** - Intermediate
+- **Keras** - Intermediate
+- **Deep Learning** - Intermediate
+- **Computer Vision** - Basic
+
+### Blockchain & Web3
+- **Ethereum** - Intermediate
+- **Web3.js** - Intermediate
+- **Smart Contracts** - Basic
+- **DeFi Concepts** - Basic
+
+## 🌐 Deployment
+
+This portfolio can be easily deployed to various platforms:
+
+### Vercel (Recommended)
+```bash
+npm i -g vercel
+vercel
+```
+
+### Netlify
+```bash
+npm run build
+# Upload dist/ folder to Netlify
+```
+
+### GitHub Pages
+```bash
+npm run build
+# Push dist/ content to gh-pages branch
+```
+
+## 🎨 Customization Guide
+
+### 🔧 Personal Information
+Update personal details in:
+- `src/components/Hero.tsx` - Main introduction
+- `src/components/ContactSection.tsx` - Contact information
+- `src/components/Footer.tsx` - Social links
+
+### 💼 Experience & Projects
+- `src/components/ExperienceSection.tsx` - Work experience data
+- `src/components/ProjectsSection.tsx` - Project showcase
+- `src/components/SkillsSection.tsx` - Technical skills
+
+### 🎨 Styling & Theme
+- `src/index.css` - Global styles and CSS variables
+- `tailwind.config.ts` - Tailwind configuration
+- `components.json` - shadcn/ui theme settings
+
+## 📊 Performance & Analytics
+
+### Performance Features
+- ⚡ **Lazy Loading** - Images and components
+- 🎯 **Code Splitting** - Optimal bundle sizes
+- 📈 **Web Vitals** - Core performance metrics monitoring
+- 🔍 **SEO Optimization** - Meta tags and structured data
 
 ### Analytics Integration
-The analytics system is ready for integration with:
+Ready for integration with:
 - Google Analytics 4
 - Mixpanel
+- Plausible Analytics
 - Custom analytics solutions
-
-### Accessibility Features
-- Semantic HTML structure
-- ARIA labels and descriptions
-- Keyboard navigation support
-- Screen reader compatibility
-- Focus management
-
-### Future Enhancements
-- Blog section integration
-- CMS integration for content management
-- Advanced filtering for projects
-- Theme switching (light/dark mode)
-- Multi-language support
-
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## 🤝 Contributing
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
+1. **Fork** the repository
+2. **Create** a feature branch (`git checkout -b feature/amazing-feature`)
+3. **Commit** your changes (`git commit -m 'Add amazing feature'`)
+4. **Push** to the branch (`git push origin feature/amazing-feature`)
+5. **Open** a Pull Request
 
-## 📞 Support
+## 📄 License
 
-For questions or support, please reach out through:
-- Email: hello@chaitanya-bajpai.xyz
-- GitHub Issues
-- Social media links in the portfolio
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+
+## 📞 Contact & Connect
+
+- **Email**: [deekshithb.22CS038.nc@cambridge.edu.in](mailto:deekshithb.22CS038.nc@cambridge.edu.in)
+- **GitHub**: [@deekshith-b48](https://github.com/deekshith-b48)
+- **LinkedIn**: [Connect with me](https://linkedin.com/in/deekshith-b)
+- **Location**: Karnataka, India
 
 ---
 
-**Built with ❤️ using React, TypeScript, and Tailwind CSS**
+## 🙏 Acknowledgments
+
+- **shadcn/ui** for the beautiful component library
+- **Tailwind CSS** for the utility-first CSS framework
+- **Lucide** for the icon set
+- **Vercel** for hosting solutions
+
+---
+
+**Built with ❤️ by Deekshith B**
+
+*Turning ideas into reality through code, one project at a time.*
