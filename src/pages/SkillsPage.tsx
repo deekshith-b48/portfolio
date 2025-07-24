@@ -2,6 +2,9 @@ import { TechTag } from "@/components/TechTag";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
+import { Card, CardContent } from "@/components/ui/card";
+import { SkillDetailModal } from "@/components/SkillDetailModal";
+import { ResumeDownload } from "@/components/ResumeDownload";
 import { useState } from "react";
 import { 
   Code2, 
@@ -12,10 +15,12 @@ import {
   Cloud, 
   Brain,
   Sparkles,
-  ChevronDown,
-  ChevronUp,
+  ChevronRight,
   TrendingUp,
-  Zap
+  Zap,
+  BarChart3,
+  Layers,
+  Settings
 } from "lucide-react";
 
 interface SkillCategory {
@@ -138,224 +143,154 @@ const methodologies = [
 ];
 
 export function SkillsPage() {
-  const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
-  const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<SkillCategory | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleCategoryClick = (index: number) => {
-    setSelectedCategory(selectedCategory === index ? null : index);
+  const handleCategoryClick = (category: SkillCategory) => {
+    setSelectedCategory(category);
+    setIsModalOpen(true);
   };
 
-  const getSkillColor = (level: number) => {
-    if (level >= 90) return "bg-green-500";
-    if (level >= 80) return "bg-blue-500";
-    if (level >= 70) return "bg-yellow-500";
-    return "bg-orange-500";
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedCategory(null);
   };
 
-  const getSkillTextColor = (level: number) => {
-    if (level >= 90) return "text-green-400";
-    if (level >= 80) return "text-blue-400";
-    if (level >= 70) return "text-yellow-400";
-    return "text-orange-400";
+  const getTopSkills = (category: SkillCategory, count: number = 3) => {
+    return category.skills
+      .sort((a, b) => b.level - a.level)
+      .slice(0, count);
+  };
+
+  const getAverageLevel = (category: SkillCategory) => {
+    return Math.round(category.skills.reduce((sum, skill) => sum + skill.level, 0) / category.skills.length);
   };
 
   return (
-    <div className="min-h-screen p-8">
-      <div className="max-w-6xl mx-auto space-y-16">
+    <div className="min-h-screen">
+      <div className="max-w-7xl mx-auto p-3 md:p-6 lg:p-8 space-y-6 md:space-y-12">
+        
+        {/* Resume Download Section */}
+        <ResumeDownload />
+        
         {/* Header */}
-        <div className="text-center space-y-6 animate-fade-in">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 text-accent text-sm font-medium mb-4">
-            <Zap className="w-4 h-4" />
+        <div className="text-center space-y-4 md:space-y-6">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-accent/10 border border-accent/20 text-accent text-xs md:text-sm font-medium">
+            <Zap className="w-3 h-3 md:w-4 md:h-4" />
             Technical Expertise
           </div>
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tight bg-gradient-to-r from-foreground to-accent bg-clip-text text-transparent">
+          <h1 className="text-2xl md:text-4xl lg:text-6xl font-bold tracking-tight bg-gradient-to-r from-foreground to-accent bg-clip-text text-transparent">
             Skills & Technologies
           </h1>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            A comprehensive overview of my technical skills and expertise across various domains 
-            of software development and emerging technologies.
+          <p className="text-sm md:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            A comprehensive overview of my technical skills across various domains of software development.
           </p>
         </div>
 
-        {/* Skills Grid */}
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {/* Mobile-Optimized Skills Grid */}
+        <div className="grid gap-3 md:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           {skillCategories.map((category, index) => {
             const IconComponent = category.icon;
-            const isSelected = selectedCategory === index;
+            const topSkills = getTopSkills(category);
+            const avgLevel = getAverageLevel(category);
             
             return (
-              <div
+              <Card
                 key={category.title}
-                className={`group relative overflow-hidden rounded-2xl border transition-all duration-500 cursor-pointer animate-scale-in ${
-                  isSelected 
-                    ? "bg-gradient-to-br from-accent/20 to-primary/20 border-accent/50 shadow-2xl shadow-accent/20 scale-105" 
-                    : "bg-gradient-to-br from-card/50 to-card border-border/50 hover:border-accent/30 hover:shadow-xl hover:shadow-accent/5 hover:scale-105"
-                }`}
-                style={{ animationDelay: `${index * 0.1}s` }}
-                onClick={() => handleCategoryClick(index)}
+                className="group cursor-pointer border-border/50 bg-card/50 hover:border-accent/30 hover:shadow-lg hover:shadow-accent/5 transition-all duration-300 hover:scale-[1.02]"
+                onClick={() => handleCategoryClick(category)}
               >
-                {/* Gradient overlay */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${category.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
-                
-                <div className="relative p-6 space-y-4">
+                <CardContent className="p-4 md:p-6 space-y-3 md:space-y-4">
+                  
                   {/* Header */}
                   <div className="flex items-center gap-3">
-                    <div className={`p-3 rounded-xl bg-gradient-to-br ${category.color} shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                      <IconComponent className="w-6 h-6 text-white" />
+                    <div className={`p-2 md:p-3 rounded-lg bg-gradient-to-br ${category.color} shadow-md group-hover:scale-110 transition-transform duration-300`}>
+                      <IconComponent className="w-4 h-4 md:w-5 md:h-5 text-white" />
                     </div>
-                    <div className="flex-1">
-                      <h3 className="text-lg font-bold group-hover:text-accent transition-colors duration-300 line-clamp-2">
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-sm md:text-base font-bold group-hover:text-accent transition-colors duration-300 line-clamp-2">
                         {category.title}
                       </h3>
+                      <p className="text-xs text-muted-foreground line-clamp-1">
+                        {category.description}
+                      </p>
                     </div>
+                    <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-accent group-hover:translate-x-1 transition-all duration-300" />
                   </div>
 
-                  {/* Description */}
-                  <p className="text-sm text-muted-foreground group-hover:text-foreground/80 transition-colors duration-300">
-                    {category.description}
-                  </p>
-
-                  {/* Skills Preview or Detailed View */}
-                  {isSelected ? (
-                    <div className="space-y-4 animate-fade-in">
-                      {category.skills.map((skill) => (
-                        <div
-                          key={skill.name}
-                          className="space-y-3 p-4 rounded-lg bg-background/50 border border-border/50 hover:border-accent/30 transition-all duration-300 group/skill"
-                          onMouseEnter={() => setHoveredSkill(skill.name)}
-                          onMouseLeave={() => setHoveredSkill(null)}
-                        >
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-3">
-                              {skill.logo && (
-                                <span className="text-2xl group-hover/skill:scale-125 group-hover/skill:rotate-12 transition-all duration-300">
-                                  {skill.logo}
-                                </span>
-                              )}
-                              <span className="text-sm font-medium group-hover/skill:text-accent transition-colors duration-300">
-                                {skill.name}
-                              </span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                              <span className={`text-xs font-bold ${getSkillTextColor(skill.level)} group-hover/skill:scale-110 transition-transform duration-300`}>
-                                {skill.level}%
-                              </span>
-                              {skill.projects && (
-                                <Badge variant="outline" className="text-xs px-2 py-0 group-hover/skill:border-accent/50 transition-colors duration-300">
-                                  {skill.projects} projects
-                                </Badge>
-                              )}
-                            </div>
-                          </div>
-                          <div className="relative">
-                            <Progress 
-                              value={hoveredSkill === skill.name ? skill.level : 0} 
-                              className="h-2"
-                            />
-                            <div 
-                              className="absolute top-0 left-0 h-2 rounded-full transition-all duration-1000 ease-out"
-                              style={{
-                                width: hoveredSkill === skill.name ? `${skill.level}%` : '0%',
-                                background: `linear-gradient(90deg, ${category.color.includes('pink') ? '#ec4899' : 
-                                  category.color.includes('green') ? '#10b981' :
-                                  category.color.includes('blue') ? '#3b82f6' :
-                                  category.color.includes('orange') ? '#f97316' :
-                                  category.color.includes('yellow') ? '#eab308' :
-                                  category.color.includes('purple') ? '#8b5cf6' : '#06b6d4'}, ${category.color.includes('pink') ? '#f43f5e' : 
-                                  category.color.includes('green') ? '#059669' :
-                                  category.color.includes('blue') ? '#1d4ed8' :
-                                  category.color.includes('orange') ? '#ea580c' :
-                                  category.color.includes('yellow') ? '#ca8a04' :
-                                  category.color.includes('purple') ? '#7c3aed' : '#0891b2'})`
-                              }}
-                            />
-                          </div>
-                          <div className="text-xs text-muted-foreground group-hover/skill:text-foreground/80 transition-colors duration-300">
-                            {skill.experience}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  ) : (
-                    <div className="space-y-3">
-                      {/* Skill tags preview with logos */}
-                      <div className="flex flex-wrap gap-2">
-                        {category.skills.slice(0, 3).map((skill) => (
-                          <div 
-                            key={skill.name} 
-                            className="group/tag inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/50 border border-border/50 hover:border-accent/30 hover:bg-accent/10 transition-all duration-300 hover:scale-105"
-                          >
-                            {skill.logo && (
-                              <span className="text-sm group-hover/tag:scale-125 group-hover/tag:rotate-12 transition-all duration-300">
-                                {skill.logo}
-                              </span>
-                            )}
-                            <span className="text-xs font-medium group-hover/tag:text-accent transition-colors duration-300">
-                              {skill.name}
-                            </span>
-                          </div>
-                        ))}
-                        {category.skills.length > 3 && (
-                          <span className="text-xs text-muted-foreground px-2 py-1">
-                            +{category.skills.length - 3} more
+                  {/* Top Skills Preview */}
+                  <div className="space-y-2">
+                    {topSkills.map((skill) => (
+                      <div key={skill.name} className="flex items-center justify-between">
+                        <div className="flex items-center gap-2 min-w-0 flex-1">
+                          {skill.logo && (
+                            <span className="text-sm flex-shrink-0">{skill.logo}</span>
+                          )}
+                          <span className="text-xs md:text-sm font-medium truncate">
+                            {skill.name}
                           </span>
-                        )}
+                        </div>
+                        <div className="flex items-center gap-2 flex-shrink-0">
+                          <div className="w-12 md:w-16 h-1.5 bg-secondary rounded-full overflow-hidden">
+                            <div 
+                              className="h-full bg-gradient-to-r from-accent to-accent/70 rounded-full transition-all duration-500"
+                              style={{ width: `${skill.level}%` }}
+                            />
+                          </div>
+                          <span className="text-xs font-medium text-accent w-8 text-right">
+                            {skill.level}%
+                          </span>
+                        </div>
                       </div>
-                      
-                      {/* Stats */}
-                      <div className="flex items-center justify-between text-sm text-muted-foreground">
-                        <span>{category.skills.length} technologies</span>
-                        <span className="flex items-center gap-1">
-                          <TrendingUp className="w-3 h-3" />
-                          Advanced
-                        </span>
-                      </div>
-                    </div>
-                  )}
+                    ))}
+                  </div>
 
-                  {/* Click indicator */}
-                  <div className="text-center pt-2">
-                    <span className="text-xs text-muted-foreground flex items-center justify-center gap-1">
-                      {isSelected ? (
-                        <>
-                          <ChevronUp className="w-3 h-3" />
-                          Click to collapse
-                        </>
-                      ) : (
-                        <>
-                          <ChevronDown className="w-3 h-3" />
-                          Click to expand
-                        </>
-                      )}
+                  {/* Category Stats */}
+                  <div className="flex items-center justify-between pt-2 border-t border-border/50">
+                    <div className="flex items-center gap-4 text-xs text-muted-foreground">
+                      <span className="flex items-center gap-1">
+                        <Layers className="w-3 h-3" />
+                        {category.skills.length}
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <BarChart3 className="w-3 h-3" />
+                        {avgLevel}%
+                      </span>
+                    </div>
+                    <Badge variant="outline" className="text-xs px-2 py-0">
+                      {category.skills.reduce((sum, skill) => sum + (skill.projects || 0), 0)} projects
+                    </Badge>
+                  </div>
+
+                  {/* View More Indicator */}
+                  <div className="text-center">
+                    <span className="text-xs text-muted-foreground group-hover:text-accent transition-colors duration-300">
+                      Tap to view details
                     </span>
                   </div>
-                </div>
-              </div>
+                </CardContent>
+              </Card>
             );
           })}
         </div>
 
-        {/* Methodologies */}
-        <div className="text-center space-y-8 animate-fade-in">
-          <div className="space-y-4">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 text-accent text-sm font-medium">
-              <Sparkles className="w-4 h-4" />
+        {/* Compact Methodologies */}
+        <div className="space-y-4 md:space-y-6">
+          <div className="text-center space-y-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-accent/10 border border-accent/20 text-accent text-xs md:text-sm font-medium">
+              <Settings className="w-3 h-3 md:w-4 md:h-4" />
               Development Methodologies
             </div>
-            <h3 className="text-2xl md:text-3xl font-bold">Best Practices & Approaches</h3>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Following industry standards and proven methodologies to deliver high-quality software solutions.
-            </p>
+            <h3 className="text-lg md:text-2xl lg:text-3xl font-bold">Best Practices</h3>
           </div>
           
-          <div className="flex flex-wrap justify-center gap-3">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-3">
             {methodologies.map((method, index) => (
               <div
                 key={method}
-                className="px-6 py-3 rounded-full bg-gradient-to-r from-card to-card/50 border border-border/50 hover:border-accent/30 hover:bg-accent/10 transition-all duration-300 hover:scale-105 group animate-scale-in"
-                style={{ animationDelay: `${index * 0.1}s` }}
+                className="px-3 py-2 md:px-4 md:py-3 rounded-lg bg-card/50 border border-border/50 hover:border-accent/30 hover:bg-accent/10 transition-all duration-300 hover:scale-105 group text-center"
               >
-                <span className="text-sm font-medium group-hover:text-accent transition-colors duration-300">
+                <span className="text-xs md:text-sm font-medium group-hover:text-accent transition-colors duration-300">
                   {method}
                 </span>
               </div>
@@ -363,22 +298,37 @@ export function SkillsPage() {
           </div>
         </div>
 
-        {/* Skills Summary */}
-        <div className="grid gap-6 md:grid-cols-3 animate-fade-in">
-          <div className="text-center p-6 rounded-2xl bg-gradient-to-br from-card/50 to-card border border-border/50 hover:border-accent/30 transition-all duration-300 hover:scale-105">
-            <div className="text-3xl font-bold text-accent mb-2">30+</div>
-            <div className="text-sm text-muted-foreground">Technologies Mastered</div>
-          </div>
-          <div className="text-center p-6 rounded-2xl bg-gradient-to-br from-card/50 to-card border border-border/50 hover:border-accent/30 transition-all duration-300 hover:scale-105">
-            <div className="text-3xl font-bold text-accent mb-2">100+</div>
-            <div className="text-sm text-muted-foreground">Projects Completed</div>
-          </div>
-          <div className="text-center p-6 rounded-2xl bg-gradient-to-br from-card/50 to-card border border-border/50 hover:border-accent/30 transition-all duration-300 hover:scale-105">
-            <div className="text-3xl font-bold text-accent mb-2">2+</div>
-            <div className="text-sm text-muted-foreground">Years Experience</div>
-          </div>
+        {/* Mobile-Optimized Skills Summary */}
+        <div className="grid grid-cols-3 gap-3 md:gap-6">
+          <Card className="border-border/50 bg-card/50 hover:border-accent/30 transition-all duration-300 hover:scale-105">
+            <CardContent className="p-4 md:p-6 text-center">
+              <div className="text-xl md:text-3xl font-bold text-accent mb-1 md:mb-2">30+</div>
+              <div className="text-xs md:text-sm text-muted-foreground">Technologies</div>
+            </CardContent>
+          </Card>
+          
+          <Card className="border-border/50 bg-card/50 hover:border-accent/30 transition-all duration-300 hover:scale-105">
+            <CardContent className="p-4 md:p-6 text-center">
+              <div className="text-xl md:text-3xl font-bold text-accent mb-1 md:mb-2">100+</div>
+              <div className="text-xs md:text-sm text-muted-foreground">Projects</div>
+            </CardContent>
+          </Card>
+          
+          <Card className="border-border/50 bg-card/50 hover:border-accent/30 transition-all duration-300 hover:scale-105">
+            <CardContent className="p-4 md:p-6 text-center">
+              <div className="text-xl md:text-3xl font-bold text-accent mb-1 md:mb-2">2+</div>
+              <div className="text-xs md:text-sm text-muted-foreground">Years</div>
+            </CardContent>
+          </Card>
         </div>
       </div>
+
+      {/* Skill Detail Modal */}
+      <SkillDetailModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        category={selectedCategory}
+      />
     </div>
   );
 }
