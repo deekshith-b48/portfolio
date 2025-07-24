@@ -107,9 +107,19 @@ export function ProjectsSection() {
             Each project represents real-world problem-solving with modern technologies.
           </p>
           {usingFallbackData && (
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-600 text-xs">
-              <Clock className="w-3 h-3" />
-              Showing cached projects
+            <div className="flex flex-col items-center gap-3">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-600 text-xs">
+                <Clock className="w-3 h-3" />
+                Showing cached projects
+              </div>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={fetchGithubRepos}
+                className="text-xs text-muted-foreground hover:text-accent"
+              >
+                Try refreshing from GitHub
+              </Button>
             </div>
           )}
         </div>
