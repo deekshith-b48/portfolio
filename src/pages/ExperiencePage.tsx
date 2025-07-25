@@ -27,7 +27,7 @@ interface ExperienceItem {
 
 const experiences: ExperienceItem[] = [
   {
-    title: "Full Stack Developer",
+    title: "Full Stack Developer Intern",
     company: "Kroolo",
     period: "Jan 2025 - Present",
     status: "Current",
