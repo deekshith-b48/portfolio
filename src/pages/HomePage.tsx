@@ -43,7 +43,7 @@ export function HomePage() {
 
   // Recent data for sections
   const recentExperience = {
-    title: "Full Stack Developer",
+    title: "Full Stack Developer Intern",
     company: "Kroolo",
     period: "Jan 2025 - Present",
     note: "Joined through Kroolo x The Generative Beings Hackathon!"
