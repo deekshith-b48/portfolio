@@ -325,7 +325,7 @@ export function HomePage() {
                   className="flex-1 border-accent/30 hover:border-accent/50 hover:bg-accent/10 text-sm md:text-base"
                 >
                   <a
-                    href="/resume.pdf"
+                    href="/Deekshith_B_Resume.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
                   >

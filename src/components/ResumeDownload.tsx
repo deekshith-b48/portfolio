@@ -6,22 +6,18 @@ import { useState } from "react";
 export function ResumeDownload() {
   const [isDownloading, setIsDownloading] = useState(false);
   
-  // The PDF URL provided by the user
-  const resumeUrl = "https://cdn.builder.io/o/assets%2F696c3e3db21f48e39b9fc7b6b6db79bf%2Ff87517e83f2242959b58e7e6ddb12cfc?alt=media&token=6abd0097-df49-4c3b-a52d-4e88a3a05659&apiKey=696c3e3db21f48e39b9fc7b6b6db79bf";
+  // Using local PDF file from public directory
+  const resumeUrl = "/Deekshith_B_Resume.pdf";
 
-  const handleDownload = async () => {
+  const handleDownload = () => {
     setIsDownloading(true);
     try {
-      const response = await fetch(resumeUrl);
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
       const link = document.createElement('a');
-      link.href = url;
-      link.download = 'Deekshith_B_Gowda_Resume.pdf';
+      link.href = resumeUrl;
+      link.download = 'Deekshith_B_Resume.pdf';
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-      window.URL.revokeObjectURL(url);
     } catch (error) {
       console.error('Download failed:', error);
     } finally {
