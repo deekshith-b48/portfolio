@@ -32,7 +32,7 @@ const certifications: Certification[] = [
     description: "Recognizes successful completion of the HackerRank Frontend Developer (React) certification assessment. The test evaluated practical knowledge and coding skills essential for building dynamic, component-based user interfaces using React.",
     highlights: [
       "React component creation (functional & class-based)",
-      "State and props management", 
+      "State and props management",
       "React hooks (useState, useEffect)",
       "Event handling and forms",
       "Conditional rendering and dynamic UI updates"
@@ -42,7 +42,7 @@ const certifications: Certification[] = [
   },
   {
     title: "Software Engineer Intern",
-    issuer: "HackerRank", 
+    issuer: "HackerRank",
     issuedDate: "Jul 2025",
     credentialId: "77D3AC0C7864",
     url: "https://www.hackerrank.com/certificates/77d3ac0c7864",
@@ -176,7 +176,7 @@ const certifications: Certification[] = [
     issuer: "Smart India Hackathon",
     issuedDate: "Dec 2024",
     skills: ["Team Leadership", "Team Management", "Teamwork", "Cybersecurity Tools", "Cyber Security Risk", "Fuzzing"],
-    description: "SIH 2024 🏆 | Participation Certificate 🎓 - Worked on a Cybersecurity project using the Software Fuzzing method, enhancing problem-solving skills and teamwork capabilities.",
+    description: "SIH 2024 | Participation Certificate — Worked on a Cybersecurity project using the Software Fuzzing method, enhancing problem-solving skills and teamwork capabilities.",
     highlights: [
       "National-level hackathon finalist",
       "Cybersecurity project development",
@@ -189,6 +189,17 @@ const certifications: Certification[] = [
   }
 ];
 
+const categoryMeta: Record<string, { label: string; color: string; dot: string }> = {
+  development: { label: "Development", color: "bg-blue-500/15 text-blue-400 border-blue-500/25", dot: "bg-blue-400" },
+  ai:          { label: "Artificial Intelligence", color: "bg-purple-500/15 text-purple-400 border-purple-500/25", dot: "bg-purple-400" },
+  cloud:       { label: "Cloud", color: "bg-cyan-500/15 text-cyan-400 border-cyan-500/25", dot: "bg-cyan-400" },
+  database:    { label: "Database", color: "bg-green-500/15 text-green-400 border-green-500/25", dot: "bg-green-400" },
+  security:    { label: "Security", color: "bg-red-500/15 text-red-400 border-red-500/25", dot: "bg-red-400" },
+  achievement: { label: "Achievements", color: "bg-orange-500/15 text-orange-400 border-orange-500/25", dot: "bg-orange-400" },
+};
+
+const categoryOrder: Array<Certification["category"]> = ["development", "ai", "database", "achievement", "cloud", "security"];
+
 interface CertificationDetailModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -198,144 +209,116 @@ interface CertificationDetailModalProps {
 function CertificationDetailModal({ isOpen, onClose, certification }: CertificationDetailModalProps) {
   if (!certification) return null;
 
-  const getCategoryColor = (category: string) => {
-    switch (category) {
-      case "development":
-        return "bg-blue-500/20 text-blue-400 border-blue-500/30";
-      case "ai":
-        return "bg-purple-500/20 text-purple-400 border-purple-500/30";
-      case "cloud":
-        return "bg-cyan-500/20 text-cyan-400 border-cyan-500/30";
-      case "database":
-        return "bg-green-500/20 text-green-400 border-green-500/30";
-      case "security":
-        return "bg-red-500/20 text-red-400 border-red-500/30";
-      default:
-        return "bg-orange-500/20 text-orange-400 border-orange-500/30";
-    }
-  };
+  const meta = categoryMeta[certification.category] ?? categoryMeta.achievement;
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-2xl mx-4 max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-w-2xl mx-4 max-h-[90vh] overflow-y-auto border border-white/[0.09] bg-card/80 backdrop-blur-xl">
         <DialogHeader className="space-y-4">
-          <div className="flex items-start gap-3">
-            <div className="text-2xl">🏆</div>
-            <div className="flex-1 space-y-2">
-              <DialogTitle className="text-lg font-bold text-left leading-tight">
+          <div className="flex items-start gap-4">
+            {/* Icon box */}
+            <div className="flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center"
+              style={{ background: "linear-gradient(135deg, hsl(258 90% 78% / 0.25), hsl(200 90% 68% / 0.15))", border: "1px solid hsl(258 90% 78% / 0.2)" }}>
+              <Award className="w-5 h-5 text-accent" />
+            </div>
+            <div className="flex-1 min-w-0 space-y-2">
+              <DialogTitle className="font-bitcount text-lg font-bold text-left leading-tight text-foreground">
                 {certification.title}
               </DialogTitle>
-              
-              <div className="space-y-2">
-                <div className="text-accent font-medium">
-                  {certification.issuer}
-                </div>
-                <div className="flex flex-wrap items-center gap-2">
-                  <Badge variant="outline" className={getCategoryColor(certification.category)}>
-                    {certification.category}
+              <div className="font-bitcount text-sm font-semibold text-accent">{certification.issuer}</div>
+              <div className="flex flex-wrap items-center gap-2">
+                <Badge variant="outline" className={`font-space text-[10px] ${meta.color}`}>
+                  {meta.label}
+                </Badge>
+                {certification.featured && (
+                  <Badge variant="outline" className="font-space text-[10px] bg-accent/10 text-accent border-accent/20">
+                    <Star className="w-2.5 h-2.5 mr-1" />
+                    Featured
                   </Badge>
-                  {certification.featured && (
-                    <Badge variant="outline" className="bg-accent/10 text-accent border-accent/20 text-xs">
-                      <Star className="w-3 h-3 mr-1" />
-                      Featured
-                    </Badge>
-                  )}
-                  <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                    <Calendar className="w-3 h-3" />
-                    {certification.issuedDate}
-                  </div>
-                </div>
-                {certification.credentialId && (
-                  <div className="text-xs text-muted-foreground">
-                    ID: {certification.credentialId}
-                  </div>
                 )}
+                <span className="font-doto text-xs text-muted-foreground/70 flex items-center gap-1">
+                  <Calendar className="w-3 h-3" />
+                  {certification.issuedDate}
+                </span>
               </div>
+              {certification.credentialId && (
+                <p className="font-doto text-[10px] text-muted-foreground/60 tracking-wide">
+                  ID: {certification.credentialId}
+                </p>
+              )}
             </div>
           </div>
         </DialogHeader>
 
-        <div className="space-y-6 mt-6">
-          {/* Description */}
+        <div className="space-y-5 mt-4">
           {certification.description && (
-            <div>
-              <h4 className="font-semibold text-accent mb-2 flex items-center gap-2">
-                <Sparkles className="w-4 h-4" />
+            <div className="space-y-2">
+              <h4 className="font-bitcount text-xs font-semibold text-accent flex items-center gap-2 uppercase tracking-wide">
+                <Sparkles className="w-3.5 h-3.5" />
                 Overview
               </h4>
-              <p className="text-sm text-muted-foreground leading-relaxed">
+              <p className="font-space text-xs text-muted-foreground leading-relaxed">
                 {certification.description}
               </p>
             </div>
           )}
 
-          {/* Skills */}
-          <div>
-            <h4 className="font-semibold text-accent mb-3">Skills Covered</h4>
-            <div className="flex flex-wrap gap-2">
+          <div className="space-y-2">
+            <h4 className="font-bitcount text-xs font-semibold text-accent uppercase tracking-wide">Skills Covered</h4>
+            <div className="flex flex-wrap gap-1.5">
               {certification.skills.map((skill) => (
-                <TechTag key={skill} variant="secondary" className="text-xs">
+                <TechTag key={skill} variant="secondary" className="font-space text-xs">
                   {skill}
                 </TechTag>
               ))}
             </div>
           </div>
 
-          {/* Highlights */}
           {certification.highlights && certification.highlights.length > 0 && (
-            <div>
-              <h4 className="font-semibold text-accent mb-3 flex items-center gap-2">
-                <Trophy className="w-4 h-4" />
-                Key Topics Covered
+            <div className="space-y-2">
+              <h4 className="font-bitcount text-xs font-semibold text-accent flex items-center gap-2 uppercase tracking-wide">
+                <Trophy className="w-3.5 h-3.5" />
+                Key Topics
               </h4>
-              <div className="space-y-2">
+              <div className="space-y-1.5">
                 {certification.highlights.map((highlight, index) => (
-                  <div key={index} className="flex items-start gap-2 text-sm p-3 rounded-lg bg-card/50 border border-border/50">
-                    <div className="w-1.5 h-1.5 bg-accent rounded-full mt-2 flex-shrink-0" />
-                    <span className="text-muted-foreground">{highlight}</span>
+                  <div key={index} className="flex items-start gap-2 text-xs p-2.5 rounded-lg bg-white/[0.03] border border-white/[0.06]">
+                    <div className="w-1 h-1 rounded-full bg-accent mt-1.5 flex-shrink-0" />
+                    <span className="font-space text-muted-foreground">{highlight}</span>
                   </div>
                 ))}
               </div>
             </div>
           )}
 
-          {/* Certification Details */}
-          <div className="grid grid-cols-2 gap-4 p-4 rounded-lg bg-card/50 border border-border/50">
+          <div className="grid grid-cols-2 gap-3 p-4 rounded-xl bg-white/[0.03] border border-white/[0.06]">
             <div>
-              <div className="text-xs text-muted-foreground">Issued Date</div>
-              <div className="text-sm font-medium">{certification.issuedDate}</div>
+              <p className="font-space text-[10px] text-muted-foreground/60 uppercase tracking-wide mb-0.5">Issued</p>
+              <p className="font-doto text-xs text-foreground">{certification.issuedDate}</p>
             </div>
             <div>
-              <div className="text-xs text-muted-foreground">Category</div>
-              <div className="text-sm font-medium capitalize">{certification.category}</div>
+              <p className="font-space text-[10px] text-muted-foreground/60 uppercase tracking-wide mb-0.5">Category</p>
+              <p className="font-bitcount text-xs text-foreground capitalize">{certification.category}</p>
             </div>
             {certification.credentialId && (
               <div className="col-span-2">
-                <div className="text-xs text-muted-foreground">Credential ID</div>
-                <div className="text-sm font-medium font-mono">{certification.credentialId}</div>
+                <p className="font-space text-[10px] text-muted-foreground/60 uppercase tracking-wide mb-0.5">Credential ID</p>
+                <p className="font-doto text-xs text-foreground font-mono">{certification.credentialId}</p>
               </div>
             )}
           </div>
 
-          {/* View Certificate */}
           {certification.url && (
-            <div>
-              <Button
-                variant="outline"
-                asChild
-                className="w-full hover:bg-accent hover:text-background hover:border-accent"
-              >
-                <a
-                  href={certification.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2"
-                >
-                  <ExternalLink className="h-4 w-4" />
-                  View Certificate
-                </a>
-              </Button>
-            </div>
+            <Button
+              variant="outline"
+              asChild
+              className="w-full font-space text-xs border-accent/30 hover:bg-accent hover:text-background hover:border-accent transition-all duration-200"
+            >
+              <a href={certification.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2">
+                <ExternalLink className="h-3.5 w-3.5" />
+                View Certificate
+              </a>
+            </Button>
           )}
         </div>
       </DialogContent>
@@ -357,176 +340,158 @@ export function CertificationsPage() {
     setSelectedCertification(null);
   };
 
-  const getCategoryColor = (category: string) => {
-    switch (category) {
-      case "development":
-        return "bg-blue-500/20 text-blue-400 border-blue-500/30";
-      case "ai":
-        return "bg-purple-500/20 text-purple-400 border-purple-500/30";
-      case "cloud":
-        return "bg-cyan-500/20 text-cyan-400 border-cyan-500/30";
-      case "database":
-        return "bg-green-500/20 text-green-400 border-green-500/30";
-      case "security":
-        return "bg-red-500/20 text-red-400 border-red-500/30";
-      default:
-        return "bg-orange-500/20 text-orange-400 border-orange-500/30";
-    }
-  };
+  // Group certifications by category, preserving categoryOrder
+  const grouped = categoryOrder
+    .map((cat) => ({
+      category: cat,
+      items: certifications.filter((c) => c.category === cat),
+    }))
+    .filter((g) => g.items.length > 0);
 
   return (
     <div className="min-h-screen">
-      <div className="max-w-7xl mx-auto p-3 md:p-6 lg:p-8 space-y-6 md:space-y-12">
-        
-        {/* Resume Download Section */}
+      <div className="max-w-7xl mx-auto p-3 md:p-6 lg:p-8 space-y-10 md:space-y-14">
+
+        {/* Resume Download */}
         <ResumeDownload />
-        
-        {/* Header */}
-        <div className="text-center space-y-4 md:space-y-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-accent/10 border border-accent/20 text-accent text-xs md:text-sm font-medium">
-            <Award className="w-3 h-3 md:w-4 md:h-4" />
-            Professional Credentials
+
+        {/* Section Header */}
+        <div className="space-y-3">
+          <div className="flex items-center gap-3">
+            <span className="font-doto text-[10px] font-medium text-muted-foreground/60 tracking-[0.3em] uppercase">01 —</span>
+            <span className="section-badge">
+              <Award className="w-3 h-3" />
+              Professional Credentials
+            </span>
           </div>
-          <h1 className="text-2xl md:text-4xl lg:text-6xl font-bold tracking-tight bg-gradient-to-r from-foreground to-accent bg-clip-text text-transparent">
-            Certifications
-          </h1>
-          <p className="text-sm md:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Professional certifications and credentials that validate my technical expertise.
+          <h1 className="font-bitcount page-heading">Certifications</h1>
+          <p className="font-space text-sm text-muted-foreground max-w-2xl leading-relaxed">
+            Verified credentials across full-stack development, AI, databases, and design.
           </p>
         </div>
 
-        {/* Certifications Grid */}
-        <div className="grid gap-4 md:gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {certifications.map((certification, index) => (
-            <Card
-              key={certification.title + certification.issuer}
-              className="group cursor-pointer border-border/50 bg-card/50 hover:border-accent/30 hover:shadow-lg hover:shadow-accent/5 transition-all duration-300 hover:scale-[1.02]"
-              onClick={() => handleCertificationClick(certification)}
-            >
-              <CardContent className="p-4 md:p-6 space-y-4">
-                
-                {/* Header */}
-                <div className="flex items-start gap-3">
-                  <div className="text-xl md:text-2xl flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                    🏆
-                  </div>
-                  
-                  <div className="flex-1 min-w-0 space-y-2">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <h3 className="text-sm md:text-base font-bold group-hover:text-accent transition-colors duration-300 line-clamp-2">
-                        {certification.title}
-                      </h3>
-                      {certification.featured && (
-                        <Badge variant="outline" className="bg-accent/10 text-accent border-accent/20 text-xs">
-                          <Star className="w-3 h-3 mr-1" />
-                          Featured
-                        </Badge>
-                      )}
-                    </div>
-                    
-                    <div className="space-y-1">
-                      <div className="text-accent font-medium text-sm">
-                        {certification.issuer}
-                      </div>
-                      <div className="flex flex-wrap items-center gap-2">
-                        <Badge variant="outline" className={getCategoryColor(certification.category)}>
-                          {certification.category}
-                        </Badge>
-                        <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                          <Calendar className="w-3 h-3" />
-                          {certification.issuedDate}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-accent group-hover:translate-x-1 transition-all duration-300 flex-shrink-0" />
+        {/* Category Groups */}
+        <div className="space-y-10">
+          {grouped.map(({ category, items }) => {
+            const meta = categoryMeta[category] ?? categoryMeta.achievement;
+            return (
+              <div key={category} className="space-y-4">
+                {/* Category label */}
+                <div className="flex items-center gap-2">
+                  <div className={`w-1.5 h-1.5 rounded-full ${meta.dot}`} />
+                  <span className={`font-space text-[10px] uppercase tracking-[0.25em] font-semibold px-2 py-0.5 rounded-full border ${meta.color}`}>
+                    {meta.label}
+                  </span>
+                  <div className="flex-1 h-px bg-white/[0.05]" />
+                  <span className="font-doto text-[10px] text-muted-foreground/40">{items.length}</span>
                 </div>
 
-                {/* Description */}
-                {certification.description && (
-                  <p className="text-xs md:text-sm text-muted-foreground leading-relaxed line-clamp-2 group-hover:text-foreground/80 transition-colors duration-300">
-                    {certification.description}
-                  </p>
-                )}
-
-                {/* Skills Preview */}
-                <div className="space-y-2">
-                  <h4 className="text-xs font-semibold text-accent">Skills</h4>
-                  <div className="flex flex-wrap gap-1">
-                    {certification.skills.slice(0, 3).map((skill) => (
-                      <TechTag key={skill} variant="secondary" className="text-xs">
-                        {skill}
-                      </TechTag>
-                    ))}
-                    {certification.skills.length > 3 && (
-                      <span className="text-xs text-muted-foreground px-2 py-1">
-                        +{certification.skills.length - 3}
-                      </span>
-                    )}
-                  </div>
-                </div>
-
-                {/* Actions */}
-                <div className="flex items-center justify-between pt-2 border-t border-border/50">
-                  <div className="text-xs text-muted-foreground">
-                    {certification.credentialId ? `ID: ${certification.credentialId.slice(0, 8)}...` : 'Professional Certificate'}
-                  </div>
-                  {certification.url && (
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      asChild
-                      className="text-xs h-6 px-2"
-                      onClick={(e) => e.stopPropagation()}
+                {/* Cards grid */}
+                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                  {items.map((cert) => (
+                    <div
+                      key={cert.title + cert.issuer}
+                      onClick={() => handleCertificationClick(cert)}
+                      className={[
+                        "rounded-2xl border bg-card/50 backdrop-blur-sm p-5 transition-all duration-300 group cursor-pointer",
+                        cert.featured
+                          ? "border-accent/30 shadow-[0_0_24px_-4px_hsl(258_90%_78%_/_0.18)] hover:border-accent/50 hover:shadow-[0_0_32px_-4px_hsl(258_90%_78%_/_0.28)]"
+                          : "border-white/[0.07] hover:border-accent/20",
+                      ].join(" ")}
                     >
-                      <a
-                        href={certification.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <ExternalLink className="w-3 h-3" />
-                      </a>
-                    </Button>
-                  )}
+                      {/* Card top row */}
+                      <div className="flex items-start justify-between gap-2 mb-3">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          {cert.featured && (
+                            <span className="inline-flex items-center gap-1 font-space text-[9px] uppercase tracking-widest px-1.5 py-0.5 rounded-full bg-accent/10 border border-accent/20 text-accent">
+                              <Star className="w-2 h-2" />
+                              Featured
+                            </span>
+                          )}
+                        </div>
+                        <ChevronRight className="w-3.5 h-3.5 text-muted-foreground/40 group-hover:text-accent group-hover:translate-x-0.5 transition-all duration-200 flex-shrink-0 mt-0.5" />
+                      </div>
+
+                      {/* Title + issuer */}
+                      <h3 className="font-bitcount font-bold text-sm text-foreground leading-snug mb-1 group-hover:text-accent transition-colors duration-200 line-clamp-2">
+                        {cert.title}
+                      </h3>
+                      <p className="font-bitcount text-xs text-accent/80 font-semibold mb-3">{cert.issuer}</p>
+
+                      {/* Description */}
+                      {cert.description && (
+                        <p className="font-space text-xs text-muted-foreground leading-relaxed line-clamp-2 mb-3">
+                          {cert.description}
+                        </p>
+                      )}
+
+                      {/* Skills */}
+                      <div className="flex flex-wrap gap-1 mb-4">
+                        {cert.skills.slice(0, 3).map((skill) => (
+                          <span key={skill} className="font-space text-[10px] px-2 py-0.5 rounded-full bg-white/[0.05] border border-white/[0.08] text-muted-foreground">
+                            {skill}
+                          </span>
+                        ))}
+                        {cert.skills.length > 3 && (
+                          <span className="font-space text-[10px] px-2 py-0.5 rounded-full bg-white/[0.03] text-muted-foreground/50">
+                            +{cert.skills.length - 3}
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Footer */}
+                      <div className="flex items-center justify-between pt-3 border-t border-white/[0.06]">
+                        <div className="space-y-0.5">
+                          <span className="font-doto text-[10px] text-muted-foreground/60 flex items-center gap-1">
+                            <Calendar className="w-2.5 h-2.5" />
+                            {cert.issuedDate}
+                          </span>
+                          {cert.credentialId && (
+                            <span className="font-doto text-[9px] text-muted-foreground/40 block">
+                              {cert.credentialId.length > 12 ? cert.credentialId.slice(0, 12) + "…" : cert.credentialId}
+                            </span>
+                          )}
+                        </div>
+                        {cert.url && (
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            asChild
+                            className="h-7 w-7 p-0 rounded-lg hover:bg-accent/10 hover:text-accent transition-colors"
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            <a href={cert.url} target="_blank" rel="noopener noreferrer" aria-label="View certificate">
+                              <ExternalLink className="w-3 h-3" />
+                            </a>
+                          </Button>
+                        )}
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              </CardContent>
-            </Card>
-          ))}
+              </div>
+            );
+          })}
         </div>
 
-        {/* Summary Stats */}
-        <div className="grid grid-cols-3 gap-3 md:gap-6">
-          <Card className="border-border/50 bg-card/50 hover:border-accent/30 transition-all duration-300 hover:scale-105">
-            <CardContent className="p-4 md:p-6 text-center">
-              <div className="text-xl md:text-3xl font-bold text-accent mb-1 md:mb-2">
-                {certifications.length}
-              </div>
-              <div className="text-xs md:text-sm text-muted-foreground">Certificates</div>
-            </CardContent>
-          </Card>
-          
-          <Card className="border-border/50 bg-card/50 hover:border-accent/30 transition-all duration-300 hover:scale-105">
-            <CardContent className="p-4 md:p-6 text-center">
-              <div className="text-xl md:text-3xl font-bold text-accent mb-1 md:mb-2">
-                {certifications.filter(c => c.featured).length}
-              </div>
-              <div className="text-xs md:text-sm text-muted-foreground">Featured</div>
-            </CardContent>
-          </Card>
-          
-          <Card className="border-border/50 bg-card/50 hover:border-accent/30 transition-all duration-300 hover:scale-105">
-            <CardContent className="p-4 md:p-6 text-center">
-              <div className="text-xl md:text-3xl font-bold text-accent mb-1 md:mb-2">
-                {new Set(certifications.flatMap(c => c.skills)).size}
-              </div>
-              <div className="text-xs md:text-sm text-muted-foreground">Skills</div>
-            </CardContent>
-          </Card>
+        {/* Stats Row */}
+        <div className="grid grid-cols-3 gap-3 md:gap-4">
+          {[
+            { value: certifications.length, label: "Total Certs" },
+            { value: certifications.filter((c) => c.featured).length, label: "Featured" },
+            { value: new Set(certifications.flatMap((c) => c.skills)).size, label: "Skills" },
+          ].map(({ value, label }) => (
+            <div
+              key={label}
+              className="rounded-2xl border border-white/[0.07] bg-card/50 backdrop-blur-sm p-5 text-center hover:border-accent/20 transition-all duration-300"
+            >
+              <div className="font-doto text-3xl font-bold text-accent mb-1">{value}</div>
+              <div className="font-space text-xs text-muted-foreground uppercase tracking-wider">{label}</div>
+            </div>
+          ))}
         </div>
       </div>
 
-      {/* Certification Detail Modal */}
       <CertificationDetailModal
         isOpen={isModalOpen}
         onClose={closeModal}

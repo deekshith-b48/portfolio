@@ -8,14 +8,15 @@ interface SkillItem {
   level: number;
   experience: string;
   projects?: number;
-  logo?: string;
+  icon?: any;
 }
 
 interface SkillCategory {
   title: string;
   skills: SkillItem[];
   icon: any;
-  color: string;
+  accentColor: string;
+  bgColor: string;
   description: string;
 }
 
@@ -49,8 +50,8 @@ export function SkillDetailModal({ isOpen, onClose, category }: SkillDetailModal
       <DialogContent className="max-w-lg mx-4 max-h-[90vh] overflow-y-auto">
         <DialogHeader className="space-y-4">
           <div className="flex items-center gap-3">
-            <div className={`p-3 rounded-xl bg-gradient-to-br ${category.color} shadow-lg`}>
-              <IconComponent className="w-6 h-6 text-white" />
+            <div className="p-3 rounded-xl border" style={{ background: category.bgColor, borderColor: category.accentColor + "33" }}>
+              <IconComponent className="w-6 h-6" style={{ color: category.accentColor }} />
             </div>
             <div className="flex-1">
               <DialogTitle className="text-xl font-bold text-left">
@@ -71,8 +72,10 @@ export function SkillDetailModal({ isOpen, onClose, category }: SkillDetailModal
             >
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  {skill.logo && (
-                    <span className="text-xl">{skill.logo}</span>
+                  {skill.icon && (
+                    <div className="p-1.5 rounded-md" style={{ background: category.bgColor }}>
+                      <skill.icon className="w-4 h-4" style={{ color: category.accentColor }} />
+                    </div>
                   )}
                   <div className="flex-1">
                     <div className="font-medium text-sm">{skill.name}</div>

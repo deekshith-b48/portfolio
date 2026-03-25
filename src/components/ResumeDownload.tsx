@@ -30,47 +30,35 @@ export function ResumeDownload() {
   };
 
   return (
-    <Card className="border-accent/20 bg-gradient-to-r from-accent/5 to-accent/10 hover:border-accent/40 transition-all duration-300">
-      <CardContent className="p-4 md:p-6">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-          <div className="flex items-center gap-3 flex-1">
-            <div className="p-3 rounded-lg bg-accent/20 border border-accent/30">
-              <FileText className="w-5 h-5 md:w-6 md:h-6 text-accent" />
-            </div>
-            <div className="space-y-1">
-              <h3 className="font-semibold text-sm md:text-base">Download Resume</h3>
-              <p className="text-xs md:text-sm text-muted-foreground">
-                Get my latest resume in PDF format
-              </p>
-            </div>
-          </div>
-          
-          <div className="flex gap-2 w-full sm:w-auto">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={handleView}
-              className="flex-1 sm:flex-none border-accent/30 hover:border-accent/50 hover:bg-accent/10 text-xs md:text-sm"
-            >
-              <Eye className="w-3 h-3 md:w-4 md:h-4 mr-1 md:mr-2" />
-              <span className="hidden xs:inline">View</span>
-            </Button>
-            <Button
-              onClick={handleDownload}
-              disabled={isDownloading}
-              size="sm"
-              className="flex-1 sm:flex-none bg-accent hover:bg-accent/90 text-accent-foreground text-xs md:text-sm"
-            >
-              <Download className="w-3 h-3 md:w-4 md:h-4 mr-1 md:mr-2" />
-              {isDownloading ? (
-                <span className="hidden xs:inline">Downloading...</span>
-              ) : (
-                <span className="hidden xs:inline">Download</span>
-              )}
-            </Button>
-          </div>
+    <div className="flex items-center justify-between gap-4 px-4 py-3 rounded-xl border border-white/[0.07] bg-card/50 backdrop-blur-sm hover:border-accent/20 transition-all duration-200">
+      <div className="flex items-center gap-3">
+        <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-accent/10 border border-accent/20 flex-shrink-0">
+          <FileText className="w-4 h-4 text-accent" />
         </div>
-      </CardContent>
-    </Card>
+        <div>
+          <p className="text-sm font-medium text-foreground">Deekshith B Gowda — Resume</p>
+          <p className="text-xs text-muted-foreground">Full Stack Developer · Updated 2025</p>
+        </div>
+      </div>
+
+      <div className="flex items-center gap-2 flex-shrink-0">
+        <button
+          onClick={handleView}
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-muted-foreground border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.07] hover:text-foreground transition-all duration-200"
+        >
+          <Eye className="w-3.5 h-3.5" />
+          <span className="hidden sm:inline">View</span>
+        </button>
+        <button
+          onClick={handleDownload}
+          disabled={isDownloading}
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-white transition-all duration-200 hover:opacity-90 disabled:opacity-50"
+          style={{ background: "linear-gradient(135deg, hsl(258 90% 65%), hsl(200 90% 55%))" }}
+        >
+          <Download className="w-3.5 h-3.5" />
+          <span className="hidden sm:inline">{isDownloading ? "Saving…" : "Download"}</span>
+        </button>
+      </div>
+    </div>
   );
 }

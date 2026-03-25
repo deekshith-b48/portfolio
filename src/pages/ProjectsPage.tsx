@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { ExternalLink, Github, Star, GitFork, Clock, Sparkles, Loader2, Calendar, Code2, ChevronRight } from "lucide-react";
+import { ExternalLink, Github, Star, GitFork, Clock, Sparkles, Loader2, Calendar, Code2, ChevronRight, FolderOpen } from "lucide-react";
 import { TechTag } from "@/components/TechTag";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -24,33 +24,33 @@ function ProjectDetailModal({ isOpen, onClose, project }: ProjectDetailModalProp
           <div className="flex items-start gap-3">
             <div className="text-2xl">📁</div>
             <div className="flex-1 space-y-2">
-              <DialogTitle className="text-xl font-bold text-left leading-tight">
+              <DialogTitle className="font-bitcount text-xl font-bold text-left leading-tight">
                 {project.name.replace(/-/g, ' ').replace(/_/g, ' ')}
               </DialogTitle>
-              
+
               <div className="space-y-2">
                 <div className="flex flex-wrap items-center gap-2">
-                  <Badge variant="outline" className="text-xs">
+                  <Badge variant="outline" className="font-space text-xs">
                     {githubService.getRepoStatus(project)}
                   </Badge>
-                  <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                  <div className="flex items-center gap-1 font-space text-sm text-muted-foreground">
                     <Calendar className="w-3 h-3" />
                     Updated {githubService.formatRepoDate(project.updated_at)}
                   </div>
                 </div>
-                
-                <div className="flex items-center gap-4 text-sm text-muted-foreground">
+
+                <div className="flex items-center gap-4 font-space text-sm text-muted-foreground">
                   <div className="flex items-center gap-1">
                     <Star className="w-3 h-3" />
-                    {project.stargazers_count}
+                    <span className="font-doto">{project.stargazers_count}</span>
                   </div>
                   <div className="flex items-center gap-1">
                     <GitFork className="w-3 h-3" />
-                    {project.forks_count}
+                    <span className="font-doto">{project.forks_count}</span>
                   </div>
                   <div className="flex items-center gap-1">
                     <Code2 className="w-3 h-3" />
-                    {Math.round(project.size / 1024)}KB
+                    <span className="font-doto">{Math.round(project.size / 1024)}KB</span>
                   </div>
                 </div>
               </div>
@@ -63,7 +63,7 @@ function ProjectDetailModal({ isOpen, onClose, project }: ProjectDetailModalProp
           {project.description && (
             <div>
               <h4 className="font-semibold text-accent mb-2">Description</h4>
-              <p className="text-sm text-muted-foreground leading-relaxed">
+              <p className="font-space text-sm text-muted-foreground leading-relaxed">
                 {project.description}
               </p>
             </div>
@@ -74,7 +74,7 @@ function ProjectDetailModal({ isOpen, onClose, project }: ProjectDetailModalProp
             <h4 className="font-semibold text-accent mb-3">Technologies Used</h4>
             <div className="flex flex-wrap gap-2">
               {project.languages.map((language) => (
-                <TechTag key={language} variant="secondary" className="text-xs">
+                <TechTag key={language} variant="secondary" className="font-space text-xs">
                   {language}
                 </TechTag>
               ))}
@@ -84,20 +84,20 @@ function ProjectDetailModal({ isOpen, onClose, project }: ProjectDetailModalProp
           {/* Project Details */}
           <div className="grid grid-cols-2 gap-4 p-4 rounded-lg bg-card/50 border border-border/50">
             <div>
-              <div className="text-xs text-muted-foreground">Created</div>
-              <div className="text-sm font-medium">{new Date(project.created_at).toLocaleDateString()}</div>
+              <div className="font-space text-xs text-muted-foreground">Created</div>
+              <div className="font-space text-sm font-medium">{new Date(project.created_at).toLocaleDateString()}</div>
             </div>
             <div>
-              <div className="text-xs text-muted-foreground">Last Push</div>
-              <div className="text-sm font-medium">{new Date(project.pushed_at).toLocaleDateString()}</div>
+              <div className="font-space text-xs text-muted-foreground">Last Push</div>
+              <div className="font-space text-sm font-medium">{new Date(project.pushed_at).toLocaleDateString()}</div>
             </div>
             <div>
-              <div className="text-xs text-muted-foreground">Default Branch</div>
-              <div className="text-sm font-medium">{project.default_branch}</div>
+              <div className="font-space text-xs text-muted-foreground">Default Branch</div>
+              <div className="font-space text-sm font-medium">{project.default_branch}</div>
             </div>
             <div>
-              <div className="text-xs text-muted-foreground">Language</div>
-              <div className="text-sm font-medium">{project.language || 'Multiple'}</div>
+              <div className="font-space text-xs text-muted-foreground">Language</div>
+              <div className="font-space text-sm font-medium">{project.language || 'Multiple'}</div>
             </div>
           </div>
 
@@ -118,7 +118,7 @@ function ProjectDetailModal({ isOpen, onClose, project }: ProjectDetailModalProp
                 View Code
               </a>
             </Button>
-            
+
             {project.homepage && (
               <Button
                 variant="outline"
@@ -142,6 +142,9 @@ function ProjectDetailModal({ isOpen, onClose, project }: ProjectDetailModalProp
     </Dialog>
   );
 }
+
+const FEATURED_PROJECTS = ['PoliGap', 'AEGIS', 'ZeroHack', 'SocialSpark'];
+const ACCENT_GRAD = "linear-gradient(135deg, hsl(258 90% 78%), hsl(200 90% 68%))";
 
 export function ProjectsPage() {
   const [githubRepos, setGithubRepos] = useState<(GitHubRepo & { languages: string[] })[]>([]);
@@ -174,11 +177,13 @@ export function ProjectsPage() {
 
         return hasFullStackLanguages || isSignificantSize || isFeaturedProject;
       }).sort((a, b) => {
-        // Prioritize PoliGap and other featured projects
-        if (a.name === 'PoliGap') return -1;
-        if (b.name === 'PoliGap') return 1;
-        if (a.name === 'SocialSpark') return -1;
-        if (b.name === 'SocialSpark') return 1;
+        // Prioritize resume projects first
+        const priority = ['PoliGap', 'AEGIS', 'ZeroHack', 'SocialSpark'];
+        const ai = priority.indexOf(a.name);
+        const bi = priority.indexOf(b.name);
+        if (ai !== -1 && bi !== -1) return ai - bi;
+        if (ai !== -1) return -1;
+        if (bi !== -1) return 1;
         return new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime();
       });
 
@@ -198,10 +203,10 @@ export function ProjectsPage() {
       setError(null);
     } catch (err) {
       console.error("Error fetching GitHub repos:", err);
-      
+
       // Check if github service has fallback data to display
       const isUsingFallback = githubService.isUsingFallbackData();
-      
+
       if (isUsingFallback) {
         // If we have fallback data, don't show error to user
         setUsingFallbackData(true);
@@ -232,33 +237,31 @@ export function ProjectsPage() {
   return (
     <div className="min-h-screen">
       <div className="max-w-7xl mx-auto p-3 md:p-6 lg:p-8 space-y-6 md:space-y-12">
-        
+
         {/* Resume Download Section */}
         <ResumeDownload />
-        
-        {/* Header */}
-        <div className="text-center space-y-4 md:space-y-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-accent/10 border border-accent/20 text-accent text-xs md:text-sm font-medium">
-            <Github className="w-3 h-3 md:w-4 md:h-4" />
-            Live Repository
+
+        {/* Section Header */}
+        <div className="space-y-3">
+          <div className="flex items-center gap-3">
+            <span className="font-doto text-[10px] font-medium text-muted-foreground/60 tracking-[0.3em] uppercase">01 —</span>
+            <span className="section-badge"><FolderOpen className="w-3 h-3" />Projects</span>
           </div>
-          <h1 className="text-2xl md:text-4xl lg:text-6xl font-bold tracking-tight bg-gradient-to-r from-foreground to-accent bg-clip-text text-transparent">
-            Featured Projects
-          </h1>
-          <p className="text-sm md:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            A curated collection of my fullstack projects, automatically sourced from GitHub.
+          <h1 className="font-bitcount page-heading">Featured Projects</h1>
+          <p className="font-space text-sm text-muted-foreground max-w-2xl leading-relaxed">
+            AI-integrated full-stack products — live-sourced from GitHub.
           </p>
           {usingFallbackData && (
-            <div className="flex flex-col items-center gap-3">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-600 text-xs">
+            <div className="flex flex-col gap-3">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-600 text-xs w-fit">
                 <Clock className="w-3 h-3" />
-                Showing cached projects
+                <span className="font-space">Showing cached projects</span>
               </div>
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={fetchGithubRepos}
-                className="text-xs text-muted-foreground hover:text-accent"
+                className="font-space text-xs text-muted-foreground hover:text-accent w-fit"
               >
                 Try refreshing from GitHub
               </Button>
@@ -271,7 +274,7 @@ export function ProjectsPage() {
           <div className="flex items-center justify-center py-16">
             <div className="flex items-center gap-3 text-muted-foreground">
               <Loader2 className="w-6 h-6 animate-spin" />
-              <span>Fetching latest projects from GitHub...</span>
+              <span className="font-space text-sm">Loading repositories…</span>
             </div>
           </div>
         )}
@@ -279,7 +282,7 @@ export function ProjectsPage() {
         {/* Error State */}
         {error && (
           <div className="text-center py-16">
-            <p className="text-red-400 mb-4">{error}</p>
+            <p className="font-space text-red-400 mb-4">{error}</p>
             <Button onClick={fetchGithubRepos} variant="outline">
               Try Again
             </Button>
@@ -290,115 +293,147 @@ export function ProjectsPage() {
         {!loading && !error && (
           <>
             <div className="grid gap-4 md:gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {displayedRepos.map((repo, index) => (
-                <Card
-                  key={repo.id}
-                  className="group cursor-pointer border-border/50 bg-card/50 hover:border-accent/30 hover:shadow-lg hover:shadow-accent/5 transition-all duration-300 hover:scale-[1.02]"
-                  onClick={() => handleProjectClick(repo)}
-                >
-                  <CardContent className="p-4 md:p-6 space-y-4">
-                    
-                    {/* Header */}
-                    <div className="flex items-start justify-between gap-2">
-                      <div className="space-y-2 flex-1 min-w-0">
-                        <h3 className="text-sm md:text-base font-bold group-hover:text-accent transition-colors duration-300 line-clamp-1">
-                          {repo.name.replace(/-/g, ' ').replace(/_/g, ' ')}
-                        </h3>
-                        <div className="flex flex-wrap items-center gap-2">
-                          <Badge variant="outline" className={`${githubService.getRepoStatus(repo) === 'Active' 
-                            ? "bg-green-500/20 text-green-400 border-green-500/30" 
-                            : "bg-gray-500/20 text-gray-400 border-gray-500/30"
-                          } text-xs`}>
-                            {githubService.getRepoStatus(repo)}
-                          </Badge>
-                          <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                            <Calendar className="w-3 h-3" />
-                            {githubService.formatRepoDate(repo.updated_at)}
+              {displayedRepos.map((repo) => {
+                const isFeatured = FEATURED_PROJECTS.includes(repo.name);
+                return (
+                  <Card
+                    key={repo.id}
+                    className="group cursor-pointer border-border/50 bg-card/50 hover:border-accent/30 hover:shadow-lg hover:shadow-accent/5 transition-all duration-300 hover:scale-[1.01] overflow-hidden"
+                    style={isFeatured ? { borderTopWidth: '1px', borderTopStyle: 'solid', borderTopColor: 'transparent', backgroundImage: `${ACCENT_GRAD}, var(--card)`, backgroundOrigin: 'border-box', backgroundClip: 'padding-box' } : {}}
+                    onClick={() => handleProjectClick(repo)}
+                  >
+                    {/* Gradient top border for featured */}
+                    {isFeatured && (
+                      <div
+                        className="h-[1px] w-full"
+                        style={{ background: ACCENT_GRAD }}
+                      />
+                    )}
+                    <CardContent className="p-4 md:p-6 space-y-4">
+
+                      {/* Header */}
+                      <div className="flex items-start justify-between gap-2">
+                        <div className="space-y-2 flex-1 min-w-0">
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <h3 className="font-bitcount text-sm md:text-base font-bold group-hover:text-accent transition-colors duration-300 line-clamp-1">
+                              {repo.name.replace(/-/g, ' ').replace(/_/g, ' ')}
+                            </h3>
+                            {isFeatured && (
+                              <span
+                                className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold border"
+                                style={{
+                                  background: "linear-gradient(135deg, hsl(258 90% 78% / 0.15), hsl(200 90% 68% / 0.15))",
+                                  borderColor: "hsl(258 90% 78% / 0.4)",
+                                  color: "hsl(258 90% 80%)",
+                                }}
+                              >
+                                <Sparkles className="w-2.5 h-2.5" />
+                                Featured
+                              </span>
+                            )}
+                          </div>
+                          <div className="flex flex-wrap items-center gap-2">
+                            <Badge variant="outline" className={`font-space ${githubService.getRepoStatus(repo) === 'Active'
+                              ? "bg-green-500/20 text-green-400 border-green-500/30"
+                              : "bg-gray-500/20 text-gray-400 border-gray-500/30"
+                            } text-xs`}>
+                              {githubService.getRepoStatus(repo)}
+                            </Badge>
+                            <div className="flex items-center gap-1 font-space text-xs text-muted-foreground">
+                              <Calendar className="w-3 h-3" />
+                              {githubService.formatRepoDate(repo.updated_at)}
+                            </div>
                           </div>
                         </div>
+                        <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-accent group-hover:translate-x-1 transition-all duration-300 flex-shrink-0" />
                       </div>
-                      <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-accent group-hover:translate-x-1 transition-all duration-300 flex-shrink-0" />
-                    </div>
 
-                    {/* Description */}
-                    {repo.description && (
-                      <p className="text-xs md:text-sm text-muted-foreground leading-relaxed line-clamp-2 group-hover:text-foreground/80 transition-colors duration-300">
-                        {repo.description}
-                      </p>
-                    )}
+                      {/* Description */}
+                      {repo.description && (
+                        <p className="font-space text-xs md:text-sm text-muted-foreground leading-relaxed line-clamp-2 group-hover:text-foreground/80 transition-colors duration-300">
+                          {repo.description}
+                        </p>
+                      )}
 
-                    {/* Stats */}
-                    <div className="flex items-center gap-3 text-xs text-muted-foreground">
-                      <div className="flex items-center gap-1">
-                        <Star className="w-3 h-3" />
-                        {repo.stargazers_count}
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <GitFork className="w-3 h-3" />
-                        {repo.forks_count}
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <Code2 className="w-3 h-3" />
-                        {Math.round(repo.size / 1024)}KB
-                      </div>
-                    </div>
-
-                    {/* Languages Preview */}
-                    <div className="space-y-2">
-                      <div className="flex flex-wrap gap-1">
-                        {repo.languages.slice(0, 3).map((language) => (
-                          <TechTag key={language} variant="secondary" className="text-xs">
-                            {language}
-                          </TechTag>
-                        ))}
-                        {repo.languages.length > 3 && (
-                          <span className="text-xs text-muted-foreground px-2 py-1">
-                            +{repo.languages.length - 3}
+                      {/* Stats */}
+                      <div className="flex items-center gap-3 text-xs text-muted-foreground">
+                        <div className="flex items-center gap-1">
+                          <Star className="w-3 h-3" />
+                          <span className="font-doto font-bold bg-clip-text text-transparent" style={{ backgroundImage: ACCENT_GRAD }}>
+                            {repo.stargazers_count}
                           </span>
-                        )}
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <GitFork className="w-3 h-3" />
+                          <span className="font-doto font-bold bg-clip-text text-transparent" style={{ backgroundImage: ACCENT_GRAD }}>
+                            {repo.forks_count}
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <Code2 className="w-3 h-3" />
+                          <span className="font-doto font-bold bg-clip-text text-transparent" style={{ backgroundImage: ACCENT_GRAD }}>
+                            {Math.round(repo.size / 1024)}KB
+                          </span>
+                        </div>
                       </div>
-                    </div>
 
-                    {/* Quick Actions */}
-                    <div className="flex gap-2 text-xs">
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        asChild
-                        className="flex-1 hover:bg-accent hover:text-background hover:border-accent"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <a
-                          href={repo.html_url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <Github className="h-3 w-3 mr-1" />
-                          Code
-                        </a>
-                      </Button>
-                      
-                      {repo.homepage && (
+                      {/* Languages Preview */}
+                      <div className="space-y-2">
+                        <div className="flex flex-wrap gap-1">
+                          {repo.languages.slice(0, 3).map((language) => (
+                            <TechTag key={language} variant="secondary" className="font-space text-xs">
+                              {language}
+                            </TechTag>
+                          ))}
+                          {repo.languages.length > 3 && (
+                            <span className="font-space text-xs text-muted-foreground px-2 py-1">
+                              +{repo.languages.length - 3}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Quick Actions */}
+                      <div className="flex gap-2 text-xs">
                         <Button
                           variant="outline"
                           size="sm"
                           asChild
-                          className="hover:bg-accent hover:text-background hover:border-accent"
+                          className="flex-1 hover:bg-accent hover:text-background hover:border-accent"
                           onClick={(e) => e.stopPropagation()}
                         >
                           <a
-                            href={repo.homepage}
+                            href={repo.html_url}
                             target="_blank"
                             rel="noopener noreferrer"
                           >
-                            <ExternalLink className="h-3 w-3" />
+                            <Github className="h-3 w-3 mr-1" />
+                            Code
                           </a>
                         </Button>
-                      )}
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
+
+                        {repo.homepage && (
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            asChild
+                            className="hover:bg-accent hover:text-background hover:border-accent"
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            <a
+                              href={repo.homepage}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              <ExternalLink className="h-3 w-3" />
+                            </a>
+                          </Button>
+                        )}
+                      </div>
+                    </CardContent>
+                  </Card>
+                );
+              })}
             </div>
 
             {/* Show More/Less Button */}
@@ -407,7 +442,7 @@ export function ProjectsPage() {
                 <Button
                   variant="outline"
                   onClick={() => setShowAllRepos(!showAllRepos)}
-                  className="border-accent/20 hover:border-accent/50 hover:bg-accent/10"
+                  className="font-space border-accent/20 hover:border-accent/50 hover:bg-accent/10"
                 >
                   {showAllRepos ? "Show Less" : `View All ${githubRepos.length} Projects`}
                 </Button>
@@ -418,26 +453,43 @@ export function ProjectsPage() {
             <div className="grid grid-cols-3 gap-3 md:gap-6">
               <Card className="border-border/50 bg-card/50 hover:border-accent/30 transition-all duration-300 hover:scale-105">
                 <CardContent className="p-4 md:p-6 text-center">
-                  <div className="text-xl md:text-3xl font-bold text-accent mb-1 md:mb-2">{githubRepos.length}</div>
-                  <div className="text-xs md:text-sm text-muted-foreground">Projects</div>
+                  <div className="mb-1 md:mb-2">
+                    <span
+                      className="font-doto font-bold text-xl md:text-3xl bg-clip-text text-transparent"
+                      style={{ backgroundImage: ACCENT_GRAD }}
+                    >
+                      {githubRepos.length}
+                    </span>
+                  </div>
+                  <div className="font-space text-xs md:text-sm text-muted-foreground">Projects</div>
                 </CardContent>
               </Card>
-              
+
               <Card className="border-border/50 bg-card/50 hover:border-accent/30 transition-all duration-300 hover:scale-105">
                 <CardContent className="p-4 md:p-6 text-center">
-                  <div className="text-xl md:text-3xl font-bold text-accent mb-1 md:mb-2">
-                    {githubRepos.reduce((sum, repo) => sum + repo.stargazers_count, 0)}
+                  <div className="mb-1 md:mb-2">
+                    <span
+                      className="font-doto font-bold text-xl md:text-3xl bg-clip-text text-transparent"
+                      style={{ backgroundImage: ACCENT_GRAD }}
+                    >
+                      {githubRepos.reduce((sum, repo) => sum + repo.stargazers_count, 0)}
+                    </span>
                   </div>
-                  <div className="text-xs md:text-sm text-muted-foreground">Stars</div>
+                  <div className="font-space text-xs md:text-sm text-muted-foreground">Stars</div>
                 </CardContent>
               </Card>
-              
+
               <Card className="border-border/50 bg-card/50 hover:border-accent/30 transition-all duration-300 hover:scale-105">
                 <CardContent className="p-4 md:p-6 text-center">
-                  <div className="text-xl md:text-3xl font-bold text-accent mb-1 md:mb-2">
-                    {githubRepos.reduce((sum, repo) => sum + repo.forks_count, 0)}
+                  <div className="mb-1 md:mb-2">
+                    <span
+                      className="font-doto font-bold text-xl md:text-3xl bg-clip-text text-transparent"
+                      style={{ backgroundImage: ACCENT_GRAD }}
+                    >
+                      {githubRepos.reduce((sum, repo) => sum + repo.forks_count, 0)}
+                    </span>
                   </div>
-                  <div className="text-xs md:text-sm text-muted-foreground">Forks</div>
+                  <div className="font-space text-xs md:text-sm text-muted-foreground">Forks</div>
                 </CardContent>
               </Card>
             </div>
